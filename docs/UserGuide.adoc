@@ -220,7 +220,8 @@ Adds a new journal entry to the entry list with the specified content, date, tim
 Sorts the list of current journal entry lists in a specified order.
 
 Format: `sort [SORT_TYPE]`
-* Available `SORT_TYPE`: 
+
+* Available `SORT_TYPE`:
 ** Old to new - old (default if SORT_TYPE is left empty)
 ** New to old - new
 ** Location - location
