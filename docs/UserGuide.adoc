@@ -62,7 +62,7 @@ Navigates to the context of a trip in the trip list.
 
 Format: `gotoTrip INDEX`
 
-* Index must be a positive integer within range of the list size.
+* `INDEX` must be a positive integer within range of the list size.
 
 Example:
 
@@ -93,7 +93,7 @@ Deletes a trip from the trip list.
 
 Format: `delete INDEX`
 
-* Index must be a positive integer within range of the list size.
+* INDEX must be a positive integer within range of the list size.
 
 Example:
 
@@ -105,8 +105,8 @@ Edits item in the trip list at the specified index.
 
 Format: `edit INDEX [n/TRIP_NAME] [from/TRIP_START_DATE] [to/TRIP_END_DATE] [l/LOCATION]...`
 
-* Index must be a positive integer within range of the list size.
-* Please write the date range in the format from/DD-MM-YYYY to/DD-MM-YYYY.
+* `INDEX` must be a positive integer within range of the list size.
+* Please write the date range in the format `from/DD-MM-YYYY` `to/DD-MM-YYYY`.
 
 Example: 
 
@@ -115,17 +115,17 @@ Edits the second trip on the list with “School Trip” as name and “France�
 * `edit 1 from/01-02-2020 to/ 01-03-2020` +
 Edits the first trip on the list with date range of 1 February to 1 March 2020.
 
-==== 3.2.4 Navigating to a feature in the trip page: `goto` 
+==== Navigating to a feature in the trip page: `goto` 
 Navigates to a specific feature within each trip.
 
 Format: `goto FEATURE`
 
 * List of available features:
-** ITINERARY
-** JOURNAL
-** EXPENSES
-** PACKINGLIST
-** CONTACTS
+** `ITINERARY`
+** `JOURNAL`
+** `EXPENSES`
+** `PACKINGLIST`
+** `CONTACTS`
 
 
 Example: 
@@ -140,8 +140,8 @@ Adds an activity to the itinerary.
 
 Format: `add a/ACTIVITY d/DATE t/TIME l/LOCATION`
 
-* Date must be specified in the following format: DD-MM-YYYY
-* Time must be specified in the following format: HH:MM
+* Date must be specified in the following format: `DD-MM-YYYY`
+* Time must be specified in the following format: `HH:MM` 
 
 Example:
 
@@ -153,7 +153,7 @@ Deletes the specified activity in the itinerary.
 
 Format: `delete INDEX`
 
-* Deletes the activity at the specified INDEX.
+* Deletes the activity at the specified `INDEX`.
 * The index refers to the index number shown in the displayed itinerary.
 * The index must be a positive integer 1, 2, 3, …
 
@@ -172,19 +172,19 @@ Edits an existing itinerary.
 
 Format: `edit INDEX [a/ACTIVITY] [d/DATE] [t/TIME] [l/LOCATION]`
 
-* Edits the activity at the specified INDEX. The index refers to the index number shown in the displayed itinerary list. The index must * be a positive integer 1, 2, 3, …​
+* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index must * be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Date must be specified in the following format: DD-MM-YYYY
-* Time must be specified in the following format: HH:MM
+* Date must be specified in the following format: `DD-MM-YYYY`
+* Time must be specified in the following format: `HH:MM`
 
 ==== Locating an activity by any field: `find`
 Searches the itinerary for any activity that matches the input field.
 
 Format: `find FIELD [a/ACTIVITY] [d/DATE] [t/TIME] [l/LOCATION]`
 
-Date must be specified in the following format: DD-MM-YYYY
-Time must be specified in the following format: HH:MM
+Date must be specified in the following format: `DD-MM-YYYY`
+Time must be specified in the following format: `HH:MM`
 
 Example:
 
@@ -198,11 +198,18 @@ Adds a journal entry to the entry list.
 
 Format: `add [c/CONTENT] [img/FILE_DIRECTORY] d/DATE t/TIME [l/LOCATION] [f/FEELING] [w/WEATHER]`
 
-* Date must be specified in the following format: DD-MM-YYYY
-* Time must be specified in the following format: HH:MM
+* Date must be specified in the following format: `DD-MM-YYYY`
+* Time must be specified in the following format: `HH:MM`
 * CONTENT is limited to 280 characters
-* Available FEELING types:
+* Available `FEELING` types:
 ** happy
+** sad
+** excited
+** worried
+** scared 
+** surprised
+** confused 
+
 
 Example:
 
@@ -213,7 +220,7 @@ Adds a new journal entry to the entry list with the specified content, date, tim
 Sorts the list of current journal entry lists in a specified order.
 
 Format: `sort [SORT_TYPE]`
-* Available SORT_TYPE: 
+* Available `SORT_TYPE`: 
 ** Old to new - old (default if SORT_TYPE is left empty)
 ** New to old - new
 ** Location - location
@@ -246,7 +253,7 @@ Changes date and feeling of fourth journal entry to “21-12-2012” and “scar
 ==== Adding a contact: `add`
 Adds a contact to the contact list.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/AGE] m/MET_IN h/HOW_YOU_MET [p/PERSONALITY] [f/FAVOURITE]`
+Format: `add n/NAME [p/PHONE_NUMBER] [a/AGE] l/:LOCATION [h/HOW_YOU_MET] [f/FAVOURITE]`
 
 Example:
 
@@ -257,7 +264,7 @@ Deletes the specified contact in the contact list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified INDEX.
+* Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
 
@@ -269,7 +276,7 @@ Deletes the 2nd person in the contact list.
 ==== Editing a contact: `edit`
 Edits an existing person in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [m/MET_IN] [h/HOW_YOU_MET] [p/PERSONALITY] [f/FAVOURITE]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a   positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -279,7 +286,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [m/MET_IN] [h/HOW_YOU_MET]
 ==== Locating a contact by any field: `find`
 Searches the contact list for any contact that matches the input field.
 
-Format: `find FIELD [n/NAME]/ [p/PHONE_NUMBER]/ [a/AGE]/ [m/MET_IN] [h/HOW_YOU_MET]/ [p/PERSONALITY]/ [f/FAVOURITE]`
+Format: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
 
 * The search is case insensitive. e.g hans will match Hans
 
