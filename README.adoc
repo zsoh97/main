@@ -1,4 +1,4 @@
-= Volant 
+= Volant
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://travis-ci.org/se-edu/addressbook-level3[image:https://travis-ci.org/AY1920S2-CS2103T-F09-4/main.svg?branch=master[Build Status]]
@@ -25,7 +25,7 @@ endif::[]
 
 == Acknowledgements
 
-* This application's base code is based off the Address Book application developed by the CS2103T team for the CS2103T software engineering module. 
+* This application's base code is based off the Address Book application developed by the CS2103T team for the CS2103T software engineering module.
 * Libraries used: https://openjfx.io/[JavaFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/junit-team/junit5[JUnit5]
 
 == Licence : link:LICENSE[MIT]

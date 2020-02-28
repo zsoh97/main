@@ -18,14 +18,14 @@ By: `AY1920S2-2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
 
 == Introduction
 
-Volant is for those who *prefer to use a desktop app for managing people they meet during their solo travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Volant is a travel assistant application for solo travellers for who *prefer to use a desktop app for managing people they meet during their solo travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `volant.jar` link:{https://github.com/AY1920S2-CS2103T-F09-4/main}/releases[v1.1].
 .  Copy the file to the folder you want to use as the home folder for your Volant.
-.  Double-click the JAR file to start the app. 
+.  Double-click the JAR file to start the app.
 .  The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -58,7 +58,7 @@ Returns to the homepage. If already at the homepage, does nothing.
 Format: `home`
 
 ==== Navigating to a trip page: `gotoTrip`
-Navigates to the context of a trip in the trip list. 
+Navigates to the context of a trip in the trip list.
 
 Format: `gotoTrip INDEX`
 
@@ -66,7 +66,7 @@ Format: `gotoTrip INDEX`
 
 Example:
 
-* `gotoTrip 12` + 
+* `gotoTrip 12` +
 Navigates to the 12th trip on the list of trips.
 
 
@@ -81,7 +81,7 @@ Format: `add n/TRIP_NAME from/TRIP_START_DATE to/TRIP_END_DATE l/LOCATION`
 
 * Please write the date range in the format `from/DD-MM-YYYY` `to/DD-MM-YYYY`.
 
-Examples: 
+Examples:
 
 * `add n/Graduation Trip from/01-02-2020 to/05-02-2020 l/Bangkok` +
 Adds a trip titled “Graduation Trip” to the list with the specified metadata.
@@ -89,7 +89,7 @@ Adds a trip titled “Graduation Trip” to the list with the specified metadata
 Adds a trip titled “Family Trip” to the list with the specified metadata.
 
 ==== Deleting a trip: `delete`
-Deletes a trip from the trip list. 
+Deletes a trip from the trip list.
 
 Format: `delete INDEX`
 
@@ -108,14 +108,14 @@ Format: `edit INDEX [n/TRIP_NAME] [from/TRIP_START_DATE] [to/TRIP_END_DATE] [l/L
 * `INDEX` must be a positive integer within range of the list size.
 * Please write the date range in the format `from/DD-MM-YYYY` `to/DD-MM-YYYY`.
 
-Example: 
+Example:
 
 * `edit 2 n/School Trip l/France` +
 Edits the second trip on the list with “School Trip” as name and “France” as location.
 * `edit 1 from/01-02-2020 to/ 01-03-2020` +
 Edits the first trip on the list with date range of 1 February to 1 March 2020.
 
-==== Navigating to a feature in the trip page: `goto` 
+==== Navigating to a feature in the trip page: `goto`
 Navigates to a specific feature within each trip.
 
 Format: `goto FEATURE`
@@ -128,7 +128,7 @@ Format: `goto FEATURE`
 ** `CONTACTS`
 
 
-Example: 
+Example:
 
 * `goto ITINERARY` +
 Navigates to the itinerary feature of the current trip.
@@ -141,7 +141,7 @@ Adds an activity to the itinerary.
 Format: `add a/ACTIVITY d/DATE t/TIME l/LOCATION`
 
 * Date must be specified in the following format: `DD-MM-YYYY`
-* Time must be specified in the following format: `HH:MM` 
+* Time must be specified in the following format: `HH:MM`
 
 Example:
 
@@ -194,7 +194,7 @@ Returns all activities related to climbing.
 === Journal `[coming in v2.0]`
 
 ==== Adding a journal entry: `add`
-Adds a journal entry to the entry list. 
+Adds a journal entry to the entry list.
 
 Format: `add [c/CONTENT] [img/FILE_DIRECTORY] d/DATE t/TIME [l/LOCATION] [f/FEELING] [w/WEATHER]`
 
@@ -206,9 +206,9 @@ Format: `add [c/CONTENT] [img/FILE_DIRECTORY] d/DATE t/TIME [l/LOCATION] [f/FEEL
 ** sad
 ** excited
 ** worried
-** scared 
+** scared
 ** surprised
-** confused 
+** confused
 
 
 Example:
@@ -229,18 +229,18 @@ Format: `sort [SORT_TYPE]`
 * Default sorting of journal entries is in order of old to new
 
 
-Example: 
+Example:
 
-* `sort location` + 
+* `sort location` +
 Sorts the list of journal entries sorted by locations.
 
 ==== Deleting a journal entry: `delete`
-Deletes an entire journal entry or a specific metadata within a journal entry based on the chosen index number. 
+Deletes an entire journal entry or a specific metadata within a journal entry based on the chosen index number.
 
 Format: `delete INDEX`
 
 ==== Editing a journal entry: `edit`
-Edits specific metadata within a chosen journal entry using index number. 
+Edits specific metadata within a chosen journal entry using index number.
 
 Format: `edit INDEX [c/NEW_CONTENT] [img/NEW_FILE_DIRECTORY] [d/NEW_DATE] [t/NEW_TIME] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]`
 

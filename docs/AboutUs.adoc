@@ -14,45 +14,45 @@ Learn more about us below.
 
 === Ranice Tan
 image::raniceyue.png[width="150", align="left"]
-{empty}[https://github.com/raniceyue[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/raniceyue[github]] [<<raniceyue#, portfolio>>]
 
 Role: Team Lead +
-Responsibilities: 
+Responsibilities:
 
 '''
 
 === Grant Lee
 image::grrrrnt.png[width="200", align="left"]
-{empty}[https://github.com/grrrrnt[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/grrrrnt[github]] [<<grrrrnt#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities:
 
 '''
 
 === Zeke Soh
 image::zsoh97.png[width="200", align="left"]
-{empty}[https://github.com/zsoh97[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/zsoh97[github]] [<<zsoh97#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities:
 
 '''
 
 === Vu Hieu Nguyen
 image::vuhieunguyen.png[width="200", align="left"]
-{empty}[https://github.com/vuhieunguyen[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/vuhieunguyen[github]] [<<vuhieunguyen#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities:
 
 '''
 
 === Mikhail Faiz
 image::mikhailfaiz.png[width="200", align="left"]
-{empty}[https://github.com/mikhailfaiz[github]] [<<johndoe#, portfolio>>]
+{empty}[https://github.com/mikhailfaiz[github]] [<<mikhailfaiz#, portfolio>>]
 
 Role: Developer +
-Responsibilities: 
+Responsibilities:
 
 '''
