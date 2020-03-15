@@ -5,9 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.volant.commons.exceptions.DataConversionException;
-import seedu.volant.homepage.model.ReadOnlyTripList;
-import seedu.volant.homepage.model.ReadOnlyUserPrefs;
-import seedu.volant.homepage.model.UserPrefs;
+import seedu.volant.commons.model.ReadOnlyUserPrefs;
+import seedu.volant.commons.model.UserPrefs;
+import seedu.volant.home.model.ReadOnlyTripList;
 
 /**
  * API of the Storage component

@@ -1,7 +1,7 @@
 package seedu.volant.commons.logic.commands;
 
-import seedu.volant.homepage.logic.commands.exceptions.CommandException;
-import seedu.volant.homepage.model.Model;
+import seedu.volant.commons.logic.commands.exceptions.CommandException;
+import seedu.volant.commons.model.Model;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.

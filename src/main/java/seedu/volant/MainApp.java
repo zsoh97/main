@@ -7,22 +7,20 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import seedu.volant.commons.core.Config;
 import seedu.volant.commons.core.LogsCenter;
 import seedu.volant.commons.core.Version;
 import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.logic.Logic;
-import seedu.volant.commons.logic.LogicManager;
+import seedu.volant.commons.model.ReadOnlyUserPrefs;
+import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.commons.util.ConfigUtil;
 import seedu.volant.commons.util.StringUtil;
-import seedu.volant.homepage.model.Model;
-import seedu.volant.homepage.model.ModelManager;
-import seedu.volant.homepage.model.ReadOnlyTripList;
-import seedu.volant.homepage.model.ReadOnlyUserPrefs;
-import seedu.volant.homepage.model.TripList;
-import seedu.volant.homepage.model.UserPrefs;
-import seedu.volant.homepage.model.util.SampleDataUtil;
+import seedu.volant.home.logic.HomeLogicManager;
+import seedu.volant.home.model.HomeModelManager;
+import seedu.volant.home.model.ReadOnlyTripList;
+import seedu.volant.home.model.TripList;
+import seedu.volant.home.model.util.SampleDataUtil;
 import seedu.volant.storage.JsonUserPrefsStorage;
 import seedu.volant.storage.JsonVolantStorage;
 import seedu.volant.storage.Storage;
@@ -39,14 +37,14 @@ import seedu.volant.ui.UiManager;
 public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
-
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected HomeModelManager model;
     protected Config config;
+    protected ReadOnlyUserPrefs userPrefs;
 
     @Override
     public void init() throws Exception {
@@ -57,33 +55,42 @@ public class MainApp extends Application {
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        userPrefs = initPrefs(userPrefsStorage);
+
         VolantStorage volantStorage = new JsonVolantStorage(userPrefs.getVolantFilePath());
         storage = new StorageManager(volantStorage, userPrefsStorage);
 
         initLogging(config);
 
+        /**
+         * Initialising program with home logic manager.
+         */
         model = initModelManager(storage, userPrefs);
-
-        logic = new LogicManager(model, storage);
-
+        logic = new HomeLogicManager(model, storage);
         ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns application user preferences.
+     */
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
+
+    /**
+     * Returns a {@code HomeModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTripList> addressBookOptional;
+    private HomeModelManager initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyTripList> tripListOptional;
         ReadOnlyTripList initialData;
         try {
-            addressBookOptional = storage.readTripList();
-            if (!addressBookOptional.isPresent()) {
+            tripListOptional = storage.readTripList();
+            if (!tripListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample trip list.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = tripListOptional.orElseGet(SampleDataUtil::getSampleTripList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty trip list.");
             initialData = new TripList();
@@ -92,7 +99,7 @@ public class MainApp extends Application {
             initialData = new TripList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new HomeModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -175,7 +182,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Location Book ] =============================");
+        logger.info("============================ [ Stopping Volant ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

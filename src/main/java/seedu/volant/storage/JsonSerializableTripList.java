@@ -9,9 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.volant.commons.exceptions.IllegalValueException;
-import seedu.volant.homepage.model.TripList;
-import seedu.volant.homepage.model.ReadOnlyTripList;
-import seedu.volant.homepage.model.trip.Trip;
+import seedu.volant.home.model.ReadOnlyTripList;
+import seedu.volant.home.model.TripList;
+import seedu.volant.home.model.trip.Trip;
+
 
 /**
  * An Immutable TripList that is serializable to JSON format.

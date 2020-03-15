@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.commons.logic.parser.ParserUtil;
-import seedu.volant.homepage.model.trip.DateRange;
-import seedu.volant.homepage.model.trip.Location;
-import seedu.volant.homepage.model.trip.Name;
-import seedu.volant.homepage.model.trip.Trip;
+import seedu.volant.home.model.trip.DateRange;
+import seedu.volant.home.model.trip.Location;
+import seedu.volant.home.model.trip.Name;
+import seedu.volant.home.model.trip.Trip;
 
 /**
  * Jackson-friendly version of {@link Trip}.

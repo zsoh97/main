@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.volant.commons.exceptions.DataConversionException;
-import seedu.volant.homepage.model.ReadOnlyTripList;
-import seedu.volant.homepage.model.TripList;
+import seedu.volant.home.model.ReadOnlyTripList;
+import seedu.volant.home.model.TripList;
 
 /**
  * Represents a storage for {@link TripList}.

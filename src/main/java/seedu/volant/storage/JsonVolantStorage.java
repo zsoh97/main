@@ -12,7 +12,7 @@ import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.commons.util.FileUtil;
 import seedu.volant.commons.util.JsonUtil;
-import seedu.volant.homepage.model.ReadOnlyTripList;
+import seedu.volant.home.model.ReadOnlyTripList;
 
 /**
  * A class to access TripList data stored as a json file on the hard disk.

@@ -7,11 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
+import seedu.volant.MainApp;
 import seedu.volant.commons.core.LogsCenter;
 import seedu.volant.commons.logic.Logic;
+import seedu.volant.commons.model.ReadOnlyUserPrefs;
 import seedu.volant.commons.util.StringUtil;
-import seedu.volant.MainApp;
 
 
 /**
@@ -26,6 +26,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private ReadOnlyUserPrefs readOnlyUserPrefs;
 
     public UiManager(Logic logic) {
         super();
@@ -43,7 +44,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

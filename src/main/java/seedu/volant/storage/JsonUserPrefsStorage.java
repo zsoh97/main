@@ -5,9 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.volant.commons.exceptions.DataConversionException;
+import seedu.volant.commons.model.ReadOnlyUserPrefs;
+import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.commons.util.JsonUtil;
-import seedu.volant.homepage.model.ReadOnlyUserPrefs;
-import seedu.volant.homepage.model.UserPrefs;
 
 /**
  * A class to access UserPrefs stored in the hard disk as a json file

@@ -1,6 +1,6 @@
 package seedu.volant.commons.logic.commands;
 
-import seedu.volant.homepage.model.Model;
+import seedu.volant.commons.model.Model;
 
 /**
  * Terminates the program.
@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false);
     }
 
 }

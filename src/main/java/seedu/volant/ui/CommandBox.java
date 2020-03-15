@@ -1,15 +1,13 @@
 package seedu.volant.ui;
 
 import javafx.collections.ObservableList;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-
 import seedu.volant.commons.logic.Logic;
 import seedu.volant.commons.logic.commands.CommandResult;
-import seedu.volant.homepage.logic.commands.exceptions.CommandException;
-import seedu.volant.homepage.logic.parser.exceptions.ParseException;
+import seedu.volant.commons.logic.commands.exceptions.CommandException;
+import seedu.volant.commons.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

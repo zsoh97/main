@@ -5,6 +5,9 @@ import static seedu.volant.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
@@ -64,5 +67,25 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Formats the date into the format dd MMM yyyy
+     * e.g. 05 Mar 1999.
+     * @param date to be formatted
+     * @return formatted date
+     */
+    public static String formatDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
+    /**
+     * Formats the time into the format h:m a
+     * e.g. 12:53 AM
+     * @param time to be formatted
+     * @return formatted time
+     */
+    public static String formatTime(LocalTime time) {
+        return time.format(DateTimeFormatter.ofPattern("h:m a"));
     }
 }

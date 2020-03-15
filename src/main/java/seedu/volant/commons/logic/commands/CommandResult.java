@@ -1,12 +1,12 @@
 package seedu.volant.commons.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
-import seedu.volant.commons.logic.Page;
-import seedu.volant.homepage.model.trip.Trip;
-
-import static seedu.volant.commons.logic.Page.TRIP;
-import static java.util.Objects.requireNonNull;
+import seedu.volant.home.model.TripList;
+import seedu.volant.home.model.trip.Trip;
+import seedu.volant.trip.model.TripFeature;
 
 
 /**
@@ -17,26 +17,31 @@ public class CommandResult {
     protected final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    protected final boolean showHelp;
+    protected final boolean isShowHelp;
 
     /** The application should exit. */
-    protected final boolean exit;
+    protected final boolean isExit;
 
     /** The application should switch pages. */
-    protected boolean gotoPage;
+    protected boolean isGoto;
+
+    protected boolean isBack;
+
+    protected TripList tripList;
 
     protected Trip trip;
 
-    protected Page page;
+    protected TripFeature tripFeature;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean gotoPage) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isGoto, boolean isBack) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.gotoPage = gotoPage;
+        this.isShowHelp = showHelp;
+        this.isExit = exit;
+        this.isGoto = isGoto;
+        this.isBack = isBack;
     }
 
     /**
@@ -44,43 +49,74 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
+    /**
+     * Creates command result for commands to navigate:
+     *      1) From a TRIP page back to the HOME page
+     *      2) From a TRIP_FEATURE page back to the HOME page
+     *      3) Back to HOME page from a TRIP page
+     */
+    public CommandResult(String feedbackToUser, TripList tripList) {
+        this(feedbackToUser, false, false, true, false);
+        this.tripList = tripList;
+    }
+
+    /**
+     * Creates command result for commands to navigate:
+     *      1) From the HOME page to a TRIP page
+     *      2) Back to the TRIP page from a TRIP_FEATURE page
+     */
     public CommandResult(String feedbackToUser, Trip trip) {
-        this(feedbackToUser, false, false, true);
+        this(feedbackToUser, false, false, true, false);
         this.trip = trip;
-        this.page = TRIP;
     }
 
-    public CommandResult(String feedbackToUser, Page page) {
-        this(feedbackToUser, false, false, true);
-        this.trip = null;
-        this.page = page;
+    /**
+     * Creates command result for commands to navigate:
+     *      1) From a TRIP page to a TRIP_FEATURE page
+     */
+    public CommandResult(String feedbackToUser, TripFeature tripFeature) {
+        this(feedbackToUser, false, false, true, false);
+        this.tripFeature = tripFeature;
     }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
     public boolean isGoto() {
-        return gotoPage;
+        return isGoto;
+    }
+
+    public boolean isBack() {
+        return isBack;
+    }
+
+    public void setBack() {
+        this.isBack = true;
+    }
+
+    public TripList getTripList() {
+        return tripList;
     }
 
     public Trip getTrip() {
         return trip;
     }
 
-    public Page getPage() {
-        return page;
+    public TripFeature getTripFeature() {
+        return tripFeature;
     }
 
     @Override
@@ -96,13 +132,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && isShowHelp == otherCommandResult.isShowHelp
+                && isExit == otherCommandResult.isExit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, gotoPage);
+        return Objects.hash(feedbackToUser, isShowHelp, isExit, isGoto);
     }
 
 }

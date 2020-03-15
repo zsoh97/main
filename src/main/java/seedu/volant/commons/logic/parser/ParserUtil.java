@@ -8,12 +8,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.volant.commons.core.index.Index;
+import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.util.StringUtil;
-import seedu.volant.homepage.logic.parser.exceptions.ParseException;
-import seedu.volant.homepage.model.tag.Tag;
-import seedu.volant.homepage.model.trip.DateRange;
-import seedu.volant.homepage.model.trip.Location;
-import seedu.volant.homepage.model.trip.Name;
+import seedu.volant.home.model.tag.Tag;
+import seedu.volant.home.model.trip.DateRange;
+import seedu.volant.home.model.trip.Location;
+import seedu.volant.home.model.trip.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

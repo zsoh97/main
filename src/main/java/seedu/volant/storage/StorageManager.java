@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 
 import seedu.volant.commons.core.LogsCenter;
 import seedu.volant.commons.exceptions.DataConversionException;
-import seedu.volant.homepage.model.ReadOnlyTripList;
-import seedu.volant.homepage.model.ReadOnlyUserPrefs;
-import seedu.volant.homepage.model.UserPrefs;
+import seedu.volant.commons.model.ReadOnlyUserPrefs;
+import seedu.volant.commons.model.UserPrefs;
+import seedu.volant.home.model.ReadOnlyTripList;
 
 /**
  * Manages storage of TripList data in local storage.
@@ -26,6 +26,7 @@ public class StorageManager implements Storage {
         this.volantStorage = volantStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
+
 
     // ================ UserPrefs methods ==============================
 
