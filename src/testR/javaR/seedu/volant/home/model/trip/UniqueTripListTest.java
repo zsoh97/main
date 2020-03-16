@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.volant.home.model.UniqueTripList;
 import seedu.volant.home.model.trip.exceptions.DuplicateTripException;
 import seedu.volant.home.model.trip.exceptions.PersonNotFoundException;
 import seedu.volant.testutil.TripBuilder;

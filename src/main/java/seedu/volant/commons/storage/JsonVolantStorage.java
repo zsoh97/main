@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.commons.storage;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,6 +13,7 @@ import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.commons.util.FileUtil;
 import seedu.volant.commons.util.JsonUtil;
 import seedu.volant.home.model.ReadOnlyTripList;
+import seedu.volant.home.storage.JsonSerializableTripList;
 
 /**
  * A class to access TripList data stored as a json file on the hard disk.

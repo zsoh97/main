@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.volant.journal.model.Entry;
+import seedu.volant.journal.model.entry.Entry;
 import seedu.volant.ui.UiPart;
 import seedu.volant.ui.pages.home.HomePageTripCard;
 

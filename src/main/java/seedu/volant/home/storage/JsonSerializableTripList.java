@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.home.storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import seedu.volant.home.model.trip.Trip;
  * An Immutable TripList that is serializable to JSON format.
  */
 @JsonRootName(value = "volant")
-class JsonSerializableTripList {
+public class JsonSerializableTripList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Trip list contains duplicate trip(s).";
 

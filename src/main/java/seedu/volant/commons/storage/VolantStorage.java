@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.commons.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -1,8 +1,7 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#000, 20%);
+    background-color: #000; /* Used in the default.html file */
 }
-
 
 .label {
     -fx-font-size: 11pt;
