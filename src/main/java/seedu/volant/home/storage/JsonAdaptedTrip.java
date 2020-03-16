@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.home.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,27 +51,33 @@ class JsonAdaptedTrip {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+
         final Name modelName = new Name(name);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
         }
+
         if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
+
         final Location modelLocation = new Location(location);
 
         if (dateRange == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateRange.class.getSimpleName()));
         }
+
         if (!DateRange.isValidDateRange(dateRange)) {
             throw new IllegalValueException(DateRange.MESSAGE_CONSTRAINTS);
         }
+
         final DateRange dateRangeO = ParserUtil.parseDateRange(dateRange);
 
         return new Trip(modelName, modelLocation, dateRangeO);

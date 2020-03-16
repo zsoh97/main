@@ -4,8 +4,8 @@ import static seedu.volant.trip.model.Feature.JOURNAL;
 
 import java.util.ArrayList;
 
-import seedu.volant.journal.model.Entry;
 import seedu.volant.journal.model.EntryList;
+import seedu.volant.journal.model.entry.Entry;
 
 /**
  * Represents a journal

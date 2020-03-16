@@ -89,7 +89,6 @@ public class EditCommand extends Command {
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(tripToEdit.getLocation());
         DateRange updatedDateRange = editPersonDescriptor.getDateRange().orElse(tripToEdit.getDateRange());
 
-
         return new Trip(updatedName, updatedLocation, updatedDateRange);
     }
 
@@ -124,7 +123,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditTripDescriptor(EditTripDescriptor toCopy) {
             setName(toCopy.name);

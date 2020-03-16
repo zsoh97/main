@@ -24,14 +24,14 @@ import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.model.Model;
 import seedu.volant.commons.model.UserPrefs;
+import seedu.volant.commons.storage.JsonUserPrefsStorage;
+import seedu.volant.commons.storage.JsonVolantStorage;
+import seedu.volant.commons.storage.StorageManager;
 import seedu.volant.home.logic.commands.AddCommand;
 import seedu.volant.home.logic.commands.ListCommand;
 import seedu.volant.home.model.HomeModelManager;
 import seedu.volant.home.model.ReadOnlyTripList;
 import seedu.volant.home.model.trip.Trip;
-import seedu.volant.storage.JsonUserPrefsStorage;
-import seedu.volant.storage.JsonVolantStorage;
-import seedu.volant.storage.StorageManager;
 import seedu.volant.testutil.TripBuilder;
 
 public class LogicManagerTest {

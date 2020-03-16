@@ -9,8 +9,8 @@ import seedu.volant.commons.logic.commands.CommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.model.Model;
+import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.logic.HomeLogicManager;
-import seedu.volant.storage.Storage;
 
 /**
  * API of the Logic component

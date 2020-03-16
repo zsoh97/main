@@ -254,7 +254,6 @@ public class MainWindow extends UiPart<Stage> {
             mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
             setCurrentPage(JOURNAL);
         }
-
     }
 
     /**

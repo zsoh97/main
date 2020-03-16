@@ -1,4 +1,4 @@
-package seedu.volant.home.model;
+package seedu.volant.home.model.trip;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.volant.home.model.trip.Trip;
 import seedu.volant.home.model.trip.exceptions.DuplicateTripException;
 import seedu.volant.home.model.trip.exceptions.PersonNotFoundException;
 

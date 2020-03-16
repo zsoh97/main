@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.volant.home.model.trip.Trip;
+import seedu.volant.home.model.trip.UniqueTripList;
 
 /**
  * Wraps all data at the address-book level
