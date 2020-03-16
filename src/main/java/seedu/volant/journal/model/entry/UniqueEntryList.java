@@ -1,4 +1,4 @@
-package seedu.volant.journal.model;
+package seedu.volant.journal.model.entry;
 
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 

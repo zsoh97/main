@@ -10,11 +10,11 @@ import seedu.volant.commons.logic.commands.CommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.model.Model;
+import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.journal.logic.parser.JournalInputParser;
 import seedu.volant.journal.model.JournalModelManager;
-import seedu.volant.storage.Storage;
 import seedu.volant.trip.model.Journal;
 
 /**

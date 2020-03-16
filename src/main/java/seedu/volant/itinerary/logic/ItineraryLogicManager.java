@@ -9,11 +9,11 @@ import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.CommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
+import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.itinerary.logic.parser.ItineraryInputParser;
 import seedu.volant.itinerary.model.ItineraryModelManager;
-import seedu.volant.storage.Storage;
 
 /**
  * The logic manager for the ITINERARY page.

@@ -43,8 +43,8 @@ public class HomeModelManager implements Model {
 
     //=========== TripList ================================================================================
 
-    public void setTripList(ReadOnlyTripList addressBook) {
-        this.tripList.resetData(addressBook);
+    public void setTripList(ReadOnlyTripList tripList) {
+        this.tripList.resetData(tripList);
     }
 
     public TripList getTripList() {
@@ -63,8 +63,12 @@ public class HomeModelManager implements Model {
         return tripList.hasTrip(trip);
     }
 
+    /**
+     * Removes specified target {@code Trip} from trip list within model.
+     */
     public void deleteTrip(Trip target) {
         tripList.removeTrip(target);
+        updateFilteredTripList(predicateShowAllTrips);
     }
 
     /**
@@ -80,7 +84,6 @@ public class HomeModelManager implements Model {
      */
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);
-
         tripList.setTrip(target, editedTrip);
     }
 

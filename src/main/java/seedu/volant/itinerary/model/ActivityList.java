@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.volant.itinerary.model.activity.Activity;
+import seedu.volant.itinerary.model.activity.UniqueActivityList;
 
 /**
  * Wraps all data at the itinerary level

@@ -1,4 +1,4 @@
-package seedu.volant.itinerary.model;
+package seedu.volant.itinerary.model.activity;
 
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 

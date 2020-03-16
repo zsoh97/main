@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.commons.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.volant.testutil.Assert.assertThrows;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.commons.util.JsonUtil;
 import seedu.volant.home.model.TripList;
+import seedu.volant.home.storage.JsonSerializableTripList;
 import seedu.volant.testutil.TypicalTrips;
 
 public class JsonSerializableLocationBookTest {

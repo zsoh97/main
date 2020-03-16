@@ -1,4 +1,4 @@
-package seedu.volant.storage;
+package seedu.volant.home.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

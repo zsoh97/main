@@ -1,7 +1,7 @@
-package seedu.volant.storage;
+package seedu.volant.commons.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.volant.storage.JsonAdaptedTrip.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.volant.home.storage.JsonAdaptedTrip.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.volant.testutil.Assert.assertThrows;
 import static seedu.volant.testutil.TypicalTrips.B;
 
@@ -11,6 +11,7 @@ import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
+import seedu.volant.home.storage.JsonAdaptedTrip;
 
 public class JsonAdaptedTripTest {
     private static final String INVALID_NAME = "R@chel";
