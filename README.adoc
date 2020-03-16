@@ -15,7 +15,7 @@ endif::[]
 * This is a simple travel planning application to assist beginner solo travellers on their travels. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * It is  written in Java 11 using object oriented programming.
 
-== Site Map
+== Site Map TEST
 
 * <<UserGuide#, User Guide>>
 * <<DeveloperGuide#, Developer Guide>>
