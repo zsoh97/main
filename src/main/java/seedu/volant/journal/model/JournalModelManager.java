@@ -13,6 +13,7 @@ import seedu.volant.commons.model.ReadOnlyUserPrefs;
 import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
+import seedu.volant.journal.model.entry.Entry;
 import seedu.volant.trip.model.Journal;
 
 /**
@@ -23,6 +24,7 @@ public class JournalModelManager implements Model {
     private final TripList tripList;
     private final Trip trip;
     private final Journal journal;
+    private final EntryList entryList;
     private final UserPrefs userPrefs;
     private final Page page = JOURNAL;
 
@@ -37,6 +39,7 @@ public class JournalModelManager implements Model {
         this.tripList = tripList;
         this.trip = trip;
         this.journal = journal;
+        this.entryList = getEntryList();
         this.userPrefs = new UserPrefs(userPrefs);
     }
 
@@ -61,6 +64,31 @@ public class JournalModelManager implements Model {
 
     public EntryList getEntryList() {
         return journal.getEntryList();
+    }
+
+    /**
+     * Returns true if entry is within the entry list within model.
+     */
+    public boolean hasEntry(Entry entry) {
+        // requireNonNull(entry);
+        // return entryList.hasEntry(entry);
+        return false;
+    }
+
+    /**
+     * Removes specified target {@code Entry} from entry list within model.
+     */
+    public void deleteEntry(Entry target) {
+        // entryList.removeEntry(target);
+        // updateFilteredEntryList(predicateShowAllEntries);
+    }
+
+    /**
+     * Adds entry to entry list within model.
+     */
+    public void addEntry(Entry entry) {
+        // entryList.addEntry(entry);
+        // updateFilteredEntryList(predicateShowAllEntries);
     }
 
     @Override
