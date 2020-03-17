@@ -1,13 +1,13 @@
 package seedu.volant.journal.model.entry;
 
 import static seedu.volant.commons.util.StringUtil.formatDate;
-import static seedu.volant.commons.util.StringUtil.formatTime;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.volant.home.model.trip.Location;
-import seedu.volant.journal.model.feeling.Feeling;
 
 /**
  * Represents an Entry in a journal.
@@ -18,29 +18,23 @@ public class Entry {
     private LocalDate date;
     private LocalTime time;
     private Feeling feeling;
+    private Weather weather;
     private Location location;
+    private LocalDateTime dateTimeCreated;
 
     /**
      * Constructs journal entry.
      * Date and time are automatically initialised to the date and time at which the user creates the journal entry.
      */
-    public Entry(String text, String location) {
-        // Initialises entry with current date and time when entry is created.
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
-        this.location = new Location(location);
-        this.text = text;
-    }
-
-    /**
-     * Constructs journal entry with feeling metadata specified.
-     * Date and time are automatically initialised to the date and time at which the user creates the journal entry.
-     */
-    public Entry(String text, Feeling feeling) {
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
-        this.text = text;
-        this.feeling = feeling;
+    public Entry(LocalDate date, LocalTime time) {
+        // Initialises entry with user-input date and time.
+        this.text = "";
+        this.date = date;
+        this.time = time;
+        this.feeling = Feeling.NULL;
+        this.weather = Weather.NULL;
+        this.location = new Location("Location");
+        this.dateTimeCreated = LocalDateTime.now();
     }
 
     public String getText() {
@@ -48,7 +42,8 @@ public class Entry {
     }
 
     public String getTime() {
-        return formatTime(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
+        return time.format(formatter);
     }
 
     public String getDate() {
@@ -61,6 +56,26 @@ public class Entry {
 
     public Feeling getFeeling() {
         return feeling;
+    }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setFeeling(Feeling feeling) {
+        this.feeling = feeling;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
     }
 
     @Override
