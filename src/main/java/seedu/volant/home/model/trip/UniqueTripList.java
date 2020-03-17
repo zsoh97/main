@@ -14,8 +14,8 @@ import seedu.volant.home.model.trip.exceptions.PersonNotFoundException;
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A trip is considered unique by comparing using {@code Trip#isSamePerson(Trip)}. As such, adding and updating of
- *  * persons uses Trip#isSamePerson(Trip) for equality so as to ensure that the trip being added or updated is
- *  * unique in terms of identity in the UniqueTripList. However, the removal of a trip uses Trip#equals(Object) so
+ * persons uses Trip#isSamePerson(Trip) for equality so as to ensure that the trip being added or updated is
+ * unique in terms of identity in the UniqueTripList. However, the removal of a trip uses Trip#equals(Object) so
  * as to ensure that the trip with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
