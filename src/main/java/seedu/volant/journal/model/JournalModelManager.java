@@ -24,7 +24,6 @@ public class JournalModelManager implements Model {
     private final TripList tripList;
     private final Trip trip;
     private final Journal journal;
-    private final EntryList entryList;
     private final UserPrefs userPrefs;
     private final Page page = JOURNAL;
 
@@ -39,7 +38,6 @@ public class JournalModelManager implements Model {
         this.tripList = tripList;
         this.trip = trip;
         this.journal = journal;
-        this.entryList = getEntryList();
         this.userPrefs = new UserPrefs(userPrefs);
     }
 
