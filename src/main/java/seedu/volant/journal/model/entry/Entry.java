@@ -3,7 +3,6 @@ package seedu.volant.journal.model.entry;
 import static seedu.volant.commons.util.StringUtil.formatDate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,7 +19,6 @@ public class Entry {
     private Feeling feeling;
     private Weather weather;
     private Location location;
-    private LocalDateTime dateTimeCreated;
 
     /**
      * Constructs journal entry.
@@ -34,7 +32,6 @@ public class Entry {
         this.feeling = Feeling.NULL;
         this.weather = Weather.NULL;
         this.location = new Location("Location");
-        this.dateTimeCreated = LocalDateTime.now();
     }
 
     public String getText() {
