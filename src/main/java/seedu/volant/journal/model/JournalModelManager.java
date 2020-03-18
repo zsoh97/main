@@ -5,7 +5,10 @@ import static seedu.volant.commons.logic.Page.JOURNAL;
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.logic.Page;
 import seedu.volant.commons.model.Model;
@@ -21,11 +24,14 @@ import seedu.volant.trip.model.Journal;
  */
 public class JournalModelManager implements Model {
 
+    private final Predicate<Entry> predicateShowAllEntries = unused -> true;
     private final TripList tripList;
     private final Trip trip;
     private final Journal journal;
+    private final EntryList entryList;
     private final UserPrefs userPrefs;
     private final Page page = JOURNAL;
+    private final FilteredList<Entry> filteredEntries;
 
     /**
      * Initializes a JournalModelManager with the given tripList, trip, journal, and userPrefs.
@@ -38,7 +44,9 @@ public class JournalModelManager implements Model {
         this.tripList = tripList;
         this.trip = trip;
         this.journal = journal;
+        this.entryList = getEntryList();
         this.userPrefs = new UserPrefs(userPrefs);
+        this.filteredEntries = new FilteredList<>(this.entryList.getEntryList());
     }
 
     @Override
@@ -77,16 +85,39 @@ public class JournalModelManager implements Model {
      * Removes specified target {@code Entry} from entry list within model.
      */
     public void deleteEntry(Entry target) {
-        // entryList.removeEntry(target);
-        // updateFilteredEntryList(predicateShowAllEntries);
+        entryList.removeEntry(target);
+        updateFilteredEntryList(predicateShowAllEntries);
     }
 
     /**
      * Adds entry to entry list within model.
      */
     public void addEntry(Entry entry) {
-        // entryList.addEntry(entry);
-        // updateFilteredEntryList(predicateShowAllEntries);
+        entryList.addEntry(entry);
+        updateFilteredEntryList(predicateShowAllEntries);
+    }
+
+    public Predicate<Entry> getPredicateShowAllEntries() {
+        return predicateShowAllEntries;
+    }
+
+    //=========== Filtered Trip List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+
+    public ObservableList<Entry> getFilteredEntryList() {
+        return filteredEntries;
+    }
+
+    /**
+     * Updates the filtered entry list according to the given predicate.
+     */
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredEntries.setPredicate(predicate);
     }
 
     @Override

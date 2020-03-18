@@ -20,12 +20,12 @@ import seedu.volant.home.model.trip.Trip;
 @JsonRootName(value = "volant")
 public class JsonSerializableTripList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Trip list contains duplicate trip(s).";
+    public static final String MESSAGE_DUPLICATE_TRIP = "Trip list contains duplicate trip(s).";
 
     private final List<JsonAdaptedTrip> trips = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTripList} with the given persons.
+     * Constructs a {@code JsonSerializableTripList} with the given trips.
      */
     @JsonCreator
     public JsonSerializableTripList(@JsonProperty("trips") List<JsonAdaptedTrip> trips) {
@@ -42,7 +42,7 @@ public class JsonSerializableTripList {
     }
 
     /**
-     * Converts this address book into the model's {@code TripList} object.
+     * Converts this trip list into the model's {@code TripList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -51,7 +51,7 @@ public class JsonSerializableTripList {
         for (JsonAdaptedTrip jsonAdaptedTrip : trips) {
             Trip trip = jsonAdaptedTrip.toModelType();
             if (tripList.hasTrip(trip)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
             tripList.addTrip(trip);
         }

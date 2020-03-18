@@ -63,8 +63,8 @@ public class Entry {
         this.text = text;
     }
 
-    public void setLocation(String location) {
-        this.location = new Location(location);
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public void setFeeling(Feeling feeling) {

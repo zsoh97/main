@@ -68,30 +68,32 @@ public class EntryList implements ReadOnlyEntryList {
 
     //// entry-level operations
 
-    /*
+    /**
      * Returns true if a entry with the same identity as {@code entry} exists in the address book.
-
+    *
     public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
-        return entries.hasAc;
+        return entries.contains(entry);
     }
+     */
 
-
-     * Adds a entry to the address book.
-     * The entry must not already exist in the address book.
-
+    /**
+     * Adds a entry to the journal.
+    */
     public void addEntry(Entry p) {
-
+        entries.add(p);
     }
 
+    /*
     public void setEntry(Entry target, Entry editedEntry) {
 
     }
+    */
 
-
+    /**
      * Removes {@code key} from this {@code EntryList}.
      * {@code key} must exist in the address book.
-
+    */
     public void removeEntry(Entry key) {
         entries.remove(key);
     }
@@ -106,7 +108,7 @@ public class EntryList implements ReadOnlyEntryList {
     }
 
 
-    */
+
 
     public UniqueEntryList getUniqueEntryList() {
         return entries;

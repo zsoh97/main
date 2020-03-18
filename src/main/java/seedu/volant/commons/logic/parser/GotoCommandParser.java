@@ -48,9 +48,9 @@ public class GotoCommandParser implements Parser<GotoCommand> {
         try {
             String argumentTrimmed = argument.trim();
             if (page == TRIP) {
-                if (argumentTrimmed.equals("itinerary")) {
+                if (argumentTrimmed.toLowerCase().equals("itinerary")) {
                     return new GotoItineraryCommand(trip.getItinerary());
-                } else if (argumentTrimmed.equals("journal")) {
+                } else if (argumentTrimmed.toLowerCase().equals("journal")) {
                     return new GotoJournalCommand(trip.getJournal());
                 }
             }
