@@ -1,6 +1,5 @@
 package seedu.volant.itinerary.model.activity;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.volant.commons.util.StringUtil.formatDate;
 import static seedu.volant.commons.util.StringUtil.formatTime;
 

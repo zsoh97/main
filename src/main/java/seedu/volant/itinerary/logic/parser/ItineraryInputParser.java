@@ -10,8 +10,8 @@ import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.HelpCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
-import seedu.volant.itinerary.logic.commands.DeleteCommand;
 import seedu.volant.itinerary.logic.commands.AddCommand;
+import seedu.volant.itinerary.logic.commands.DeleteCommand;
 
 import seedu.volant.itinerary.model.ActivityList;
 
