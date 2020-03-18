@@ -17,8 +17,11 @@ public class Activity {
     private LocalTime time;
     private Location location;
 
-    public Activity(String title, LocalDate date, LocalTime time) {
+    public Activity(String title, Location location, LocalDate date, LocalTime time) {
         this.title = title;
+        this.location = location;
+        this.date = date;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -39,6 +42,31 @@ public class Activity {
 
     @Override
     public String toString() {
-        return title;
+        StringBuilder sb = new StringBuilder();
+        sb.append(title)
+                .append("\nLocation: ")
+                .append(location)
+                .append("\nDate: ")
+                .append(date)
+                .append("\nTime: ")
+                .append(time);
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        boolean result = false;
+        if (other == this) {
+            result = true;
+        }
+
+        if (other instanceof Activity) {
+            Activity otherActivity = (Activity) other;
+            if ((this.getDate().equals(otherActivity.getDate()))
+                    && (this.getTime().equals(otherActivity.getTime()))) {
+                result = true;
+            }
+        }
+        return result;
     }
 }

@@ -3,6 +3,7 @@ package seedu.volant.commons.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -107,5 +108,34 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String s} into title
+     * @param title String to be parsed
+     * @return title of activity.
+     */
+    public static String parseTitle(String title) {
+        return title;
+    }
+
+    /**
+     * Parses {@code String unparsedDate} to LocalDate
+     * @param unparsedDate date to be parsed
+     * @return LocalDate
+     */
+    public static LocalDate parseDate(String unparsedDate) {
+        requireNonNull(unparsedDate);
+        return LocalDate.parse(unparsedDate);
+    }
+
+    /**
+     * Parses {@code String unparsedTime} to LocalTime
+     * @param unparsedTime time to be parsed
+     * @return LocalTime
+     */
+    public static LocalTime parseTime(String unparsedTime) {
+        requireNonNull(unparsedTime);
+        return LocalTime.parse(unparsedTime);
     }
 }
