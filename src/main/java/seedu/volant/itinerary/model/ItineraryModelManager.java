@@ -13,6 +13,7 @@ import seedu.volant.commons.model.ReadOnlyUserPrefs;
 import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
+import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.trip.model.Itinerary;
 import seedu.volant.trip.model.TripFeature;
 
@@ -26,6 +27,7 @@ public class ItineraryModelManager implements Model {
     private final Itinerary itinerary;
     private final UserPrefs userPrefs;
     private final Page page = ITINERARY;
+    private ActivityList activityList;
 
     /**
      * Constructs an ItineraryModelManager that helps to keep track of in application memory.
@@ -41,6 +43,11 @@ public class ItineraryModelManager implements Model {
         this.trip = trip;
         this.itinerary = itinerary;
         this.userPrefs = new UserPrefs(userPrefs);
+        this.activityList = itinerary.getActivityList();
+    }
+
+    public void deleteActivity(Activity target) {
+        activityList.removeActivity(target);
     }
 
     @Override

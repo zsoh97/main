@@ -58,6 +58,10 @@ public class ActivityList implements ReadOnlyActivityList {
         setActivities(newData.getActivityList());
     }
 
+    public int getSize() {
+        return activities.getSize();
+    }
+
     /* TODO: Complete all these methods after full implementation of Itinerary as the methods here are reliant on
      *  UniqueActivityList which can only be fully implemented after full implementation of Itinerary.
 
@@ -83,9 +87,10 @@ public class ActivityList implements ReadOnlyActivityList {
 
     }
 
-
+    /**
      * Removes {@code key} from this {@code ActivityList}.
      * {@code key} must exist in the address book.
+     */
 
     public void removeActivity(Activity key) {
         activities.remove(key);
@@ -100,7 +105,6 @@ public class ActivityList implements ReadOnlyActivityList {
         return activities.asUnmodifiableObservableList().size() + " asscheeks";
     }
 
-    */
 
     public UniqueActivityList getUniqueActivityList() {
         return activities;
