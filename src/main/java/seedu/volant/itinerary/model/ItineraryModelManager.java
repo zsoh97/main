@@ -50,6 +50,22 @@ public class ItineraryModelManager implements Model {
         activityList.removeActivity(target);
     }
 
+    //==========ActivityList============================================================================
+
+    /**
+     * Checks if activity list contains activity.
+     * @param activity Activity to be checked.
+     * @return True if activity list contains activity.
+     */
+    public boolean hasActivity(Activity activity) {
+        requireNonNull(activity);
+        return activityList.hasActivity(activity);
+    }
+
+    public void addActivity(Activity target) {
+        activityList.addActivity(target);
+    }
+
     @Override
     public Page getPage() {
         return page;
@@ -68,7 +84,7 @@ public class ItineraryModelManager implements Model {
     }
 
     public ActivityList getActivityList() {
-        return itinerary.getActivityList();
+        return activityList;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -105,4 +121,5 @@ public class ItineraryModelManager implements Model {
         requireNonNull(volantFilePath);
         userPrefs.setVolantFilePath(volantFilePath);
     }
+
 }

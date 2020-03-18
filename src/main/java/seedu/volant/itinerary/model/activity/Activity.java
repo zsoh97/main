@@ -19,6 +19,7 @@ public class Activity {
     private LocalTime time;
     private Location location;
 
+
     public Activity(String title, LocalDate date, LocalTime time, Location location) {
         this.title = new Title(title);
         this.date = date;
@@ -57,12 +58,10 @@ public class Activity {
 
     @Override
     public boolean equals(Object other) {
-        requireNonNull(other);
         boolean result = false;
         if (other == this) {
             result = true;
         }
-
         if (!(other instanceof Activity)) {
             result = false;
         } else if ((this.getDate().equals(((Activity) other).getDate()))
