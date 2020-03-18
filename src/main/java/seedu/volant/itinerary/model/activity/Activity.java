@@ -5,6 +5,7 @@ import static seedu.volant.commons.util.StringUtil.formatTime;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import seedu.volant.home.model.trip.Location;
 
@@ -39,6 +40,39 @@ public class Activity {
 
     @Override
     public String toString() {
-        return title;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle())
+                .append("\nLocation: ")
+                .append(this.getTitle())
+                .append("\nDate: ")
+                .append(this.getDate())
+                .append("\nTime: ")
+                .append(this.getTime());
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        boolean result;
+        if (other == this) {
+            result = true;
+        }
+
+        if (other instanceof Activity) {
+            result = true;
+        }
+
+        Activity otherActivity = (Activity) other;
+        if ((this.getDate().equals(((Activity) other).getDate()))
+            && (this.getTime().equals(((Activity) other).getTime()))) {
+            result = true;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.title, this.date, this.time, this.location);
     }
 }
