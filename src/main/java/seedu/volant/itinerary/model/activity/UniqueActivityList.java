@@ -8,7 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import seedu.volant.itinerary.exceptions.DuplicateActivityException;
 import seedu.volant.itinerary.model.activity.exceptions.NotFoundException;
+
 
 /**
  * A list of activities that enforces uniqueness between its elements and does not allow nulls.
@@ -28,11 +31,13 @@ public class UniqueActivityList implements Iterable<Activity> {
 
     /* TODO: This class is adapted from UniqueTripList.
         Implement all these methods once implementation of Itinerary is complete.
-    */
+<<<<<<< HEAD
+     */
 
     /**
      * Returns true if the list contains an equivalent activity as the given argument.
-     */
+    */
+
 
     public boolean contains(Activity toCheck) {
         requireNonNull(toCheck);
@@ -52,9 +57,13 @@ public class UniqueActivityList implements Iterable<Activity> {
         internalList.add(toAdd);
     }
 
+    public int getSize() {
+        return internalList.size();
+    }
 
     /*TODO uncomment out for v1.3
      /** Replaces the activity {@code target} in the list with {@code editedActivity}.
+>>>>>>> cafbc4bb8c90a1173db72169bfd25978ed73f08b
      * {@code target} must exist in the list.
      * The activity identity of {@code editedActivity} must not be the same as another existing activity in the list.
 
@@ -72,12 +81,10 @@ public class UniqueActivityList implements Iterable<Activity> {
 
         internalList.set(index, editedActivity);
     }
+    */
 
-     */
-
-
-
-    /** Removes the equivalent activity from the list.
+    /**
+    * Removes the equivalent activity from the list.
     * The activity must exist in the list.
     */
 
@@ -96,10 +103,11 @@ public class UniqueActivityList implements Iterable<Activity> {
         requireAllNonNull(activities);
 
         /* TODO: Implement methods to check for duplicate/clashing activities
+        */
+
         if (!activitiesAreUnique(activities)) {
             throw new DuplicateActivityException();
         }
-        */
 
         internalList.setAll(activities);
     }

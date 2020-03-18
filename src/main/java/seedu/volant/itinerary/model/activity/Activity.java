@@ -5,6 +5,7 @@ import static seedu.volant.commons.util.StringUtil.formatTime;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import seedu.volant.home.model.trip.Location;
 
@@ -12,20 +13,21 @@ import seedu.volant.home.model.trip.Location;
  * Represents an activity in an activity list.
  */
 public class Activity {
-    private String title;
+    private Title title;
     private LocalDate date;
     private LocalTime time;
     private Location location;
 
-    public Activity(String title, Location location, LocalDate date, LocalTime time) {
-        this.title = title;
-        this.location = location;
+
+    public Activity(String title, LocalDate date, LocalTime time, Location location) {
+        this.title = new Title(title);
         this.date = date;
         this.time = time;
+        this.location = location;
     }
 
     public String getTitle() {
-        return title;
+        return title.toString();
     }
 
     public String getTime() {
@@ -42,15 +44,15 @@ public class Activity {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(title)
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle())
                 .append("\nLocation: ")
-                .append(location)
+                .append(this.getTitle())
                 .append("\nDate: ")
-                .append(date)
+                .append(this.getDate())
                 .append("\nTime: ")
-                .append(time);
-        return sb.toString();
+                .append(this.getTime());
+        return builder.toString();
     }
 
     @Override
@@ -59,14 +61,18 @@ public class Activity {
         if (other == this) {
             result = true;
         }
-
-        if (other instanceof Activity) {
-            Activity otherActivity = (Activity) other;
-            if ((this.getDate().equals(otherActivity.getDate()))
-                    && (this.getTime().equals(otherActivity.getTime()))) {
-                result = true;
-            }
+        if (!(other instanceof Activity)) {
+            result = false;
+        } else if ((this.getDate().equals(((Activity) other).getDate()))
+            && (this.getTime().equals(((Activity) other).getTime()))) {
+            result = true;
         }
+
         return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.title, this.date, this.time, this.location);
     }
 }

@@ -46,6 +46,10 @@ public class ItineraryModelManager implements Model {
         this.activityList = itinerary.getActivityList();
     }
 
+    public void deleteActivity(Activity target) {
+        activityList.removeActivity(target);
+    }
+
     //==========ActivityList============================================================================
 
     /**

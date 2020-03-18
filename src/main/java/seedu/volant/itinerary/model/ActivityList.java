@@ -58,6 +58,10 @@ public class ActivityList implements ReadOnlyActivityList {
         setActivities(newData.getActivityList());
     }
 
+    public int getSize() {
+        return activities.getSize();
+    }
+
     /* TODO: Complete all these methods after full implementation of Itinerary as the methods here are reliant on
      *  UniqueActivityList which can only be fully implemented after full implementation of Itinerary.
 
@@ -81,6 +85,7 @@ public class ActivityList implements ReadOnlyActivityList {
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
+
 
     //public void setActivity(Activity target, Activity editedActivity) {
 

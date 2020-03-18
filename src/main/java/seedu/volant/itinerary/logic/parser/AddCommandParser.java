@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         LocalDate date = ParserUtil.parseDate(argMultimap.getAllValues(PREFIX_DATE).get(0));
         LocalTime time = ParserUtil.parseTime(argMultimap.getAllValues(PREFIX_TIME).get(0));
 
-        Activity activity = new Activity(title, location, date, time);
+        Activity activity = new Activity(title, date, time, location);
 
         return new AddCommand(activity);
     }
