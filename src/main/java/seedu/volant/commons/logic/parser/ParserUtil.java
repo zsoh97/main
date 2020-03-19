@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,8 @@ import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
 import seedu.volant.itinerary.model.activity.Title;
+import seedu.volant.journal.model.entry.Feeling;
+import seedu.volant.journal.model.entry.Weather;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -138,5 +141,80 @@ public class ParserUtil {
     public static LocalTime parseTime(String unparsedTime) {
         requireNonNull(unparsedTime);
         return LocalTime.parse(unparsedTime);
+    }
+    
+     * Parses a {@code String feeling} into a {@code Feeling}.
+     * @param feeling
+     * @return corresponding Feeling after parsing
+     * @throws ParseException if given string does not correspond to an existing feeling
+     */
+    public static Feeling parseFeeling(String feeling) throws ParseException {
+        requireNonNull(feeling);
+        String trimmedCappedFeeling = feeling.trim().toUpperCase();
+        Feeling parsedFeeling;
+        try {
+            parsedFeeling = Feeling.valueOf(trimmedCappedFeeling);
+        } catch (Exception e) {
+            throw new ParseException(Feeling.MESSAGE_CONSTRAINTS);
+        }
+        return parsedFeeling;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String[] dateFields = date.strip().split("-");
+        int day = Integer.valueOf(dateFields[0]);
+        int month = Integer.valueOf(dateFields[1]);
+        int year = Integer.valueOf(dateFields[2]);
+        LocalDate parsedDate;
+        try {
+            parsedDate = LocalDate.of(year, month, day);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Please input date in dd-mm-yyyy format!");
+        }
+        return parsedDate;
+    }
+
+    /**
+     * Parses {@code String time} into a {@code LocalTime}.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String[] timeFields = time.strip().split(":");
+        int hour = Integer.valueOf(timeFields[0]);
+        int minute = Integer.valueOf(timeFields[1]);
+        LocalTime parsedTime;
+        try {
+            parsedTime = LocalTime.of(hour, minute);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Please input time in hh:mm format!");
+        }
+        return parsedTime;
+    }
+
+    /**
+     * Parses {@code String weather} into a {@code Weather}.
+     */
+    public static Weather parseWeather(String weather) throws ParseException {
+        requireNonNull(weather);
+        String trimmedCappedWeather = weather.trim().toUpperCase();
+        Weather parsedWeather;
+        try {
+            parsedWeather = Weather.valueOf(trimmedCappedWeather);
+        } catch (Exception e) {
+            throw new ParseException("Global warming hasn't gotten THAT bad yet, try again");
+        }
+        return parsedWeather;
+    }
+
+    /**
+     * Parses {@code String text} into a formatted {@code String}.
+     */
+    public static String parseText(String text) throws ParseException {
+        requireNonNull(text);
+        return text.trim();
     }
 }
