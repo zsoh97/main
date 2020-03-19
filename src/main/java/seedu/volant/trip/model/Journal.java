@@ -2,6 +2,8 @@ package seedu.volant.trip.model;
 
 import static seedu.volant.trip.model.Feature.JOURNAL;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import seedu.volant.journal.model.EntryList;
@@ -22,11 +24,10 @@ public class Journal extends TripFeature {
     public Journal() {
         // Sample entries w/ no metadata
         ArrayList<Entry> ass = new ArrayList<>();
-        ass.add(new Entry("Lorem Ipsum", "Place 1"));
-        ass.add(new Entry("Lorem Ipsum", "Place 2"));
-        ass.add(new Entry("Lorem Ipsum", "Place 3"));
-        ass.add(new Entry("Lorem Ipsum", "Place 4"));
-
+        ass.add(new Entry(LocalDate.of(2020, 1, 1), LocalTime.of(8, 0)));
+        ass.add(new Entry(LocalDate.of(2020, 2, 2), LocalTime.of(9, 15)));
+        ass.add(new Entry(LocalDate.of(2020, 3, 3), LocalTime.of(10, 30)));
+        ass.add(new Entry(LocalDate.of(2020, 4, 4), LocalTime.of(11, 45)));
         EntryList h = new EntryList();
         h.setActivities(ass);
         this.entryList = h;

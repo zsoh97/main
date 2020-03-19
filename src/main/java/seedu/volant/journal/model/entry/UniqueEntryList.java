@@ -1,5 +1,6 @@
 package seedu.volant.journal.model.entry;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
@@ -7,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.volant.journal.model.exceptions.EntryNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -25,32 +27,31 @@ public class UniqueEntryList implements Iterable<Entry> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /* TODO: This class is adapted from UniqueTripList.
-        Implement all these methods once implementation of Itinerary is complete.
+     * Implement all these methods once implementation of Journal is complete.
+     */
 
-
+    /**
      * Returns true if the list contains an equivalent trip as the given argument.
-
+     *
     public boolean contains(Entry toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEntry);
     }
-
+    */
+    /**
      * Adds a trip to the list.
      * The trip must not already exist in the list.
-
+     */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateEntryException();
-        }
         internalList.add(toAdd);
     }
 
-
+    /**
      * Replaces the trip {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
      * The trip identity of {@code editedEntry} must not be the same as another existing trip in the list.
-
+     */
     public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
@@ -58,18 +59,13 @@ public class UniqueEntryList implements Iterable<Entry> {
         if (index == -1) {
             throw new EntryNotFoundException();
         }
-
-        if (!target.isSameEntry(editedEntry) && contains(editedEntry)) {
-            throw new DuplicateEntryException();
-        }
-
         internalList.set(index, editedEntry);
     }
 
-
+    /**
      * Removes the equivalent trip from the list.
      * The trip must exist in the list.
-
+     */
     public void remove(Entry toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -77,10 +73,10 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
     }
 
-
+    /**
      * Replaces the contents of this list with {@code activities}.
      * {@code activities} must not contain duplicate activities.
-    */
+     */
 
     public void setEntries(List<Entry> activities) {
         requireAllNonNull(activities);
