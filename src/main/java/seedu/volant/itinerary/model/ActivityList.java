@@ -58,35 +58,42 @@ public class ActivityList implements ReadOnlyActivityList {
         setActivities(newData.getActivityList());
     }
 
+    public int getSize() {
+        return activities.getSize();
+    }
+
     /* TODO: Complete all these methods after full implementation of Itinerary as the methods here are reliant on
      *  UniqueActivityList which can only be fully implemented after full implementation of Itinerary.
 
-    //// trip-level operations
+    */
 
-    /*
-     * Returns true if a trip with the same identity as {@code trip} exists in the address book.
-
+    /**
+     * Returns true if a activity with the same identity as {@code activity} exists in the activity list.
+     * @param activity Activity to be added.
+     * @return True if activity list contains activity
+     */
     public boolean hasActivity(Activity activity) {
         requireNonNull(activity);
-        return activities.hasAc;
+        return activities.contains(activity);
     }
 
-
-     * Adds a trip to the address book.
+    /**
+     * Adds a activity to the activity list.
      * The trip must not already exist in the address book.
+     */
 
-    public void addActivity(Activity p) {
-
-    }
-
-    public void setActivity(Activity target, Activity editedActivity) {
-
+    public void addActivity(Activity activity) {
+        activities.add(activity);
     }
 
 
+    //public void setActivity(Activity target, Activity editedActivity) {
+
+    /**
      * Removes {@code key} from this {@code ActivityList}.
      * {@code key} must exist in the address book.
-
+     * @param key index of Activity in activity list to be removed.
+     */
     public void removeActivity(Activity key) {
         activities.remove(key);
     }
@@ -99,8 +106,6 @@ public class ActivityList implements ReadOnlyActivityList {
     public String toString() {
         return activities.asUnmodifiableObservableList().size() + " asscheeks";
     }
-
-    */
 
     public UniqueActivityList getUniqueActivityList() {
         return activities;
