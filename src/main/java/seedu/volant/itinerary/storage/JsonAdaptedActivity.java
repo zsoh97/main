@@ -1,15 +1,16 @@
 package seedu.volant.itinerary.storage;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.commons.logic.parser.ParserUtil;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.itinerary.model.activity.Title;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  * Jackson-friendly version of {@link Activity}.
@@ -87,7 +88,7 @@ public class JsonAdaptedActivity {
 
         final LocalDate modelDate = ParserUtil.parseDate(date);
 
-        if(time ==null) {
+        if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalTime.class.getSimpleName()));
         }
