@@ -122,26 +122,6 @@ public class ParserUtil {
     public static Title parseTitle(String title) {
         return new Title(title);
     }
-
-    /**
-     * Parses {@code String unparsedDate} to LocalDate
-     * @param unparsedDate date to be parsed
-     * @return LocalDate
-     */
-    public static LocalDate parseDate(String unparsedDate) {
-        requireNonNull(unparsedDate);
-        return LocalDate.parse(unparsedDate);
-    }
-
-    /**
-     * Parses {@code String unparsedTime} to LocalTime
-     * @param unparsedTime time to be parsed
-     * @return LocalTime
-     */
-    public static LocalTime parseTime(String unparsedTime) {
-        requireNonNull(unparsedTime);
-        return LocalTime.parse(unparsedTime);
-    }
     
     /**
      * Parses a {@code String feeling} into a {@code Feeling}.
