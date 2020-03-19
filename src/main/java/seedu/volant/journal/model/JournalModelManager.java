@@ -87,6 +87,7 @@ public class JournalModelManager implements Model {
     public void deleteEntry(Entry target) {
         entryList.removeEntry(target);
         updateFilteredEntryList(predicateShowAllEntries);
+
     }
 
     /**
