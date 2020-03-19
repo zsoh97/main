@@ -113,8 +113,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
-    
-    
     /**
      * Parses {@code String s} into title
      * @param title String to be parsed
@@ -123,8 +121,6 @@ public class ParserUtil {
     public static Title parseTitle(String title) {
         return new Title(title);
     }
-    
-    
     /**
      * Parses a {@code String feeling} into a {@code Feeling}.
      * @param feeling
