@@ -85,8 +85,9 @@ public class JournalModelManager implements Model {
      * Removes specified target {@code Entry} from entry list within model.
      */
     public void deleteEntry(Entry target) {
-        // entryList.removeEntry(target);
-        // updateFilteredEntryList(predicateShowAllEntries);
+        entryList.removeEntry(target);
+        updateFilteredEntryList(predicateShowAllEntries);
+
     }
 
     /**
