@@ -55,7 +55,7 @@ public class ItineraryLogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveActivityList(model.getActivityList());
+            storage.saveTripList(model.getTripList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
