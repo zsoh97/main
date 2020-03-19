@@ -20,6 +20,7 @@ import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.itinerary.logic.commands.AddCommand;
 import seedu.volant.itinerary.model.activity.Activity;
+import seedu.volant.itinerary.model.activity.Title;
 
 /**
  * Parses input arguments and creates a new AddCommand object.
@@ -41,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        String title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getAllValues(PREFIX_DATE).get(0));
         LocalTime time = ParserUtil.parseTime(argMultimap.getAllValues(PREFIX_TIME).get(0));

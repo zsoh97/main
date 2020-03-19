@@ -15,6 +15,7 @@ import seedu.volant.home.model.tag.Tag;
 import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
+import seedu.volant.itinerary.model.activity.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -115,8 +116,8 @@ public class ParserUtil {
      * @param title String to be parsed
      * @return title of activity.
      */
-    public static String parseTitle(String title) {
-        return title;
+    public static Title parseTitle(String title) {
+        return new Title(title);
     }
 
     /**

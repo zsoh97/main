@@ -19,8 +19,8 @@ public class Activity {
     private Location location;
 
 
-    public Activity(String title, LocalDate date, LocalTime time, Location location) {
-        this.title = new Title(title);
+    public Activity(Title title, LocalDate date, LocalTime time, Location location) {
+        this.title = title;
         this.date = date;
         this.time = time;
         this.location = location;
