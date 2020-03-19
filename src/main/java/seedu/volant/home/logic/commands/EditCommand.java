@@ -34,7 +34,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_DATERANGE + "DATE RANGE] "
+            + "[" + PREFIX_DATERANGE + "DATE RANGE] \n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Trip: %1$s";

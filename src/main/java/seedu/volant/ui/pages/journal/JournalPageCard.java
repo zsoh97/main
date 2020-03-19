@@ -31,6 +31,12 @@ public class JournalPageCard extends UiPart<Region> {
     @FXML
     private Label entryLocation;
 
+    @FXML
+    private Label entryFeeling;
+
+    @FXML
+    private Label entryWeather;
+
     /*
     @FXML
     private Label entryFeeling;
@@ -43,6 +49,8 @@ public class JournalPageCard extends UiPart<Region> {
         entryDate.setText(entry.getDate());
         entryTime.setText(entry.getTime());
         entryLocation.setText(entry.getLocation());
+        entryFeeling.setText(entry.getFeeling().toString());
+        entryWeather.setText(entry.getWeather().toString());
     }
 
     public Entry getEntry() {
