@@ -14,6 +14,8 @@ import seedu.volant.commons.util.FileUtil;
 import seedu.volant.commons.util.JsonUtil;
 import seedu.volant.home.model.ReadOnlyTripList;
 import seedu.volant.home.storage.JsonSerializableTripList;
+import seedu.volant.itinerary.model.ReadOnlyActivityList;
+import seedu.volant.itinerary.storage.JsonSerializableActivityList;
 
 /**
  * A class to access TripList data stored as a json file on the hard disk.
@@ -77,5 +79,20 @@ public class JsonVolantStorage implements VolantStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTripList(tripList), filePath);
     }
+
+    @Override
+    public void saveActivityList(ReadOnlyActivityList activityList) throws IOException {
+        saveActivityList(activityList, filePath);
+    }
+
+    @Override
+    public void saveActivityList(ReadOnlyActivityList activityList, Path filePath) throws IOException {
+        requireNonNull(activityList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableActivityList(activityList), filePath);
+    }
+
 
 }

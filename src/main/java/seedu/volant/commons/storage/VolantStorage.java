@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.home.model.ReadOnlyTripList;
 import seedu.volant.home.model.TripList;
+import seedu.volant.itinerary.model.ReadOnlyActivityList;
 
 /**
  * Represents a storage for {@link TripList}.
@@ -43,4 +44,15 @@ public interface VolantStorage {
      */
     void saveTripList(ReadOnlyTripList tripList, Path filePath) throws IOException;
 
+    /**
+     * saves given {@link ReadOnlyActivityList} to the storage.
+     * @param activityList cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveActivityList(ReadOnlyActivityList activityList) throws IOException;
+
+    /**
+     * @see #saveActivityList(ReadOnlyActivityList)
+     */
+    void saveActivityList(ReadOnlyActivityList activityList, Path filePath) throws IOException;
 }
