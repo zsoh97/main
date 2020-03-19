@@ -143,6 +143,7 @@ public class ParserUtil {
         return LocalTime.parse(unparsedTime);
     }
     
+    /**
      * Parses a {@code String feeling} into a {@code Feeling}.
      * @param feeling
      * @return corresponding Feeling after parsing
