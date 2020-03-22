@@ -22,8 +22,8 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the journal. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the journal. \n"
+            + "Parameters: \n"
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
             + PREFIX_TEXT + "TEXT "
@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_WEATHER + "WEATHER \n"
 
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "11-09-2001 "
+            + PREFIX_DATE + "11-09-2001"
             + PREFIX_TIME + "04:20 "
             + PREFIX_TEXT + "I love strawberries "
             + PREFIX_LOCATION + "World Peace Centre "
@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_WEATHER + "COOL ";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the journal";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the journal.";
 
     private final Entry toAdd;
 

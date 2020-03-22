@@ -34,6 +34,19 @@ public class Entry {
         this.location = new Location("Location");
     }
 
+    /**
+     * Temporary constructor for demonstration purposes, will remove later.
+     */
+    public Entry(LocalDate date, LocalTime time, String text, Feeling feeling, Weather weather, String location) {
+        this.text = text;
+        this.date = date;
+        this.time = time;
+        this.feeling = feeling;
+        this.weather = weather;
+        this.location = new Location(location);
+    }
+
+
     public String getText() {
         return text;
     }
