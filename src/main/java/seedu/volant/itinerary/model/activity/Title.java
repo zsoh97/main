@@ -5,7 +5,7 @@ import static seedu.volant.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Activity's title in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTitle (String)}
  */
 public class Title {
 
@@ -27,14 +27,14 @@ public class Title {
      */
     public Title(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTitle(name), MESSAGE_CONSTRAINTS);
         title = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

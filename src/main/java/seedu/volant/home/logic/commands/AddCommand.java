@@ -23,7 +23,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_DATERANGE + "DATE RANGE "
+            + PREFIX_DATERANGE + "DATE RANGE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Bali 2020 "
             + PREFIX_LOCATION + "Bali "

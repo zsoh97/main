@@ -1,11 +1,12 @@
-package seedu.volant.itinerary.logic.parser;
+package seedu.volant.journal.logic.parser;
 
 import static seedu.volant.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_FEELING;
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,14 +19,15 @@ import seedu.volant.commons.logic.parser.ParserUtil;
 import seedu.volant.commons.logic.parser.Prefix;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Location;
-import seedu.volant.itinerary.logic.commands.AddCommand;
-import seedu.volant.itinerary.model.activity.Activity;
-import seedu.volant.itinerary.model.activity.Title;
+import seedu.volant.journal.logic.commands.AddCommand;
+import seedu.volant.journal.model.entry.Entry;
+import seedu.volant.journal.model.entry.Feeling;
+import seedu.volant.journal.model.entry.Weather;
+
 
 /**
- * Parses input arguments and creates a new AddCommand object.
+ * Parses input arguments and creates a new AddCommand object
  */
-
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
@@ -35,21 +37,27 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_LOCATION, PREFIX_DATE, PREFIX_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION,
+                        PREFIX_FEELING, PREFIX_WEATHER, PREFIX_TEXT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_LOCATION, PREFIX_DATE, PREFIX_TIME)
+        // TODO: Implement optional fields. Currently all 6 parameters are assumed to be provided.
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        LocalDate date = ParserUtil.parseDate(argMultimap.getAllValues(PREFIX_DATE).get(0));
-        LocalTime time = ParserUtil.parseTime(argMultimap.getAllValues(PREFIX_TIME).get(0));
+        Feeling feeling = ParserUtil.parseFeeling(argMultimap.getValue(PREFIX_FEELING).get());
+        Weather weather = ParserUtil.parseWeather(argMultimap.getValue(PREFIX_WEATHER).get());
+        String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
 
-        Activity activity = new Activity(title, date, time, location);
-
-        return new AddCommand(activity);
+        Entry entry = new Entry(date, time);
+        entry.setLocation(location);
+        entry.setFeeling(feeling);
+        entry.setWeather(weather);
+        entry.setText(text);
+        return new AddCommand(entry);
     }
 
     /**
@@ -61,3 +69,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
 }
+

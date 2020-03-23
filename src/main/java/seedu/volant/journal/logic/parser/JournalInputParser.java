@@ -10,6 +10,8 @@ import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.HelpCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
+import seedu.volant.journal.logic.commands.AddCommand;
+import seedu.volant.journal.logic.commands.DeleteCommand;
 import seedu.volant.trip.model.Journal;
 
 /**
@@ -45,6 +47,10 @@ public class JournalInputParser {
         switch(commandWord) {
         case BackCommand.COMMAND_WORD:
             return new BackCommand();
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

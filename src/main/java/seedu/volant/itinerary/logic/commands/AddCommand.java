@@ -20,20 +20,21 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Itinerary to the Itinerary list. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an activity to the itinerary.\n"
+            + "Parameters: \n"
             + PREFIX_TITLE + "TITLE "
             + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
+            + PREFIX_TIME + "TIME \n"
+
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Visit Sentosa "
-            + PREFIX_LOCATION + "Singapore "
-            + PREFIX_DATE + "2020-02-01 "
+            + PREFIX_TITLE + "Visit World Trade Centre"
+            + PREFIX_LOCATION + "New York"
+            + PREFIX_DATE + "11-09-2001"
             + PREFIX_TIME + "09:00";
 
-    public static final String MESSAGE_SUCCESS = "New Activity added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This activity already exists in the activity list";
+    public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This activity already exists in your itinerary.";
 
     private final Activity toAdd;
 
@@ -50,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         ItineraryModelManager itineraryModel = ((ItineraryModelManager) model);
         if (itineraryModel.hasActivity(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
         itineraryModel.addActivity(toAdd);

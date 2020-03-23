@@ -10,6 +10,7 @@ import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.model.ReadOnlyUserPrefs;
 import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.home.model.ReadOnlyTripList;
+import seedu.volant.itinerary.model.ReadOnlyActivityList;
 
 /**
  * Manages storage of TripList data in local storage.
@@ -73,6 +74,17 @@ public class StorageManager implements Storage {
     public void saveTripList(ReadOnlyTripList tripList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         volantStorage.saveTripList(tripList, filePath);
+    }
+
+    @Override
+    public void saveActivityList(ReadOnlyActivityList activityList) throws IOException {
+        saveActivityList(activityList, volantStorage.getVolantFilePath());
+    }
+
+    @Override
+    public void saveActivityList(ReadOnlyActivityList activityList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        volantStorage.saveActivityList(activityList, filePath);
     }
 
 }
