@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.volant.commons.exceptions.IllegalValueException;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.journal.model.entry.Entry;
@@ -22,6 +25,23 @@ class JsonAdaptedEntry {
     private String feeling;
     private String weather;
     private String location;
+
+
+    /**
+     * Constructs a {@code JsonAdaptedEntry} with the given entry details.
+     */
+    @JsonCreator
+    public JsonAdaptedEntry(@JsonProperty("text") String text, @JsonProperty("date") String date,
+                            @JsonProperty("time") String time, @JsonProperty("feeling") String feeling,
+                            @JsonProperty("weather") String weather,
+                            @JsonProperty("location") String location) {
+        this.text = text;
+        this.date = date;
+        this.time = time;
+        this.feeling = feeling;
+        this.weather = weather;
+        this.location = location;
+    }
 
     /**
      * Converts a given {@code Entry} into this class for Jackson use.
