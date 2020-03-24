@@ -48,7 +48,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        // TODO: Implement optional fields. Currently all 6 parameters are assumed to be provided.
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
             fieldsToEdit.put("date", date);
