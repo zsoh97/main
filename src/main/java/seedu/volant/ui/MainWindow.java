@@ -5,6 +5,7 @@ import static seedu.volant.commons.logic.Page.ITINERARY;
 import static seedu.volant.commons.logic.Page.JOURNAL;
 import static seedu.volant.commons.logic.Page.TRIP;
 
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -213,7 +214,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             t = ((HomeLogicManager) logic).getTripList();
         }
-
+        logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new TripLogicManager(new TripModelManager(t, trip, new UserPrefs()), logic.getStorage());
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new TripPage(trip);
@@ -226,34 +227,54 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleGoToTripFeature(TripFeature tripFeature) {
-        TripLogicManager t = ((TripLogicManager) logic);
-
         if (tripFeature instanceof Itinerary) {
             // TODO: Assign logic once logic for itinerary page has been created
-
-            logic = new ItineraryLogicManager(new ItineraryModelManager((TripList) t.getTripList(),
-                                                t.getTrip(), (Itinerary) tripFeature, new UserPrefs()),
-                        logic.getStorage()
-            );
-
-            mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
-            mainPanel = new ItineraryPage((Itinerary) tripFeature);
-            mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-            setCurrentPage(ITINERARY);
+            handleGoToItinerary(tripFeature);
         }
 
         if (tripFeature instanceof Journal) {
-
-            logic = new JournalLogicManager(new JournalModelManager((TripList) t.getTripList(),
-                                                t.getTrip(), (Journal) tripFeature, new UserPrefs()),
-                    logic.getStorage()
-            );
-
-            mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
-            mainPanel = new JournalPage((Journal) tripFeature);
-            mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-            setCurrentPage(JOURNAL);
+            handleGoToJournal(tripFeature);
         }
+    }
+
+    /**
+     * Handles command to go to Itinerary from a Trip page
+     */
+    @FXML
+    public void handleGoToItinerary(TripFeature tripFeature) {
+        TripLogicManager t = ((TripLogicManager) logic);
+        UserPrefs newUserPrefs = new UserPrefs();
+        newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
+                + "/itinerary.json"));
+        logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
+                + "/itinerary.json"));
+        ItineraryModelManager itineraryModelManager = new ItineraryModelManager((TripList) t.getTripList(),
+                t.getTrip(), (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
+        logic = new ItineraryLogicManager(itineraryModelManager, logic.getStorage());
+        mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
+        mainPanel = new ItineraryPage((itineraryModelManager.getFilteredActivityList()));
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        setCurrentPage(ITINERARY);
+    }
+
+    /**
+     * Handles command to go to Journal page from Trip page.
+     */
+    @FXML
+    public void handleGoToJournal(TripFeature tripFeature) {
+        TripLogicManager t = ((TripLogicManager) logic);
+        UserPrefs newUserPrefs = new UserPrefs();
+        newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
+                + "/journal.json"));
+        logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
+                + "/journal.json"));
+        JournalModelManager journalModelManager = new JournalModelManager((TripList) t.getTripList(),
+                t.getTrip(), (Journal) tripFeature, newUserPrefs, logic.getStorage());
+        logic = new JournalLogicManager(journalModelManager, logic.getStorage());
+        mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
+        mainPanel = new JournalPage(journalModelManager.getFilteredEntryList());
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        setCurrentPage(JOURNAL);
     }
 
     /**
@@ -261,7 +282,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleGoToHome(ReadOnlyTripList tripList) {
-        logic = new HomeLogicManager(new HomeModelManager(tripList, new UserPrefs()), logic.getStorage());
+        UserPrefs newUserPrefs = new UserPrefs();
+        newUserPrefs.setVolantFilePath(Paths.get("data", "volant.json"));
+        HomeModelManager homeModelManager = new HomeModelManager(tripList, newUserPrefs);
+        logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
+        logic = new HomeLogicManager(homeModelManager, logic.getStorage());
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new HomePage(tripList.getTripList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
