@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_WEATHER + "WEATHER \n"
 
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "11-09-2001"
+            + PREFIX_DATE + "11-09-2001 "
             + PREFIX_TIME + "04:20 "
             + PREFIX_TEXT + "I love strawberries "
             + PREFIX_LOCATION + "World Peace Centre "

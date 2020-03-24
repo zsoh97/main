@@ -3,11 +3,16 @@ package seedu.volant.journal.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.volant.home.model.trip.Location;
 import seedu.volant.journal.model.exceptions.EntryNotFoundException;
 
 /**
@@ -39,8 +44,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
     */
     /**
-     * Adds a trip to the list.
-     * The trip must not already exist in the list.
+     * Adds an entry to the list.
+     * The entry must not already exist in the list.
      */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
@@ -48,9 +53,9 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Replaces the trip {@code target} in the list with {@code editedEntry}.
+     * Replaces the entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
-     * The trip identity of {@code editedEntry} must not be the same as another existing trip in the list.
+     * The entry identity of {@code editedEntry} must not be the same as another existing entry in the list.
      */
     public void setEntry(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
@@ -63,13 +68,45 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Removes the equivalent trip from the list.
-     * The trip must exist in the list.
+     * Removes the equivalent entry from the list.
+     * The entry must exist in the list.
      */
     public void remove(Entry toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
+        }
+    }
+
+    /**
+     * Edits the equivalent entry from the list.
+     * The entry must exist in the list.
+     * Items in the {@code fields} are edited in the entry.
+     */
+    public void edit(Entry entry, HashMap<String, Object> fields) {
+        requireNonNull(entry);
+        for (Map.Entry<String, Object> e: fields.entrySet()) {
+            switch (e.getKey()) {
+            case "location":
+                entry.setLocation((Location) e.getValue());
+                break;
+            case "text":
+                entry.setText((String) e.getValue());
+                break;
+            case "weather":
+                entry.setWeather((Weather) e.getValue());
+                break;
+            case "feeling":
+                entry.setFeeling((Feeling) e.getValue());
+                break;
+            case "date":
+                entry.setDate((LocalDate) e.getValue());
+                break;
+            case "time":
+                entry.setTime((LocalTime) e.getValue());
+                break;
+            default:
+            }
         }
     }
 
