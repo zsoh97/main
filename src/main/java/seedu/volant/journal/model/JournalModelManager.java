@@ -4,16 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.volant.commons.logic.Page.JOURNAL;
 import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.volant.commons.core.GuiSettings;
+import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.logic.Page;
 import seedu.volant.commons.model.Model;
 import seedu.volant.commons.model.ReadOnlyUserPrefs;
 import seedu.volant.commons.model.UserPrefs;
+import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.journal.model.entry.Entry;
@@ -28,7 +33,7 @@ public class JournalModelManager implements Model {
     private final TripList tripList;
     private final Trip trip;
     private final Journal journal;
-    private final EntryList entryList;
+    private EntryList entryList;
     private final UserPrefs userPrefs;
     private final Page page = JOURNAL;
     private final FilteredList<Entry> filteredEntries;
@@ -36,16 +41,26 @@ public class JournalModelManager implements Model {
     /**
      * Initializes a JournalModelManager with the given tripList, trip, journal, and userPrefs.
      */
-    public JournalModelManager(TripList tripList, Trip trip, Journal journal, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(tripList, trip, userPrefs);
+    public JournalModelManager(TripList tripList, Trip trip, Journal journal, ReadOnlyUserPrefs userPrefs,
+                               Storage storage) {
+        requireAllNonNull(tripList, trip, userPrefs, storage);
 
         LOGGER.fine("You are now in the JOURNAL page of TRIP: " + trip + ".");
 
         this.tripList = tripList;
         this.trip = trip;
         this.journal = journal;
-        this.entryList = getEntryList();
         this.userPrefs = new UserPrefs(userPrefs);
+        Optional<ReadOnlyEntryList> optionalEntryList;
+        try {
+            optionalEntryList = storage.readEntryList();
+            if (!optionalEntryList.isPresent()) {
+                this.entryList = new EntryList();
+            }
+            this.entryList = new EntryList(optionalEntryList.get());
+        } catch (IOException | DataConversionException | NoSuchElementException e) {
+            this.entryList = new EntryList();
+        }
         this.filteredEntries = new FilteredList<>(this.entryList.getEntryList());
     }
 
@@ -69,7 +84,7 @@ public class JournalModelManager implements Model {
     }
 
     public EntryList getEntryList() {
-        return journal.getEntryList();
+        return this.entryList;
     }
 
     /**
@@ -85,15 +100,16 @@ public class JournalModelManager implements Model {
      * Removes specified target {@code Entry} from entry list within model.
      */
     public void deleteEntry(Entry target) {
-        // entryList.removeEntry(target);
-        // updateFilteredEntryList(predicateShowAllEntries);
+        entryList.removeEntry(target);
+        updateFilteredEntryList(predicateShowAllEntries);
+
     }
 
     /**
      * Adds entry to entry list within model.
      */
     public void addEntry(Entry entry) {
-        entryList.addEntry(entry);
+        this.entryList.addEntry(entry);
         updateFilteredEntryList(predicateShowAllEntries);
     }
 

@@ -29,4 +29,5 @@ public interface Storage extends VolantStorage, UserPrefsStorage {
     @Override
     void saveTripList(ReadOnlyTripList addressBook) throws IOException;
 
+
 }

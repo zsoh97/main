@@ -16,6 +16,7 @@ import seedu.volant.home.model.tag.Tag;
 import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
+import seedu.volant.itinerary.model.activity.Title;
 import seedu.volant.journal.model.entry.Feeling;
 import seedu.volant.journal.model.entry.Weather;
 
@@ -112,7 +113,14 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
+    /**
+     * Parses {@code String s} into title
+     * @param title String to be parsed
+     * @return title of activity.
+     */
+    public static Title parseTitle(String title) {
+        return new Title(title);
+    }
     /**
      * Parses a {@code String feeling} into a {@code Feeling}.
      * @param feeling
