@@ -3,6 +3,7 @@ package seedu.volant.itinerary.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import javafx.collections.ObservableList;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.logic.Logic;
 import seedu.volant.commons.logic.commands.Command;
@@ -14,6 +15,7 @@ import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.itinerary.logic.parser.ItineraryInputParser;
 import seedu.volant.itinerary.model.ItineraryModelManager;
+import seedu.volant.itinerary.model.activity.Activity;
 
 /**
  * The logic manager for the ITINERARY page.
@@ -46,6 +48,10 @@ public class ItineraryLogicManager implements Logic {
         return model.getTrip();
     }
 
+    public ObservableList<Activity> getFilteredActivityList() {
+        return model.getFilteredActivityList();
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         LOGGER.info("----------------[USER COMMAND IN ITINERARY][" + commandText + "]");
@@ -55,7 +61,7 @@ public class ItineraryLogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveTripList(model.getTripList());
+            storage.saveActivityList(model.getActivityList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

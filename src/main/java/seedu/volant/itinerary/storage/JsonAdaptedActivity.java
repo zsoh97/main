@@ -2,12 +2,12 @@ package seedu.volant.itinerary.storage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.volant.commons.exceptions.IllegalValueException;
-import seedu.volant.commons.logic.parser.ParserUtil;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.itinerary.model.activity.Title;
@@ -78,7 +78,8 @@ public class JsonAdaptedActivity {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDate.class.getSimpleName()));
         }
-
+        DateTimeFormatter dateParser = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        final LocalDate modelDate = LocalDate.parse(date, dateParser);
         /*
         TODO resolve this if possible
         if (!LocalDate.isValidDate(date)) {
@@ -86,21 +87,18 @@ public class JsonAdaptedActivity {
         }
          */
 
-        final LocalDate modelDate = ParserUtil.parseDate(date);
-
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalTime.class.getSimpleName()));
         }
-
+        DateTimeFormatter timeParser = DateTimeFormatter.ofPattern("h:mm a");
+        final LocalTime modelTime = LocalTime.parse(time, timeParser);
         /*
         TODO resolve this if necessary
         if (!LocalTime.isValidTime(time)) {
             throw new IllegalValueException(LocalTime.MESSAGE_CONSTRAINTS);
         }
          */
-
-        final LocalTime modelTime = ParserUtil.parseTime(time);
 
         return new Activity(modelTitle, modelDate, modelTime, modelLocation);
     }

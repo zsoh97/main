@@ -29,10 +29,6 @@ public class ItineraryInputParser {
         this.activityList = activityList;
     }
 
-    public ActivityList getActivityList() {
-        return activityList;
-    }
-
 
     /**
      * Parses user input into command for execution.
