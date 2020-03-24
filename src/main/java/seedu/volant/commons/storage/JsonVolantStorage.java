@@ -16,6 +16,8 @@ import seedu.volant.home.model.ReadOnlyTripList;
 import seedu.volant.home.storage.JsonSerializableTripList;
 import seedu.volant.itinerary.model.ReadOnlyActivityList;
 import seedu.volant.itinerary.storage.JsonSerializableActivityList;
+import seedu.volant.journal.model.ReadOnlyEntryList;
+import seedu.volant.journal.storage.JsonSerializableEntryList;
 
 /**
  * A class to access TripList data stored as a json file on the hard disk.
@@ -32,6 +34,11 @@ public class JsonVolantStorage implements VolantStorage {
 
     public Path getVolantFilePath() {
         return filePath;
+    }
+
+    @Override
+    public void setVolantFilePath(Path newPath) {
+        this.filePath = newPath;
     }
 
     @Override
@@ -81,6 +88,67 @@ public class JsonVolantStorage implements VolantStorage {
     }
 
     @Override
+    public Optional<ReadOnlyEntryList> readEntryList() throws DataConversionException, IOException {
+        return readEntryList(filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyEntryList> readEntryList(Path filePath) throws DataConversionException, IOException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableEntryList> jsonEntryList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableEntryList.class);
+        if (!jsonEntryList.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonEntryList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+
+    @Override
+    public void saveEntryList(ReadOnlyEntryList entryList) throws IOException {
+        saveEntryList(entryList, filePath);
+    }
+
+    @Override
+    public void saveEntryList(ReadOnlyEntryList entryList, Path filePath) throws IOException {
+        requireNonNull(entryList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableEntryList(entryList), filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyActivityList> readActivityList() throws DataConversionException, IOException {
+        return readActivityList(filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyActivityList> readActivityList(Path filePath) throws DataConversionException, IOException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableActivityList> jsonActivityList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableActivityList.class);
+        if (!jsonActivityList.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonActivityList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+
+
+    @Override
     public void saveActivityList(ReadOnlyActivityList activityList) throws IOException {
         saveActivityList(activityList, filePath);
     }
@@ -93,6 +161,5 @@ public class JsonVolantStorage implements VolantStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableActivityList(activityList), filePath);
     }
-
 
 }

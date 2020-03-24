@@ -47,7 +47,7 @@ public class EntryList implements ReadOnlyEntryList {
      * {@code entries} must not contain duplicate entries.
      */
 
-    public void setActivities(List<Entry> entries) {
+    public void setEntries(List<Entry> entries) {
         this.entries.setEntries(entries);
     }
 
@@ -58,7 +58,7 @@ public class EntryList implements ReadOnlyEntryList {
     public void resetData(ReadOnlyEntryList newData) {
         requireNonNull(newData);
 
-        setActivities(newData.getEntryList());
+        setEntries(newData.getEntryList());
     }
 
     /**
@@ -67,15 +67,15 @@ public class EntryList implements ReadOnlyEntryList {
      */
 
     //// entry-level operations
-
+    //TODO implement contain in unique entry list
     /**
      * Returns true if a entry with the same identity as {@code entry} exists in the address book.
-    *
+     */
     public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
-        return entries.contains(entry);
+        return false; //entries.contains(entry);
     }
-     */
+
 
     /**
      * Adds a entry to the journal.

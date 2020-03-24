@@ -60,9 +60,9 @@ public class JournalLogicManager implements Logic {
         CommandResult commandResult;
         Command command = inputParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        System.out.println(storage.getVolantFilePath());
         try {
-            storage.saveTripList(model.getTripList());
+            storage.saveEntryList(model.getEntryList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
