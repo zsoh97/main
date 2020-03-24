@@ -48,7 +48,7 @@ public class JsonAdaptedJournal {
 
         final String modelTitle = title;
 
-        final Set<Entry> modelEntries = new HashSet<>(entries);
+        //final Set<Entry> modelEntries = new HashSet<>(entries);
 
         return new Journal(modelTitle);
     }

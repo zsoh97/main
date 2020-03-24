@@ -48,7 +48,7 @@ public class JsonAdaptedItinerary {
 
         final String modelTitle = title;
 
-        final Set<Activity> modelActivities = new HashSet<>(activities);
+        //final Set<Activity> modelActivities = new HashSet<>(activities);
 
         return new Itinerary(modelTitle);
     }

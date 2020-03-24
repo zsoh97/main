@@ -35,7 +35,6 @@ public class ItineraryModelManager implements Model {
     private final Trip trip;
     private final Itinerary itinerary;
     private final UserPrefs userPrefs;
-    private final Storage storage;
     private final Page page = ITINERARY;
     private ActivityList activityList;
     private final FilteredList<Activity> filteredActivities;
@@ -55,7 +54,6 @@ public class ItineraryModelManager implements Model {
         this.trip = trip;
         this.itinerary = itinerary;
         this.userPrefs = new UserPrefs(userPrefs);
-        this.storage = storage;
         Optional<ReadOnlyActivityList> activityListOptional;
         try {
             activityListOptional = storage.readActivityList();

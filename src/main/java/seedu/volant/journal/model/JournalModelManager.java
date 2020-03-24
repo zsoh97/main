@@ -35,7 +35,6 @@ public class JournalModelManager implements Model {
     private final Journal journal;
     private EntryList entryList;
     private final UserPrefs userPrefs;
-    private final Storage storage;
     private final Page page = JOURNAL;
     private final FilteredList<Entry> filteredEntries;
 
@@ -52,7 +51,6 @@ public class JournalModelManager implements Model {
         this.trip = trip;
         this.journal = journal;
         this.userPrefs = new UserPrefs(userPrefs);
-        this.storage = storage;
         Optional<ReadOnlyEntryList> optionalEntryList;
         try {
             optionalEntryList = storage.readEntryList();
