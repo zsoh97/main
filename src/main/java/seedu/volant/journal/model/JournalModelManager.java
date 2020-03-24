@@ -6,6 +6,7 @@ import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -110,6 +111,16 @@ public class JournalModelManager implements Model {
      */
     public void addEntry(Entry entry) {
         this.entryList.addEntry(entry);
+        updateFilteredEntryList(predicateShowAllEntries);
+    }
+
+    /**
+     * Edits specified target {@code Entry} from entry list to the specified values.
+     * If the field is set to NULL, it will be ignored.
+     * Only specified fields are edited.
+     */
+    public void editEntry(Entry entry, HashMap<String, Object> fields) {
+        this.entryList.editEntry(entry, fields);
         updateFilteredEntryList(predicateShowAllEntries);
     }
 
