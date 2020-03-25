@@ -699,3 +699,30 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
+=== Deleting an activity
+
+. Deleting an activity in the activity list
+
+.. Prerequisites: A trip has already been created.
+.. Test case: `delete 1` +
+   Expected: First activity is deleted from the itinerary of the current trip. Current activity list is updated.
+.. Test case: `delete 0` +
+   Expected: No activity is deleted. Error details shown in the status message
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the itinerary size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{more test cases ...}_
+
+=== Deleting a journal entry
+
+. Deleting an entry in the entry list
+
+.. Prerequisites: A trip has already been created.
+.. Test case: `delete 1` +
+   Expected: First entry is deleted from the journal of the current trip. Current entry list is updated.
+.. Test case: `delete 0` +
+   Expected: No entry is deleted. Error details shown in the status message
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the journal size) _{give more}_ +
+   Expected: Similar to previous.
+   
+_{more test cases ...}_
