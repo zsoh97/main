@@ -2,6 +2,7 @@ package seedu.volant.ui.pages.itinerary;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -9,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.volant.commons.core.LogsCenter;
 import seedu.volant.itinerary.model.activity.Activity;
-import seedu.volant.itinerary.model.activity.UniqueActivityList;
-import seedu.volant.trip.model.Itinerary;
 import seedu.volant.ui.UiPart;
 import seedu.volant.ui.pages.home.HomePage;
 
@@ -30,15 +29,15 @@ public class ItineraryPage extends UiPart<Region> {
     @FXML
     private ListView<Activity> activityListView;
 
-    public ItineraryPage(Itinerary itinerary) {
+    public ItineraryPage(ObservableList<Activity> activities) {
         super(FXML);
 
         // Get activity list from itinerary
-        UniqueActivityList activityList = itinerary.getActivityList().getUniqueActivityList();
+        //UniqueActivityList activityList = itinerary.getActivityList().getUniqueActivityList();
 
         itineraryTitle.setText("Itinerary");
 
-        activityListView.setItems(activityList.asUnmodifiableObservableList());
+        activityListView.setItems(activities);
         activityListView.setCellFactory(listView -> new ActivityListViewCell());
     }
 

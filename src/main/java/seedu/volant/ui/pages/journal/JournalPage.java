@@ -2,6 +2,7 @@ package seedu.volant.ui.pages.journal;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -9,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.volant.commons.core.LogsCenter;
 import seedu.volant.journal.model.entry.Entry;
-import seedu.volant.journal.model.entry.UniqueEntryList;
-import seedu.volant.trip.model.Journal;
 import seedu.volant.ui.UiPart;
 import seedu.volant.ui.pages.home.HomePage;
 
@@ -30,15 +29,15 @@ public class JournalPage extends UiPart<Region> {
     @FXML
     private ListView<Entry> entryListView;
 
-    public JournalPage(Journal journal) {
+    public JournalPage(ObservableList<Entry> entries) {
         super(FXML);
 
         // Get entry list from journal
-        UniqueEntryList entryList = journal.getEntryList().getUniqueEntryList();
+        //UniqueEntryList entryList = journal.getEntryList().getUniqueEntryList();
 
         journalTitle.setText("Journal");
 
-        entryListView.setItems(entryList.asUnmodifiableObservableList());
+        entryListView.setItems(entries);
         entryListView.setCellFactory(listView -> new EntryListViewCell());
     }
 
