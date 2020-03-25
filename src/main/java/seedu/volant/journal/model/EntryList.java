@@ -2,6 +2,7 @@ package seedu.volant.journal.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -82,6 +83,13 @@ public class EntryList implements ReadOnlyEntryList {
     */
     public void addEntry(Entry p) {
         entries.add(p);
+    }
+
+    /**
+     * Edits a entry to the journal.
+     */
+    public void editEntry(Entry p, HashMap<String, Object> fields) {
+        entries.edit(p, fields);
     }
 
     /*
