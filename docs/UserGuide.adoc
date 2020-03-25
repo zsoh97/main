@@ -18,7 +18,7 @@ By: `AY1920S2-2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
 
 == Introduction
 
-Volant is a travel assistant application for solo travellers for who *prefer to use a desktop app for managing people they meet during their solo travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Volant is a travel companion application for solo travellers for who *prefer to use a desktop app to manage their travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Volant can get you planning, executing and reflecting on your trip faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
@@ -45,47 +45,37 @@ e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[a/AGE]...` can be used as `{nbsp}` (i.e. 0 times), `a/AGE`, `a/AGE p/PHONE_NUMBER` etc.
 ====
 
-=== Homepage `[coming in v2.0]`
+=== Homepage
 
 ==== Opening the help window: `help`
 Opens the Help Window.
 
 Format: `help`
 
-==== Opening the homepage: `home`
-Returns to the homepage. If already at the homepage, does nothing.
-
-Format: `home`
-
-==== Navigating to a trip page: `gotoTrip`
+==== Navigating to a trip page: `goto`
 Navigates to the context of a trip in the trip list.
 
-Format: `gotoTrip INDEX`
+Format: `goto INDEX`
 
 * `INDEX` must be a positive integer within range of the list size.
 
 Example:
 
-* `gotoTrip 12` +
+* `goto 12` +
 Navigates to the 12th trip on the list of trips.
-
-
-=== Trips `[coming in v2.0]`
-
-All trips are listed on the home page.
 
 ==== Adding a trip: `add`
 Adds a trip to the trip list.
 
-Format: `add n/TRIP_NAME from/TRIP_START_DATE to/TRIP_END_DATE l/LOCATION`
+Format: `add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE`
 
-* Please write the date range in the format `from/DD-MM-YYYY` `to/DD-MM-YYYY`.
+* Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
 
 Examples:
 
-* `add n/Graduation Trip from/01-02-2020 to/05-02-2020 l/Bangkok` +
+* `add n/Graduation Trip l/Bangkok d/2020-02-01 to 2020-02-05` +
 Adds a trip titled “Graduation Trip” to the list with the specified metadata.
-* `add n/Family Trip from/05-02-2020 to/08-02-2020 l/Bangkok` +
+* `add n/Family Trip l/Bangkok d/02020-02-05 to 2020-02-08` +
 Adds a trip titled “Family Trip” to the list with the specified metadata.
 
 ==== Deleting a trip: `delete`
@@ -103,29 +93,31 @@ Deletes the 12th trip on the list of trips.
 ==== Editing trip metadata: `edit`
 Edits item in the trip list at the specified index.
 
-Format: `edit INDEX [n/TRIP_NAME] [from/TRIP_START_DATE] [to/TRIP_END_DATE] [l/LOCATION]...`
+Format: `edit INDEX [n/TRIP_NAME]  [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
 
 * `INDEX` must be a positive integer within range of the list size.
-* Please write the date range in the format `from/DD-MM-YYYY` `to/DD-MM-YYYY`.
+* Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
 
 Example:
 
 * `edit 2 n/School Trip l/France` +
 Edits the second trip on the list with “School Trip” as name and “France” as location.
-* `edit 1 from/01-02-2020 to/ 01-03-2020` +
+* `edit 1 d/2020-02-01 to 2020-03-01` +
 Edits the first trip on the list with date range of 1 February to 1 March 2020.
+
+=== Trip page
 
 ==== Navigating to a feature in the trip page: `goto`
 Navigates to a specific feature within each trip.
 
 Format: `goto FEATURE`
 
-* List of available features:
+* List of available features (can be typed in any case):
 ** `ITINERARY`
 ** `JOURNAL`
-** `EXPENSES`
-** `PACKINGLIST`
-** `CONTACTS`
+** `EXPENSES` [coming in v2.0]
+** `PACKINGLIST` [coming in v2.0]
+** `CONTACTS` [coming in v2.0]
 
 
 Example:
@@ -133,19 +125,19 @@ Example:
 * `goto ITINERARY` +
 Navigates to the itinerary feature of the current trip.
 
-=== Itinerary `[coming in v2.0]`
+=== Itinerary
 
 ==== Adding an activity to the itinerary: `add`
 Adds an activity to the itinerary.
 
-Format: `add a/ACTIVITY d/DATE t/TIME l/LOCATION`
+Format: `add title/TITLE l/LOCATION d/DATE t/TIME`
 
 * Date must be specified in the following format: `DD-MM-YYYY`
 * Time must be specified in the following format: `HH:MM`
 
 Example:
 
-* `add a/Sightseeing d/12-10-2020 t/13:45 l/Mount Everest`
+* `add title/Sightseeing l/Mount Everest d/12-10-2020 t/13:45`
 Adds Sightseeing at Mount Everest at 12 OCT 2020 13:45 to the itinerary
 
 ==== Deleting an activity in the itinerary: `delete`
@@ -162,15 +154,10 @@ Example:
 * `delete 5` +
 Deletes the 5th activity in the itinerary.
 
-==== Displaying next activity: `next`
-Displays the next activity in the itinerary.
+==== Editing an acitivity: `edit`
+Edits an existing activity.
 
-Format: `next`
-
-==== Editing the itinerary: `edit`
-Edits an existing itinerary.
-
-Format: `edit INDEX [a/ACTIVITY] [d/DATE] [t/TIME] [l/LOCATION]`
+Format: `edit INDEX [title/TITLE] [l/LOCATION] [d/DATE] [t/TIME]`
 
 * Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index must * be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -178,61 +165,43 @@ Format: `edit INDEX [a/ACTIVITY] [d/DATE] [t/TIME] [l/LOCATION]`
 * Date must be specified in the following format: `DD-MM-YYYY`
 * Time must be specified in the following format: `HH:MM`
 
-==== Locating an activity by any field: `find`
+==== Locating an activity: `find`
 Searches the itinerary for any activity that matches the input field.
 
-Format: `find FIELD [a/ACTIVITY] [d/DATE] [t/TIME] [l/LOCATION]`
+Format: `find FIELD [title/TITLE] [l/LOCATION] [d/DATE] [t/TIME]`
 
-Date must be specified in the following format: `DD-MM-YYYY`
-Time must be specified in the following format: `HH:MM`
+* Date must be specified in the following format: `DD-MM-YYYY`
+* Time must be specified in the following format: `HH:MM`
 
 Example:
 
-* `find Itinerary a/Climbing` +
+* `find Itinerary title/Climbing` +
 Returns all activities related to climbing.
 
-=== Journal `[coming in v2.0]`
+=== Journal
 
 ==== Adding a journal entry: `add`
 Adds a journal entry to the entry list.
 
-Format: `add [c/CONTENT] [img/FILE_DIRECTORY] d/DATE t/TIME [l/LOCATION] [f/FEELING] [w/WEATHER]`
+Format: `add d/DATE t/TIME [c/CONTENT] [l/LOCATION] [f/FEELING] [w/WEATHER]`
 
 * Date must be specified in the following format: `DD-MM-YYYY`
 * Time must be specified in the following format: `HH:MM`
 * CONTENT is limited to 280 characters
-* Available `FEELING` types:
-** happy
-** sad
-** excited
-** worried
-** scared
-** surprised
-** confused
+* Available `FEELING` types (can be typed in any case):
+** `HAPPY`
+** `SAD`
+** `EXCITED`
+** `WORRIED`
+** `SCARED`
+** `SURPRISED`
+** `CONFUSED`
 
 
 Example:
 
-* `add c/Lorem ipsum dolor sit amet, consectetur adipiscing elit d/12-09-2021 t/12:51 l/New York f/confused` +
+* `add d/12-09-2021 t/12:51 c/Lorem ipsum dolor sit amet, consectetur adipiscing elit l/New York f/confused` +
 Adds a new journal entry to the entry list with the specified content, date, time, location and feeling fields.
-
-==== Sorting a list of current journal entries: `sort`
-Sorts the list of current journal entry lists in a specified order.
-
-Format: `sort [SORT_TYPE]`
-
-* Available `SORT_TYPE`:
-** Old to new - old (default if SORT_TYPE is left empty)
-** New to old - new
-** Location - location
-** Feeling - feeling
-* Default sorting of journal entries is in order of old to new
-
-
-Example:
-
-* `sort location` +
-Sorts the list of journal entries sorted by locations.
 
 ==== Deleting a journal entry: `delete`
 Deletes an entire journal entry or a specific metadata within a journal entry based on the chosen index number.
@@ -242,23 +211,42 @@ Format: `delete INDEX`
 ==== Editing a journal entry: `edit`
 Edits specific metadata within a chosen journal entry using index number.
 
-Format: `edit INDEX [c/NEW_CONTENT] [img/NEW_FILE_DIRECTORY] [d/NEW_DATE] [t/NEW_TIME] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]`
+Format: `edit INDEX [d/NEW_DATE] [t/NEW_TIME] [c/NEW_CONTENT] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]`
 
 Example:
 
-* `edit 4 d/21-12-2012 f/Scared` +
-Changes date and feeling of fourth journal entry to “21-12-2012” and “scared” respectively
+* `edit 4 d/21-12-2012 f/scared` +
+Changes date and feeling of fourth journal entry to “21-12-2012” and “SCARED” respectively
+
+==== Sorting a list of current journal entries: `sort`
+Sorts the list of current journal entry lists in a specified order.
+
+Format: `sort [SORT_TYPE]`
+
+* Available `SORT_TYPE`:
+** `OLDESTFIRST` - oldest entries first (default if SORT_TYPE is left empty)
+** `NEWESTFIRST` - newest entries first
+** `LOCATION` - alphabetical order of locations
+** `FEELING` - alphabetical order of feelings
+* Default sorting of journal entries is in order of oldest entries first
+
+
+Example:
+
+* `sort LOCATION` +
+Sorts the list of journal entries by alphabetical order of locations.
+
 
 === Contact List `[coming in v2.0]`
 
 ==== Adding a contact: `add`
 Adds a contact to the contact list.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/AGE] l/:LOCATION [h/HOW_YOU_MET] [f/FAVOURITE]`
+Format: `add n/NAME [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
 
 Example:
 
-* `addContact n/John Doe p/987654321 a/23 m/In Berlin h/Asked him to take a picture of me at Brandenburg Gate p/Cheerful f/no`
+* `add n/John Doe p/987654321 a/23 m/In Berlin h/Asked him to take a picture of me at Brandenburg Gate p/Cheerful f/no`
 
 ==== Deleting a contact: `delete`
 Deletes the specified contact in the contact list.
@@ -279,12 +267,12 @@ Edits an existing person in the contact list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a   positive integer 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 
-==== Locating a contact by any field: `find`
+==== Locating a contact: `find`
 Searches the contact list for any contact that matches the input field.
 
 Format: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
@@ -293,8 +281,15 @@ Format: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_M
 
 Example:
 
-* `findContact n/John` +
+* `find n/John` +
 Returns the contact information on John Doe and John Wick
+
+=== Across the app
+
+==== Navigating to the previous page: `back`
+Navigates to the previous page in the app. This functionality works anywhere in the app.
+
+Format: `back`
 
 == FAQ
 
@@ -303,11 +298,33 @@ Returns the contact information on John Doe and John Wick
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER` +
-e.g. `add n/James Ho p/22224444`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] ` +
-e.g. `edit 2 n/James Lee`
-* *Find* : `find KEYWORD [n/NAME]` +
-e.g. `find James Jake`
+=== Homepage
+* *Help*: `help` +
+* *Navigate to trip*: `goto INDEX` +
+* *Add trip*: `add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE` +
+* *Delete trip*: `delete INDEX` +
+* *Edit trip*: `edit INDEX [n/TRIP_NAME]  [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]` +
+
+=== Trip page
+* *Navigate to feature*: `goto FEATURE` +
+
+=== Itinerary
+* *Add activity*: `add title/TITLE l/LOCATION d/DATE t/TIME` +
+* *Delete activity*: `delete INDEX` +
+* *Edit activity*: `edit INDEX [title/TITLE] [l/LOCATION] [d/DATE] [t/TIME]` +
+* *Find activity*: `find FIELD [title/TITLE] [l/LOCATION] [d/DATE] [t/TIME]` +
+
+=== Journal
+* *Add entry*: `add d/DATE t/TIME [c/CONTENT] [l/LOCATION] [f/FEELING] [w/WEATHER]` +
+* *Delete entry*: `delete INDEX` +
+* *Edit entry*: `edit INDEX [d/NEW_DATE] [t/NEW_TIME] [c/NEW_CONTENT] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]` +
+* *Sort entries*: `sort [SORT_TYPE]` +
+
+=== Contact List
+* *Add contact*: `add n/NAME [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]` +
+* *Delete contact*: `delete INDEX` +
+* *Edit contact*: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]` +
+* *Find contact*: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]` +
+
+=== Across the app
+* *Navigate to previous page*: `back` +
