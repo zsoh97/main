@@ -26,7 +26,7 @@
                 <Label fx:id="entryDate" text="\$entryDate" styleClass="cell_big_label" />
                 <Label fx:id="entryTime" text="\$entryTime" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="entryTitle" text="\$entryTitle" styleClass="cell_small_label" />
+            <Label fx:id="entryTitle" text="\$entryTitle" styleClass="cell_small_label" wrapText="true"/>
             <Label fx:id="entryLocation" text="\$entryLocation" styleClass="cell_small_label" />
             <Label fx:id="entryFeeling" text="\$entryFeeling" styleClass="cell_small_label" />
             <Label fx:id="entryWeather" text="\$entryWeather" styleClass="cell_small_label" />

@@ -45,12 +45,12 @@ public class JournalPageCard extends UiPart<Region> {
         this.entry = entry;
         id.setText(displayedIndex + ". ");
         entryTitle.setText(entry.getText());
-        entryDate.setText(entry.getDate() + ",");
-        entryTime.setText(entry.getTime());
-        if (entry.getLocation().equals("null")) {
+        entryDate.setText(entry.getDateAsString() + ",");
+        entryTime.setText(entry.getTimeAsString());
+        if (entry.getLocationAsString().equals("null")) {
             entryLocation.setText("\nLocation: Not specified");
         } else {
-            entryLocation.setText("\nLocation: " + entry.getLocation());
+            entryLocation.setText("\nLocation: " + entry.getLocationAsString());
         }
         if (entry.getFeeling().toString().equals("NULL")) {
             entryFeeling.setText("Feeling: Not specified");
