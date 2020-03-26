@@ -10,14 +10,12 @@ import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.stream.Stream;
 
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.parser.ArgumentMultimap;
 import seedu.volant.commons.logic.parser.ArgumentTokenizer;
 import seedu.volant.commons.logic.parser.Parser;
 import seedu.volant.commons.logic.parser.ParserUtil;
-import seedu.volant.commons.logic.parser.Prefix;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.journal.logic.commands.EditCommand;
@@ -74,13 +72,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         return new EditCommand(index, editEntryDescriptor);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
