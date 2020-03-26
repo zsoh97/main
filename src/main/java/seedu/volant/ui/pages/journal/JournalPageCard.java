@@ -46,9 +46,9 @@ public class JournalPageCard extends UiPart<Region> {
         super(FXML);
         this.entry = entry;
         entryTitle.setText(entry.getText());
-        entryDate.setText(entry.getDate());
-        entryTime.setText(entry.getTime());
-        entryLocation.setText(entry.getLocation());
+        entryDate.setText(entry.getDateAsString());
+        entryTime.setText(entry.getTimeAsString());
+        entryLocation.setText(entry.getLocationAsString());
         entryFeeling.setText(entry.getFeeling().toString());
         entryWeather.setText(entry.getWeather().toString());
     }
