@@ -382,7 +382,7 @@ Returns all activities related to climbing.
 ==== Adding a journal entry: `add`
 Adds a journal entry to the entry list.
 
-Format: `add d/DATE t/TIME [c/CONTENT] [l/LOCATION] [f/FEELING] [w/WEATHER]`
+Format: `add d/DATE t/TIME c/CONTENT [l/LOCATION] [f/FEELING] [w/WEATHER]`
 
 * Date must be specified in the following format: `DD-MM-YYYY`
 * Time must be specified in the following format: `HH:MM`
@@ -399,7 +399,7 @@ Format: `add d/DATE t/TIME [c/CONTENT] [l/LOCATION] [f/FEELING] [w/WEATHER]`
 
 Example:
 
-* `add d/12-09-2021 t/12:51 c/Lorem ipsum dolor sit amet, consectetur adipiscing elit l/New York f/confused` +
+* `add d/12-09-2021 t/12:51 c/Visited the Statue of Liberty today! It was grand. l/New York f/confused` +
 Adds a new journal entry to the entry list with the specified content, date, time, location and feeling fields.
 
 ==== Deleting a journal entry: `delete`
@@ -475,7 +475,7 @@ Sorts the list of journal entries by alphabetical order of locations.
 * *Find activity*: `find FIELD [title/TITLE] [l/LOCATION] [d/DATE] [t/TIME]` +
 
 === Journal
-* *Add entry*: `add d/DATE t/TIME [c/CONTENT] [l/LOCATION] [f/FEELING] [w/WEATHER]` +
+* *Add entry*: `add d/DATE t/TIME c/CONTENT [l/LOCATION] [f/FEELING] [w/WEATHER]` +
 * *Delete entry*: `delete INDEX` +
 * *Edit entry*: `edit INDEX [d/NEW_DATE] [t/NEW_TIME] [c/NEW_CONTENT] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]` +
 * *Sort entries*: `sort [SORT_TYPE]` +

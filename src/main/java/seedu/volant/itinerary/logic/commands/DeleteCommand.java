@@ -2,13 +2,14 @@ package seedu.volant.itinerary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.volant.commons.core.Messages;
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.CommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.model.Model;
-import seedu.volant.itinerary.model.ActivityList;
 import seedu.volant.itinerary.model.ItineraryModelManager;
 import seedu.volant.itinerary.model.activity.Activity;
 
@@ -38,13 +39,14 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         ItineraryModelManager itineraryModel = ((ItineraryModelManager) model);
 
-        ActivityList activityList = itineraryModel.getActivityList();
+        List<Activity> lastShownList = itineraryModel.getFilteredActivityList();
+        //ActivityList activityList = itineraryModel.getActivityList();
 
-        if (targetIndex.getZeroBased() >= activityList.getSize()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
         }
 
-        Activity activityToDelete = activityList.getActivityList().get(targetIndex.getZeroBased());
+        Activity activityToDelete = lastShownList.get(targetIndex.getZeroBased());
         itineraryModel.deleteActivity(activityToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
     }

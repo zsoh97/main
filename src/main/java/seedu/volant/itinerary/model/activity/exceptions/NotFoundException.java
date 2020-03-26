@@ -9,4 +9,5 @@ public class NotFoundException extends NullPointerException {
         super(message);
     }
 
+    public NotFoundException() {}
 }

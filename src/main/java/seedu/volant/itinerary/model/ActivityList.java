@@ -42,14 +42,6 @@ public class ActivityList implements ReadOnlyActivityList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the activity list with {@code activities}.
-     * {@code activities} must not contain duplicate activities.
-     */
-    public void setActivities(List<Activity> activities) {
-        this.activities.setActivities(activities);
-    }
-
-    /**
      * Resets the existing data of this {@code ActivityList} with {@code newData}.
      */
     public void resetData(ReadOnlyActivityList newData) {
@@ -98,9 +90,23 @@ public class ActivityList implements ReadOnlyActivityList {
         activities.remove(key);
     }
 
+    /**
+     * Replaces the given trip {@code target} in the list with {@code editedTrip}.
+     * {@code target} must exist in the trip list.
+     * The trip identity of {@code editedTrip} must not be the same as another existing trip in the trip list.
+     */
+    public void setActivities(Activity target, Activity editedActivity) {
+        requireNonNull(editedActivity);
+        activities.setActivity(target, editedActivity);
+    }
 
-    //// util methods
-
+    /**
+     * Replaces the contents of the activity list with {@code activities}.
+     * {@code activities} must not contain duplicate activities.
+     */
+    public void setActivities(List<Activity> activities) {
+        this.activities.setActivities(activities);
+    }
 
     @Override
     public String toString() {
