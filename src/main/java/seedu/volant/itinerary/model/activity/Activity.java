@@ -26,33 +26,33 @@ public class Activity {
         this.location = location;
     }
 
-    public String getTitle() {
-        return title.toString();
+    public Title getTitle() {
+        return this.title;
     }
 
-    public String getTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
-        return time.format(formatter);
+    public LocalTime getTime() {
+        return this.time;
     }
 
-    public String getDate() {
-        return formatDate(date);
+    public LocalDate getDate() {
+        return this.date;
     }
 
-    public String getLocation() {
-        return location.toString();
+    public Location getLocation() {
+        return this.location;
     }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append("\nLocation: ")
                 .append(this.getTitle())
                 .append("\nDate: ")
-                .append(this.getDate())
+                .append(formatDate(this.getDate()))
                 .append("\nTime: ")
-                .append(this.getTime());
+                .append(this.getTime().format(formatter));
         return builder.toString();
     }
 
