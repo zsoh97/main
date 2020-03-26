@@ -10,15 +10,12 @@ import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.stream.Stream;
 
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.parser.ArgumentMultimap;
 import seedu.volant.commons.logic.parser.ArgumentTokenizer;
 import seedu.volant.commons.logic.parser.Parser;
 import seedu.volant.commons.logic.parser.ParserUtil;
-import seedu.volant.commons.logic.parser.Prefix;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.journal.logic.commands.EditCommand;
@@ -36,7 +33,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
-        HashMap<String, Object> fieldsToEdit = new HashMap<>();
         Index index;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION,
@@ -48,39 +44,32 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
+        EditCommand.EditEntryDescriptor editEntryDescriptor = new EditCommand.EditEntryDescriptor();
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            fieldsToEdit.put("date", date);
+            editEntryDescriptor.setDate(date);
         }
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-            fieldsToEdit.put("time", time);
+            editEntryDescriptor.setTime(time);
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-            fieldsToEdit.put("location", location);
+            editEntryDescriptor.setLocation(location);
         }
         if (argMultimap.getValue(PREFIX_FEELING).isPresent()) {
             Feeling feeling = ParserUtil.parseFeeling(argMultimap.getValue(PREFIX_FEELING).get());
-            fieldsToEdit.put("feeling", feeling);
+            editEntryDescriptor.setFeeling(feeling);
         }
         if (argMultimap.getValue(PREFIX_WEATHER).isPresent()) {
             Weather weather = ParserUtil.parseWeather(argMultimap.getValue(PREFIX_WEATHER).get());
-            fieldsToEdit.put("weather", weather);
+            editEntryDescriptor.setWeather(weather);
         }
         if (argMultimap.getValue(PREFIX_TEXT).isPresent()) {
             String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
-            fieldsToEdit.put("text", text);
+            editEntryDescriptor.setText(text);
         }
-        return new EditCommand(index, fieldsToEdit);
+        return new EditCommand(index, editEntryDescriptor);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

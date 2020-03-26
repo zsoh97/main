@@ -51,16 +51,28 @@ public class Entry {
         return text;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public String getTimeAsString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
         return time.format(formatter);
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getDateAsString() {
         return formatDate(date);
     }
 
-    public String getLocation() {
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getLocationAsString() {
         return location.toString();
     }
 
