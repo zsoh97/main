@@ -79,7 +79,7 @@ The sections below give more details about each component.
 === UI component
 
 .Structure of the UI Component
-image::UiClassDiagram.png[]
+image::UIClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/location/ui/Ui.java[`Ui.java`]
 
@@ -102,24 +102,25 @@ image::LogicClassDiagram.png[]
 *API* :
 link:{repoURL}/src/main/java/seedu/location/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
-.  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a trip).
+.  `Logic` uses the `InputParser` class of the current feature to parse the user command.
+.  This results in a `Command` object which is executed by the `LogicManager` of the current feature.
+.  The command execution can affect the `Model` of the current feature (e.g. adding a trip).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component of the Itinerary feature for the `execute("delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
-image::DeleteSequenceDiagram.png[]
-
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+image::DeleteCommandItinerary.png[]
 
 [[Design-Model]]
 === Model component
 
-.Structure of the Model Component
-image::ModelClassDiagram.png[]
+.Structure of the Model Component in Journal
+image::JournalModelClassDiagram.png[]
+
+.Structure of the Model Component in Itinerary
+image::ItineraryModel.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/location/model/Model.java[`Model.java`]
 
@@ -139,14 +140,14 @@ image:BetterModelClassDiagram.png[]
 === Storage component
 
 .Structure of the Storage Component
-image::StorageClassDiagram.png[]
+image::StorageDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/location/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the XYZList data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -703,3 +704,30 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
+=== Deleting an activity
+
+. Deleting an activity in the activity list
+
+.. Prerequisites: A trip has already been created.
+.. Test case: `delete 1` +
+   Expected: First activity is deleted from the itinerary of the current trip. Current activity list is updated.
+.. Test case: `delete 0` +
+   Expected: No activity is deleted. Error details shown in the status message
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the itinerary size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{more test cases ...}_
+
+=== Deleting a journal entry
+
+. Deleting an entry in the entry list
+
+.. Prerequisites: A trip has already been created.
+.. Test case: `delete 1` +
+   Expected: First entry is deleted from the journal of the current trip. Current entry list is updated.
+.. Test case: `delete 0` +
+   Expected: No entry is deleted. Error details shown in the status message
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the journal size) _{give more}_ +
+   Expected: Similar to previous.
+   
+_{more test cases ...}_
