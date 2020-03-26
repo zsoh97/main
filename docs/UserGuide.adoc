@@ -14,17 +14,29 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-F09-4/main
 
-By: `AY1920S2-2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
+By: `AY1920S2-2103T-F09-4`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
 
-Volant is a travel companion application for solo travellers for who *prefer to use a desktop app to manage their travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Volant can get you planning, executing and reflecting on your trip faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Volant is a travel companion application for solo travellers for who *prefer to use a desktop app to manage their travels*. More importantly, Volant is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+If you can type fast, Volant can get you planning, executing and reflecting on your trip faster than traditional GUI apps.
+
+Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+====
+*Reading this User Guide*
+
+TIP: This icon denotes useful tips to note when using Volant.
+
+NOTE: This icon denotes important details to take note of when using Volant.
+====
 
 == Quick Start
 
-.  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `volant.jar` link:{https://github.com/AY1920S2-CS2103T-F09-4/main}/releases[v1.1].
-.  Copy the file to the folder you want to use as the home folder for your Volant.
+.  Ensure you have Java `11` or above installed on your computer.
+.  Download the latest `volant.jar` file from our link:{https://github.com/AY1920S2-CS2103T-F09-4/main}/releases[releases page].
+.  Copy the file to the folder you want to use as the home folder for the application.
 .  Double-click the JAR file to start the app.
 .  The GUI should appear in a few seconds.
 +
@@ -32,129 +44,314 @@ image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Features>> for a summary of the available features in this application.
+.  Refer to <<Usage>> for the various commands that can be used in this program.
 
 [[Features]]
 == Features
 
+This section consists of an overview of the features available in Volant.
+
+=== Trips
+In Volant, a trip represents a set of travel plans to a certain location within a date range. You can able to create and store trips in Volant to keep track of all your travels, and plan your future travels.
+Each `TRIP` contains trip features such as an `ITINERARY` and `JOURNAL`.
+
+=== Trip List
+All trips are stored in a trip list.
+The trip list displayed on the `HOME` page of Volant.
+It gives a list view of all the trips stored in Volant's data files.
+
+The trip list is sorted such that you are able to view upcoming and past trips.
+
+=== Journal
+Volant has a journal feature that allows you to write and store journal entries per trip.
+These entries are limited to 140 characters and have other metadata including the `LOCATION` and `WEATHER` for you
+to record when writing journal entries.
+
+=== Itinerary
+Volant has an itinerary feature that enables you to keep track of their daily activities planned for their trip.
+All activities are sorted in chronological orderby date and time from oldest to newest activity.
+
+=== Auto-saving of Data
+All changes in Volant will be automatically saved upon every command that changes the data in the application.
+
+In this application, commands are used to utilise and switch between these features. The upcoming section will cover the
+usage of these commands.
+
+[[Usage]]
+== Usage of Commands
+
+Volant is used through a command line interface (CLI) where commands have to be typed into a text box
+in the application's GUI. After which, the program will give feedback on the result of a command in the command box.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [a/AGE]` can be used as `n/John Doe a/26` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[a/AGE]...` can be used as `{nbsp}` (i.e. 0 times), `a/AGE`, `a/AGE p/PHONE_NUMBER` etc.
+* *Parameters in `UPPER_CASE`* +
+    Words in `UPPER_CASE` are compulsory parameters to be supplied by the user. +
+    e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* *Parameters in `[SQUARE_BRACKETS]`* +
+    Words in square brackets (i.e. `[f/FEELING]`), are optional. +
+    e.g `n/NAME [a/AGE]` can be used as `n/John Doe a/26` or as `n/John Doe`.
+* *Parameters with trailing ellipses `...`* +
+    Words with `…`​ (ellipses) after them can be used multiple times including 0 times. +
+    e.g. `[f/FEELING]...` can be used as `{nbsp}` (i.e. 0 times), `f/FEELING f/FEELING w/WEATHER` (i.e 2 times) etc.
 ====
 
-=== Homepage
+=== Pages in Volant
 
-The homepage consists of a list of all Trips stored in the program. Here, you can manipulate the trip list, as well as navigate to other pages, using commands.
+Volant has 4 different types of pages.
+Commands entered will produce a different outcome depending on which page you are on.
+However, there are some commands that are universal, and will work on every page.
+
+*Types of Pages*
+[cols="1, 3", width="60%", options="header"]
+|===
+| Page | Details
+|`HOME`| Volant's home page, featuring the entire list of trips in Volant.
+|`TRIP`| A page featuring the details of a specific trip.
+|`JOURNAL`| A page displaying the `JOURNAL` of a specific trip.
+|`ITINERARY`|  A page displaying the `ITINERARY` of a specific trip.
+|===
+
+<<<
+
+=== Universal Commands
+Universal commands are commands that can be used on all pages.
+
+==== Going back to a previous page: `back`
+Navigates to a previous page depending on which page you are on.
+
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |   `back`
+|Example    |   `back`
+|=======================
+
+*Example of Outcome*
+
+The outcome of the `back` command is dependant on which page the user is on.
+
+For example, if the user is in any `ITINERARY` page, using the `back` command will navigate the user to the `TRIP` page
+of the trip in which the itinerary is stored.
+
+DIAGRAM TO BE INSERTED HERE.
+
+[TIP]
+
+====
+*Table of Outcomes*
+[cols="1, 2", options="header,footer"]
+|=======================
+|Page                   |Outcome
+|Any `JOURNAL` page     | User will be directed to `TRIP` page of the trip in which the journal is stored.
+|Any `ITINERARY` page   | User will be directed to `TRIP` page of the trip in which the itinerary is stored.
+|Any `TRIP` page        | User will be directed to the `HOME` page.
+|The `HOME` page        | Nothing will happen as it is the root page.
+|=======================
+
+====
+
+==== Going back to the Home Page: `home`
+Navigates to the `HOME` page from any page.
+
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`home`
+|Example    |`home`
+|=======================
+
+*Example of Outcome*
+
+DIAGRAM TO BE INSERTED HERE.
 
 ==== Opening the help window: `help` `[coming in v2.0]`
 Opens the Help Window.
 
-Format: `help`
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`help`
+|Example    |`help`
+|=======================
 
-==== Navigating to a trip page: `goto`
-Navigates to the context of a trip in the trip list.
+*Example of Outcome*
+You will be navigated to the `HOME` page.
 
-Format: `goto INDEX`
+DIAGRAM TO BE INSERTED HERE.
 
-* `INDEX` must be a positive integer within range of the list size.
+NOTE: This command does not work when you are already on the `HOME` page.
 
-Example:
+=== Home Page
 
-* `goto 12` +
+The `HOME` page consists of a list of all trips stored in the program.
+Here, you can manipulate the trip list, as well as navigate to other pages.
+
+==== Navigating to a `TRIP` page: `goto`
+
+Navigates to the page of a specific trip with index `INDEX` in the trip list.
+
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`goto`
+|Example    |`goto 12`
+|=======================
+
+
+NOTE: `INDEX` must be a positive integer value, within range of the number of entries in the trip list.
+
+
+*Example of Outcome*
+
 Navigates to the 12th trip on the trip list.
 
-==== Adding a trip: `add`
-Adds a trip to the trip list.
+DIAGRAM TO BE INSERTED HERE.
 
-Format: `add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE`
 
-* Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
+==== Adding a trip to the trip list: `add`
 
-Examples:
+Adds a trip to the trip list with the specified `NAME`, `LOCATION` and date range, `TRIP_START_DATE` to `TRIP_END_DATE`.
 
-* `add n/Graduation Trip l/Bangkok d/2020-02-01 to 2020-02-05` +
-Adds a trip titled “Graduation Trip” to the list with the specified metadata.
-* `add n/Family Trip l/Bangkok d/02020-02-05 to 2020-02-08` +
-Adds a trip titled “Family Trip” to the list with the specified metadata.
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE`
+|Example    | `add n/Graduation Trip l/Bangkok d/2020-02-01 to 2020-02-05`
+|=======================
+
+NOTE: Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
+
+*Example of Outcome*
+
+Adds a trip to the trip list with the name *Graduation Trip*, location *Bangkok*, and date range of the trip being from
+*1st February 2020 to 5th February 2020*.
+
+DIAGRAM TO BE INSERTED HERE.
+
 
 ==== Deleting a trip: `delete`
-Deletes a trip from the trip list.
+Deletes a trip from the trip list at the specified index, `INDEX`.
 
-Format: `delete INDEX`
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`delete INDEX`
+|Example    | `delete 2`
+|=======================
 
-* INDEX must be a positive integer within range of the list size.
+[NOTE]
+====
+* `INDEX` must be a positive integer value, within range of the number of trips in the trip list.
+====
 
-Example:
+*Example of Outcome*
 
-* `delete 12` +
-Deletes the 12th trip on the list of trips.
+The trip at the specified index, `INDEX` will be deleted along with its other data (itinerary, journal, etc).
 
-==== Editing trip metadata: `edit`
-Edits item in the trip list at the specified index.
+DIAGRAM TO BE INSERTED HERE.
 
-Format: `edit INDEX [n/TRIP_NAME] [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
+==== Editing trip details: `edit`
+Edits the details of a trip at index `INDEX` according to the details provided.
 
-* `INDEX` must be a positive integer within range of the list size.
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`edit INDEX [n/TRIP_NAME] [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
+|Example    | `edit 2 n/School Trip l/France`
+|=======================
+
+[NOTE]
+====
+* `INDEX` must be a positive integer value, within range of the number of entries in the trip list.
 * Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
+====
 
-Example:
 
-* `edit 2 n/School Trip l/France` +
-Edits the second trip on the list with “School Trip” as name and “France” as location.
-* `edit 1 d/2020-02-01 to 2020-03-01` +
-Edits the first trip on the list with date range of 1 February to 1 March 2020.
+*Example of Outcome*
+
+The details of the trip will be edited according to the parameters provided.
+
+DIAGRAM TO BE INSERTED HERE.
 
 === Trip Page
+
+The `TRIP` page of a specific trip displays the details of the trip as well as the details of the trip's `ITINERARY` and `JOURNAL` at a glance.
+
+From this page, you can nagivate to the `ITINERARY` and `JOURNAL` pages.
 
 ==== Navigating to a feature in the trip page: `goto`
 Navigates to a specific feature within each trip.
 
-Format: `goto FEATURE`
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`goto TRIP_FEATURE`
+|Example    |`goto itinerary`
+|=======================
 
-* List of available features (can be typed in any case):
-** `ITINERARY`
-** `JOURNAL`
-** `EXPENSES` [coming in v2.0]
-** `PACKINGLIST` [coming in v2.0]
-** `CONTACTS` [coming in v2.0]
+[NOTE]
+====
+*List of available features (can be typed in any case):*
 
+* `itinerary`
+* `journal`
+====
 
-Example:
+*Example of Outcome*
 
-* `goto ITINERARY` +
-Navigates to the itinerary feature of the current trip.
+You will be navigated to the `ITINERARY` page of the trip.
 
-=== Itinerary
+INSERT DIAGRAM HERE.
 
-==== Adding an activity to the itinerary: `add`
+=== Itinerary Page
+The `ITINERARY` page of a specific trip consists of a list of all the planned activities for a specific trip.
+Here, you can manipulate the itinerary, as well as navigate to other pages.
+
+==== Adding an activity: `add`
 Adds an activity to the itinerary.
 
-Format: `add title/TITLE l/LOCATION d/DATE t/TIME`
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`add a/TITLE l/LOCATION d/DATE t/TIME`
+|Example    |`add a/Visit the World Trade Center l/New York d/09-11-2001 t/08:52`
+|=======================
 
+[NOTE]
+====
 * Date must be specified in the following format: `DD-MM-YYYY`
 * Time must be specified in the following format: `HH:MM`
+====
 
-Example:
+*Example of Outcome*
 
-* `add title/Sightseeing l/Mount Everest d/12-10-2020 t/13:45`
-Adds Sightseeing at Mount Everest at 12 OCT 2020 13:45 to the itinerary
+An activity named *Visit the World Trade Center* in *New York* at *08:52AM* on *11th September 2001* will be added
+to the itinerary.
 
-==== Deleting an activity in the itinerary: `delete`
-Deletes the specified activity in the itinerary.
+ADD DIAGRAM HERE
 
-Format: `delete INDEX`
+==== Deleting an activity: `delete`
+Deletes an activity from the itinerary at a speficied `INDEX`.
 
-* Deletes the activity at the specified `INDEX`.
-* The index refers to the index number shown in the displayed itinerary.
-* The index must be a positive integer 1, 2, 3, …
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`delete INDEX`
+|Example    | `delete 2`
+|=======================
 
-Example:
+[NOTE]
+====
+* `INDEX` must be a positive integer value, within range of the number of trips in the trip list.
+====
 
-* `delete 5` +
-Deletes the 5th activity in the itinerary.
+*Example of Outcome*
+
+The activity at the specified index, `INDEX` will be deleted from the itinerary.
+
+DIAGRAM TO BE INSERTED HERE.
 
 ==== Editing an acitivity: `edit`
 Edits an existing activity.
@@ -206,9 +403,25 @@ Example:
 Adds a new journal entry to the entry list with the specified content, date, time, location and feeling fields.
 
 ==== Deleting a journal entry: `delete`
-Deletes an entire journal entry or a specific metadata within a journal entry based on the chosen index number.
+Deletes a trip from the trip list at the specified index, `INDEX`.
 
-Format: `delete INDEX`
+*Example of Usage*
+[cols="1h, 5"]
+|=======================
+|Syntax     |`delete INDEX`
+|Example    | `delete 2`
+|=======================
+
+[NOTE]
+====
+* `INDEX` must be a positive integer value, within range of the number of trips in the trip list.
+====
+
+*Example of Outcome*
+
+The trip at the specified index, `INDEX` will be deleted along with its other data (itinerary, journal, etc).
+
+DIAGRAM TO BE INSERTED HERE.
 
 ==== Editing a journal entry: `edit`
 Edits specific metadata within a chosen journal entry using index number.
@@ -237,61 +450,6 @@ Example:
 
 * `sort LOCATION` +
 Sorts the list of journal entries by alphabetical order of locations.
-
-
-=== Contact List `[coming in v2.0]`
-
-==== Adding a contact: `add`
-Adds a contact to the contact list.
-
-Format: `add n/NAME [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
-
-Example:
-
-* `add n/John Doe p/987654321 a/23 m/In Berlin h/Asked him to take a picture of me at Brandenburg Gate p/Cheerful f/no`
-
-==== Deleting a contact: `delete`
-Deletes the specified contact in the contact list.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …
-
-Example:
-
-* `delete 2` +
-Deletes the 2nd person in the contact list.
-
-==== Editing a contact: `edit`
-Edits an existing person in the contact list.
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
-
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-
-==== Locating a contact: `find`
-Searches the contact list for any contact that matches the input field.
-
-Format: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]`
-
-* The search is case insensitive. e.g hans will match Hans
-
-Example:
-
-* `find n/John` +
-Returns the contact information on John Doe and John Wick
-
-=== Across the app
-
-==== Navigating to the previous page: `back`
-Navigates to the previous page in the app. This functionality works anywhere in the app.
-
-Format: `back`
 
 == FAQ
 
@@ -328,5 +486,7 @@ Format: `back`
 * *Edit contact*: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/AGE] [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]` +
 * *Find contact*: `find FIELD [n/NAME] [p/PHONE_NUMBER] [a/AGE]/ [l/LOCATION] [h/HOW_YOU_MET] [f/FAVOURITE]` +
 
-=== Across the app
-* *Navigate to previous page*: `back` +
+== Glossary
+===== View
+
+A view in Volant is synonymous to a 'page'.
