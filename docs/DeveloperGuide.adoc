@@ -59,11 +59,11 @@ There are 4 views in this App: `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`.
 
 For the `Logic` and `Model` components, each view has their own `{Component Name} Manager` classes.
 
-e.g. `HomeLogicManager` etc. to facilitate different operations and commands in different views in the App.
+e.g. `JournalLogicManager` etc. to facilitate different operations and commands in different views in the App.
 
 
-.Class Diagram of the Home Logic Component
-image::LogicClassDiagram.png[]
+.Class Diagram of the Journal Logic Component
+image::JournalLogicDiagram.png[]
 
 [discrete]
 ==== How the architecture components interact with each other
@@ -72,6 +72,12 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 .Component interactions for `back` command in the `TRIP` view.
 image::ArchitectureSequenceDiagram.png[]
+
+
+The _Sequence Diagram_ below illustrates how the components iteract with each other for the scenario where the user issues the command `goto 1` when in a `HomePage` view.
+
+.Component interactions for `goto 1` command in the `HomePage` view.
+image::gotoCommand.png[]
 
 The sections below give more details about each component.
 
@@ -95,15 +101,15 @@ The `UI` component,
 [[Design-Logic]]
 === Logic component
 
-[[fig-LogicClassDiagram]]
+[[fig-LogicClassDiagram1]]
 .Structure of the Logic Component
-image::LogicClassDiagram.png[]
+image::JournalLogicDiagram.png[]
 
 *API* :
 link:{repoURL}/src/main/java/seedu/location/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `InputParser` class of the current feature to parse the user command.
-.  This results in a `Command` object which is executed by the `LogicManager` of the current feature.
+.  `Logic` uses the `JournalInputParser` class of the current feature to parse the user command.
+.  This results in a `Command` object which is executed by the `JournalLogicManager` of the current feature.
 .  The command execution can affect the `Model` of the current feature (e.g. adding a trip).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
