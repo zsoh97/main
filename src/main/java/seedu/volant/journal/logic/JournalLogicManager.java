@@ -29,7 +29,7 @@ public class JournalLogicManager implements Logic {
     public JournalLogicManager(JournalModelManager model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        this.inputParser = new JournalInputParser(model.getJournal());
+        this.inputParser = new JournalInputParser(model.getJournal(), getTrip());
     }
 
     public Model getModel() {

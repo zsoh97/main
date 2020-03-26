@@ -10,6 +10,7 @@ import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.HelpCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
+import seedu.volant.home.model.trip.Trip;
 import seedu.volant.journal.logic.commands.AddCommand;
 import seedu.volant.journal.logic.commands.DeleteCommand;
 import seedu.volant.journal.logic.commands.EditCommand;
@@ -21,9 +22,11 @@ import seedu.volant.trip.model.Journal;
 public class JournalInputParser {
 
     private final Journal journal;
+    private final Trip trip;
 
-    public JournalInputParser(Journal journal) {
+    public JournalInputParser(Journal journal, Trip trip) {
         this.journal = journal;
+        this.trip = trip;
     }
 
     public Journal getJournal() {

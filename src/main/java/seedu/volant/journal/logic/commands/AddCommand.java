@@ -27,9 +27,9 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
             + PREFIX_TEXT + "TEXT "
-            + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_FEELING + "FEELING "
-            + PREFIX_WEATHER + "WEATHER \n"
+            + "[" + PREFIX_LOCATION + "LOCATION] "
+            + "[" + PREFIX_FEELING + "FEELING] "
+            + "[" + PREFIX_WEATHER + "WEATHER]\n"
 
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "11-09-2001 "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TEXT + "I love strawberries "
             + PREFIX_LOCATION + "World Peace Centre "
             + PREFIX_FEELING + "SCARED "
-            + PREFIX_WEATHER + "COOL ";
+            + PREFIX_WEATHER + "COOL";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the journal.";

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -151,8 +150,8 @@ public class ParserUtil {
         LocalDate parsedDate;
         try {
             parsedDate = LocalDate.of(year, month, day);
-        } catch (DateTimeParseException e) {
-            throw new ParseException("Please input date in dd-mm-yyyy format!");
+        } catch (Exception e) {
+            throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
         }
         return parsedDate;
     }
@@ -168,8 +167,8 @@ public class ParserUtil {
         LocalTime parsedTime;
         try {
             parsedTime = LocalTime.of(hour, minute);
-        } catch (DateTimeParseException e) {
-            throw new ParseException("Please input time in hh:mm format!");
+        } catch (Exception e) {
+            throw new ParseException("Please input a valid time in HH:MM format!");
         }
         return parsedTime;
     }
@@ -184,7 +183,7 @@ public class ParserUtil {
         try {
             parsedWeather = Weather.valueOf(trimmedCappedWeather);
         } catch (Exception e) {
-            throw new ParseException("Global warming hasn't gotten THAT bad yet, try again");
+            throw new ParseException("Global warming hasn't gotten THAT bad yet. Please try again.");
         }
         return parsedWeather;
     }

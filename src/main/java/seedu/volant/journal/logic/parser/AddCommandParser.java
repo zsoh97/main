@@ -40,23 +40,31 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIME, PREFIX_LOCATION,
                         PREFIX_FEELING, PREFIX_WEATHER, PREFIX_TEXT);
 
-        // TODO: Implement optional fields. Currently all 6 parameters are assumed to be provided.
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME, PREFIX_TEXT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        Feeling feeling = ParserUtil.parseFeeling(argMultimap.getValue(PREFIX_FEELING).get());
-        Weather weather = ParserUtil.parseWeather(argMultimap.getValue(PREFIX_WEATHER).get());
-        String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
-
         Entry entry = new Entry(date, time);
-        entry.setLocation(location);
-        entry.setFeeling(feeling);
-        entry.setWeather(weather);
-        entry.setText(text);
+
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+            entry.setLocation(location);
+        }
+        if (argMultimap.getValue(PREFIX_FEELING).isPresent()) {
+            Feeling feeling = ParserUtil.parseFeeling(argMultimap.getValue(PREFIX_FEELING).get());
+            entry.setFeeling(feeling);
+        }
+        if (argMultimap.getValue(PREFIX_WEATHER).isPresent()) {
+            Weather weather = ParserUtil.parseWeather(argMultimap.getValue(PREFIX_WEATHER).get());
+            entry.setWeather(weather);
+        }
+        if (argMultimap.getValue(PREFIX_TEXT).isPresent()) {
+            String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
+            entry.setText(text);
+        }
+
         return new AddCommand(entry);
     }
 

@@ -15,9 +15,8 @@ import seedu.volant.trip.model.TripModelManager;
  */
 public class GotoItineraryCommand extends GotoCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to a the journal of a trip. \n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " ASS";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to the itinerary of a trip. \n"
+            + "Tip:\t" + COMMAND_WORD + " i works as well.";
     private static final String FEEDBACK_TO_USER = "You are now in the itinerary page for TRIP: %s";
 
     private Itinerary itinerary;

@@ -38,6 +38,10 @@ public class GotoCommandParser implements Parser<GotoCommand> {
         this.page = TRIP;
     }
 
+    public void setPageToJournal() {
+        this.page = JOURNAL;
+    }
+
     /**
      * Parses argument depending on which page the command is used in.
      * @param argument
@@ -48,9 +52,11 @@ public class GotoCommandParser implements Parser<GotoCommand> {
         try {
             String argumentTrimmed = argument.trim();
             if (page == TRIP) {
-                if (argumentTrimmed.equalsIgnoreCase("itinerary")) {
+                if (argumentTrimmed.equalsIgnoreCase("itinerary")
+                        || argumentTrimmed.equalsIgnoreCase("i")) {
                     return new GotoItineraryCommand(trip.getItinerary());
-                } else if (argumentTrimmed.equalsIgnoreCase("journal")) {
+                } else if (argumentTrimmed.equalsIgnoreCase("journal")
+                        || argumentTrimmed.equalsIgnoreCase("j")) {
                     return new GotoJournalCommand(trip.getJournal());
                 }
             }
