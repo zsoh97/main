@@ -22,11 +22,9 @@ import seedu.volant.trip.model.Journal;
 public class JournalInputParser {
 
     private final Journal journal;
-    private final Trip trip;
 
-    public JournalInputParser(Journal journal, Trip trip) {
+    public JournalInputParser(Journal journal) {
         this.journal = journal;
-        this.trip = trip;
     }
 
     public Journal getJournal() {
