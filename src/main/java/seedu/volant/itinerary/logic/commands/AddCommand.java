@@ -28,9 +28,9 @@ public class AddCommand extends Command {
             + PREFIX_TIME + "TIME \n"
 
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Visit World Trade Centre"
-            + PREFIX_LOCATION + "New York"
-            + PREFIX_DATE + "11-09-2001"
+            + PREFIX_TITLE + "Visit World Trade Centre "
+            + PREFIX_LOCATION + "New York "
+            + PREFIX_DATE + "11-09-2001 "
             + PREFIX_TIME + "09:00";
 
     public static final String MESSAGE_SUCCESS = "New activity added: %1$s";

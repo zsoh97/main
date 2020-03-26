@@ -1,5 +1,8 @@
 package seedu.volant.ui.pages.itinerary;
 
+import static seedu.volant.commons.util.StringUtil.formatDate;
+import static seedu.volant.commons.util.StringUtil.formatTime;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -35,10 +38,10 @@ public class ItineraryPageCard extends UiPart<Region> {
     public ItineraryPageCard(Activity activity) {
         super(FXML);
         this.activity = activity;
-        activityTitle.setText(activity.getTitle());
-        activityDate.setText(activity.getDate());
-        activityTime.setText(activity.getTime());
-        activityLocation.setText(activity.getLocation());
+        activityTitle.setText(activity.getTitle().toString());
+        activityDate.setText(formatDate(activity.getDate()));
+        activityTime.setText(formatTime(activity.getTime()));
+        activityLocation.setText(activity.getLocation().toString());
     }
 
     public Activity getActivity() {
