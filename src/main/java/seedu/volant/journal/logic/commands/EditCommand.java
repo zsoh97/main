@@ -10,7 +10,6 @@ import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +19,7 @@ import seedu.volant.commons.logic.commands.CommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.model.Model;
 import seedu.volant.commons.util.CollectionUtil;
-import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
-import seedu.volant.home.model.trip.Name;
-import seedu.volant.home.model.trip.Trip;
 import seedu.volant.journal.model.JournalModelManager;
 import seedu.volant.journal.model.entry.Entry;
 import seedu.volant.journal.model.entry.Feeling;
@@ -98,7 +94,8 @@ public class EditCommand extends Command {
         Feeling updatedFeeling = editEntryDescriptor.getFeeling().orElse(entryToEdit.getFeeling());
         Weather updatedWeather = editEntryDescriptor.getWeather().orElse(entryToEdit.getWeather());
 
-        return new Entry(updatedDate, updatedTime, updatedText, updatedFeeling, updatedWeather, updatedLocation.toString());
+        return new Entry(updatedDate, updatedTime, updatedText, updatedFeeling,
+                updatedWeather, updatedLocation.toString());
     }
 
     @Override

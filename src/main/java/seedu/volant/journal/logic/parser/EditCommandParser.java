@@ -1,11 +1,15 @@
 package seedu.volant.journal.logic.parser;
 
 import static seedu.volant.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.volant.commons.logic.parser.CliSyntax.*;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_FEELING;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TEXT;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.stream.Stream;
 
 import seedu.volant.commons.core.index.Index;

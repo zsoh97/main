@@ -16,3 +16,7 @@ _Week 9_
 Worked on logic and model of Journal with Grant.
 
 Implemented add command and parser for Journal.
+
+_Week 10_
+
+Worked on edit command for Journal with Grant.
