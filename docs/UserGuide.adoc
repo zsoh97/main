@@ -47,7 +47,9 @@ e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Homepage
 
-==== Opening the help window: `help`
+The homepage consists of a list of all Trips stored in the program. Here, you can manipulate the trip list, as well as navigate to other pages, using commands.
+
+==== Opening the help window: `help` `[coming in v2.0]`
 Opens the Help Window.
 
 Format: `help`
@@ -62,7 +64,7 @@ Format: `goto INDEX`
 Example:
 
 * `goto 12` +
-Navigates to the 12th trip on the list of trips.
+Navigates to the 12th trip on the trip list.
 
 ==== Adding a trip: `add`
 Adds a trip to the trip list.
@@ -93,7 +95,7 @@ Deletes the 12th trip on the list of trips.
 ==== Editing trip metadata: `edit`
 Edits item in the trip list at the specified index.
 
-Format: `edit INDEX [n/TRIP_NAME]  [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
+Format: `edit INDEX [n/TRIP_NAME] [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
 
 * `INDEX` must be a positive integer within range of the list size.
 * Please write the date range in the format `d/YYYY-MM-DD to YYYY-MM-DD`.
@@ -105,7 +107,7 @@ Edits the second trip on the list with “School Trip” as name and “France�
 * `edit 1 d/2020-02-01 to 2020-03-01` +
 Edits the first trip on the list with date range of 1 February to 1 March 2020.
 
-=== Trip page
+=== Trip Page
 
 ==== Navigating to a feature in the trip page: `goto`
 Navigates to a specific feature within each trip.

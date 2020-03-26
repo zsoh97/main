@@ -12,7 +12,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920S2-CS2103T-F09-4/main
 
 By: `AY1920S2-CS2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
 
@@ -729,5 +729,5 @@ _{more test cases ...}_
    Expected: No entry is deleted. Error details shown in the status message
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the journal size) _{give more}_ +
    Expected: Similar to previous.
-   
+
 _{more test cases ...}_
