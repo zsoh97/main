@@ -1,8 +1,7 @@
 package seedu.volant.ui.pages.itinerary;
 
 import static seedu.volant.commons.util.StringUtil.formatDate;
-
-import java.time.format.DateTimeFormatter;
+import static seedu.volant.commons.util.StringUtil.formatTime;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,11 +37,10 @@ public class ItineraryPageCard extends UiPart<Region> {
 
     public ItineraryPageCard(Activity activity) {
         super(FXML);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
         this.activity = activity;
         activityTitle.setText(activity.getTitle().toString());
         activityDate.setText(formatDate(activity.getDate()));
-        activityTime.setText(activity.getTime().format(formatter));
+        activityTime.setText(formatTime(activity.getTime()));
         activityLocation.setText(activity.getLocation().toString());
     }
 

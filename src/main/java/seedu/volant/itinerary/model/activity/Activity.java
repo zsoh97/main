@@ -1,10 +1,10 @@
 package seedu.volant.itinerary.model.activity;
 
 import static seedu.volant.commons.util.StringUtil.formatDate;
+import static seedu.volant.commons.util.StringUtil.formatTime;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.volant.home.model.trip.Location;
@@ -44,7 +44,6 @@ public class Activity {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a");
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append("\nLocation: ")
@@ -52,7 +51,7 @@ public class Activity {
                 .append("\nDate: ")
                 .append(formatDate(this.getDate()))
                 .append("\nTime: ")
-                .append(this.getTime().format(formatter));
+                .append(formatTime(this.getTime()));
         return builder.toString();
     }
 
