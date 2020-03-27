@@ -8,6 +8,7 @@ import static seedu.volant.commons.logic.Page.TRIP;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -32,6 +33,7 @@ import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.itinerary.logic.ItineraryLogicManager;
 import seedu.volant.itinerary.model.ItineraryModelManager;
+import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.journal.logic.JournalLogicManager;
 import seedu.volant.journal.model.JournalModelManager;
 import seedu.volant.trip.logic.TripLogicManager;
@@ -252,7 +254,8 @@ public class MainWindow extends UiPart<Stage> {
                 t.getTrip(), (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
         logic = new ItineraryLogicManager(itineraryModelManager, logic.getStorage());
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
-        mainPanel = new ItineraryPage((itineraryModelManager.getFilteredActivityList()));
+        ObservableList<Activity> activityObservableList = itineraryModelManager.getFilteredActivityList();
+        mainPanel = new ItineraryPage(activityObservableList);
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
         setCurrentPage(ITINERARY);
     }
