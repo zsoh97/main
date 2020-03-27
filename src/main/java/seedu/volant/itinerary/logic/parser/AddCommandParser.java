@@ -1,7 +1,6 @@
 package seedu.volant.itinerary.logic.parser;
 
 import static seedu.volant.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_TIME;
