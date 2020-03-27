@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.volant.itinerary.exceptions.DuplicateActivityException;
 import seedu.volant.itinerary.model.activity.exceptions.NotFoundException;
 

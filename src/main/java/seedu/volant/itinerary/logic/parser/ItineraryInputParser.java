@@ -12,7 +12,6 @@ import seedu.volant.commons.logic.commands.HelpCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.itinerary.logic.commands.AddCommand;
 import seedu.volant.itinerary.logic.commands.DeleteCommand;
-
 import seedu.volant.itinerary.logic.commands.EditCommand;
 import seedu.volant.itinerary.model.ActivityList;
 

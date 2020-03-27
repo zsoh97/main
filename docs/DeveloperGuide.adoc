@@ -16,6 +16,11 @@ endif::[]
 
 By: `AY1920S2-CS2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
 
+== Introduction
+
+This document is a Developer Guide written for developers who wish to contribute to or extend our project.
+It is technical, and explains the inner workings of Volant and our chosen implementation for certain features.
+
 == Setting up
 
 Refer to the guide <<SettingUp#, here>>.
@@ -39,9 +44,9 @@ The *_Architecture Diagram_* given above explains the high-level design of the A
 * <<Design-Commons,*`Commons`*>> represents a collection of classes used by multiple other components.
 The following class plays an important role at the architecture level:
 
-* `LogsCenter` is used by many classes to write log messages to the App's log file.
+* `LogsCenter` is used by many classes to write log messages to the App's log file, `volant.log`.
 
-The rest of the App consists of four components.
+The rest of the App consists of four main components.
 
 * <<Design-Ui,*`UI`*>>: The UI of the App.
 * <<Design-Logic,*`Logic`*>>: The command executor depending on the view the user is on.
@@ -53,14 +58,20 @@ Each of the four components
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name} Manager` class.
 
-For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
+For example, the `Logic` component (see the class diagram given below) defines its
+API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
-There are 4 views in this App: `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`.
+==== Four Pages - `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`
 
-For the `Logic` and `Model` components, each view has their own `{Component Name} Manager` classes.
+There are 4 types of pages/views in this App: `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`.
+Each view has their own `{Component Name} Manager` classes for both `Logic` and `Model`.
 
-e.g. `JournalLogicManager` etc. to facilitate different operations and commands in different views in the App.
+These individual `{Component Name} Manager` classes for `Logic` and `Model` provide a context for commands to be executed in,
+e.g. when the user is on the `HOME` page, the `add` command modifies the trip list, when the user
+is on the `ITINERARY` page, the `add` command modifies the itinerary.
 
+For example, the `JOURNAL` view has its own `JournalLogicManager` and `JournalModelManager` to provide the context
+for command execution on the `JOURNAL` page.
 
 .Class Diagram of the Journal Logic Component
 image::JournalLogicDiagram.png[]
@@ -84,12 +95,12 @@ The sections below give more details about each component.
 [[Design-Ui]]
 === UI component
 
-.Structure of the UI Component
+.Structure of the UI Component when a user is on a `TRIP` page
 image::UIClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/location/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter`, `mainPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/location/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -97,6 +108,29 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+==== View Switching
+As there are four different views in Volant. Upon startup of the App, the `mainPanel` is set to `HomePage`.
+There are certain commands will cause the `MainWindow` display to switch views.
+For example, `goto`, `back` and `home` navigation commands.
+
+
+
+When a view is switched, `MainWindow` will do the following:
+
+====
+For example, if a user is switching from the `HOME` view to the `TRIP` view through the command, `goto`, to
+access a specific trip's page.
+
+. Reassign the `Logic` component from `HomePageLogicManager` to a new `TripPageLogicManager`.
+. Reassign the `Model` component from `HomePageModelManager` to a new `TripPageModelManager`.
+. Reassign the value of `StackPane` `mainPanel` from `HomePage` to `TripPage`.
+
+====
+
+DIAGRAM TO BE INSERTED HERE
+
+_More details on the implementation of view switching can be found in <<implementation-view-switching>>._
 
 [[Design-Logic]]
 === Logic component
@@ -137,10 +171,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
 
 [[Design-Storage]]
 === Storage component
@@ -158,13 +188,47 @@ The `Storage` component,
 [[Design-Commons]]
 === Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.volant.commons` package.
 
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
+[[implementation-view-switching]]
+=== View Switching for Navigation Commands
+The entire process of view switching is done in the `MainWindow` class.
+
+[TIP]
+====
+*List of Navigation Commands*
+
+* `goto` on the `HOME` page
+* `goto` on the `TRIP` page
+* `back`
+* `home`
+====
+
+==== Implementation
+Each `CommandResult` from an execution in the `MainWindow` class stores data on
+*if a command is a navigation command or not.* If the command is a navigation command, the `MainWindow` will execute the
+appropriate functions to facilitate view switching.
+
+
+==== Design Considerations
+
+
+// Please refer to above template
+=== Some Other Command
+==== Implementation
+==== Design Considerations
+
+=== Some Other Command
+==== Implementation
+==== Design Considerations
+
+
+
+////
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
@@ -245,13 +309,7 @@ image::CommitActivityDiagram.png[]
 ** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
-
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
-
-_{Explain here how the data encryption feature will be implemented}_
-
-// end::dataencryption[]
+////
 
 === Logging
 
@@ -296,7 +354,7 @@ Refer to the guide <<DevOps#, here>>.
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: convenient travel assistant for solo travelers who are always on their feet
+*Value proposition*: convenient travel assistant to for solo travelers who are always on their feet.
 
 [appendix]
 == User Stories
