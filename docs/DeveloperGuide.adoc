@@ -1,7 +1,7 @@
 = Volant - Developer Guide
 :site-section: DeveloperGuide
 :toc:
-:toc-title:
+:toc-title: Table of Contents
 :toc-placement: preamble
 :sectnums:
 :imagesDir: images
@@ -14,12 +14,21 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-F09-4/main
 
-By: `AY1920S2-CS2103T-F09-4`      Since: `Jan 2020`      Licence: `???`
+By: `AY1920S2-CS2103T-F09-4`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
 
 This document is a Developer Guide written for developers who wish to contribute to or extend our project.
-It is technical, and explains the inner workings of Volant and our chosen implementation for certain features.
+It is technical, and explains the inner workings of Volant and how the different components of our
+application work together.
+
+====
+*Reading this Developer Guide*
+
+TIP: This icon denotes useful tips to note of during development.
+
+NOTE: This icon denotes important details to take note of during development.
+====
 
 == Setting up
 
@@ -61,7 +70,7 @@ Each of the four components
 For example, the `Logic` component (see the class diagram given below) defines its
 API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
-==== Four Pages - `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`
+==== Views in Volant
 
 There are 4 types of pages/views in this App: `HOME`, `TRIP`, `ITINERARY`, `JOURNAL`.
 Each view has their own `{Component Name} Manager` classes for both `Logic` and `Model`.
@@ -79,15 +88,18 @@ image::JournalLogicDiagram.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `back` when in a `TRIP` view.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues
+the command `back` when in a `TRIP` view. View switching is executed by the `Ui` component.
 
 .Component interactions for `back` command in the `TRIP` view.
 image::ArchitectureSequenceDiagram.png[]
 
 
-The _Sequence Diagram_ below illustrates how the components iteract with each other for the scenario where the user issues the command `goto 1` when in a `HomePage` view.
+The _Sequence Diagram_ below illustrates how the components interact with each other for the scenario where the user issues the command `goto 1` when in a `HomePage` view.
+View switching is executed by the `Ui` component.
 
 .Component interactions for `goto 1` command in the `HomePage` view.
+
 image::gotoCommand.png[]
 
 The sections below give more details about each component.
@@ -114,18 +126,17 @@ As there are four different views in Volant. Upon startup of the App, the `mainP
 There are certain commands will cause the `MainWindow` display to switch views.
 For example, `goto`, `back` and `home` navigation commands.
 
-
-
 When a view is switched, `MainWindow` will do the following:
 
 ====
-For example, if a user is switching from the `HOME` view to the `TRIP` view through the command, `goto`, to
-access a specific trip's page.
+For example, if a user is switching from a `TRIP` view to the `HOME` view through the command, `back`.
 
-. Reassign the `Logic` component from `HomePageLogicManager` to a new `TripPageLogicManager`.
-. Reassign the `Model` component from `HomePageModelManager` to a new `TripPageModelManager`.
-. Reassign the value of `StackPane` `mainPanel` from `HomePage` to `TripPage`.
+. Reassign the `Logic` component from `TripPageLogicManager` to a new `HomePageLogicManager`.
+. Reassign the `Model` component from `TripPageModelManager` to a new `HomePageModelManager`.
+. Reassign the value of `StackPane` `mainPanel` from `TripPage` to `HomePage`.
 
+.Component interactions for `back` command in the `TRIP` view.
+image::ArchitectureSequenceDiagram.png[]
 ====
 
 DIAGRAM TO BE INSERTED HERE
@@ -367,7 +378,7 @@ Refer to the guide <<DevOps#, here>>.
 
 [width="80%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I ca ...
+|Priority |As a ... |I want to ... |So that I can ...
 |`* * *` | frequent traveler | add a travel entry with weather, location and time metadata | document my past travels
 
 |`* * *` | traveler always on the go | record short text entries recording my travels, similar to that of a Tweet on Twitter | can keep track of my activities without excessive typing
@@ -416,14 +427,14 @@ _{All user stories can be viewed in our issue tracker.}_
 
 *Guarantee:* A new Trip will be created
 
-*MSS*
+*<<mss, MSS>>*
 
 1. User enters details of trip to be added
 2. V writes added trip into data files and displays new trip in the trip list
 +
 Use case ends
 
-*Extensions*
+*<<extensions, Extensions>>*
 
 [none]
 * 1a. V detects invalid characters in trip details
@@ -650,7 +661,7 @@ Use case ends
 Use case ends
 
 [discrete]
-=== UC08 - Deleting a Contact in the Contact List of aTrip
+=== UC08 - Deleting a Contact in the Contact List of a Trip
 
 *Precondition:* User is in Contact List page of the Trip
 
@@ -694,6 +705,10 @@ _{More to be added in future development}_
 
 [appendix]
 == Glossary
+
+[[mss]] MSS::
+
+[[extensions]] Extensions::
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
