@@ -35,7 +35,7 @@ public class JournalPage extends UiPart<Region> {
         // Get entry list from journal
         //UniqueEntryList entryList = journal.getEntryList().getUniqueEntryList();
 
-        journalTitle.setText("Journal");
+        journalTitle.setText("Here's your journal!");
 
         entryListView.setItems(entries);
         entryListView.setCellFactory(listView -> new EntryListViewCell());
@@ -54,7 +54,7 @@ public class JournalPage extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new JournalPageCard(entry).getRoot());
+                setGraphic(new JournalPageCard(entry, getIndex() + 1).getRoot());
             }
         }
     }
