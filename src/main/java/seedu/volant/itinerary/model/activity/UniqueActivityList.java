@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.volant.itinerary.exceptions.DuplicateActivityException;
 import seedu.volant.itinerary.model.activity.exceptions.NotFoundException;
 
@@ -115,6 +114,26 @@ public class UniqueActivityList implements Iterable<Activity> {
     public void setActivities(UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the activity {@code target} in the list with {@code editedActivity}.
+     * {@code target} must exist in the list.
+     * The activity identity of {@code editedActivity} must not be the same as another existing activity in the list.
+     */
+    public void setActivity(Activity target, Activity editedActivity) {
+        requireAllNonNull(target, editedActivity);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new NotFoundException();
+        }
+
+        if (!target.equals(editedActivity) && contains(editedActivity)) {
+            throw new DuplicateActivityException();
+        }
+
+        internalList.set(index, editedActivity);
     }
 
     /**

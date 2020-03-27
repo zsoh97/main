@@ -48,11 +48,11 @@ class JsonAdaptedEntry {
      */
     public JsonAdaptedEntry(Entry source) {
         text = source.getText();
-        date = source.getDate();
-        time = source.getTime();
+        date = source.getDateAsString();
+        time = source.getTimeAsString();
         feeling = source.getFeeling().name();
         weather = source.getWeather().name();
-        location = source.getLocation();
+        location = source.getLocationAsString();
     }
 
     /**

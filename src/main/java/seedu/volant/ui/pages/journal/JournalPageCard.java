@@ -42,20 +42,28 @@ public class JournalPageCard extends UiPart<Region> {
     @FXML
     private Label entryWeather;
 
-    /*
     @FXML
-    private Label entryFeeling;
-    */
+    private Label id;
 
-    public JournalPageCard(Entry entry) {
+    public JournalPageCard(Entry entry, int displayedIndex) {
         super(FXML);
         this.entry = entry;
+        id.setText(displayedIndex + ". ");
         entryTitle.setText(entry.getText());
-        entryDate.setText(entry.getDate());
-        entryTime.setText(entry.getTime());
-        entryLocation.setText(entry.getLocation());
-        entryWeather.setText(entry.getWeather().toString());
-        setFeeling(entry.getFeeling().toString());
+        entryDate.setText(entry.getDateAsString() + ",");
+        entryTime.setText(entry.getTimeAsString());
+        if (entry.getLocationAsString().equals("null")) {
+            entryLocation.setText("\nLocation: Not specified");
+        } else {
+            entryLocation.setText("\nLocation: " + entry.getLocationAsString());
+        }
+        if (entry.getWeather().toString().equals("NULL")) {
+            entryWeather.setText("Weather: Not specified");
+        } else {
+            String weather = entry.getWeather().toString();
+            entryWeather.setText("Weather: " + weather.substring(0, 1) + weather.substring(1).toLowerCase());
+        String feeling = entry.getFeeling().toString();
+        setFeeling(feeling);
     }
 
     private void setFeeling(String feeling) {
@@ -74,6 +82,7 @@ public class JournalPageCard extends UiPart<Region> {
                     Color.rgb(240, 128, 128), CornerRadii.EMPTY, Insets.EMPTY)));
             break;
         default:
+            entryFeeling.setText("Feeling: Not specified");
             break;
         }
     }
