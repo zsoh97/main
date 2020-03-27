@@ -37,20 +37,33 @@ public class JournalPageCard extends UiPart<Region> {
     @FXML
     private Label entryWeather;
 
-    /*
     @FXML
-    private Label entryFeeling;
-    */
+    private Label id;
 
-    public JournalPageCard(Entry entry) {
+    public JournalPageCard(Entry entry, int displayedIndex) {
         super(FXML);
         this.entry = entry;
+        id.setText(displayedIndex + ". ");
         entryTitle.setText(entry.getText());
-        entryDate.setText(entry.getDateAsString());
+        entryDate.setText(entry.getDateAsString() + ",");
         entryTime.setText(entry.getTimeAsString());
-        entryLocation.setText(entry.getLocationAsString());
-        entryFeeling.setText(entry.getFeeling().toString());
-        entryWeather.setText(entry.getWeather().toString());
+        if (entry.getLocationAsString().equals("null")) {
+            entryLocation.setText("\nLocation: Not specified");
+        } else {
+            entryLocation.setText("\nLocation: " + entry.getLocationAsString());
+        }
+        if (entry.getFeeling().toString().equals("NULL")) {
+            entryFeeling.setText("Feeling: Not specified");
+        } else {
+            String feeling = entry.getFeeling().toString();
+            entryFeeling.setText("Feeling: " + feeling.substring(0, 1) + feeling.substring(1).toLowerCase());
+        }
+        if (entry.getWeather().toString().equals("NULL")) {
+            entryWeather.setText("Weather: Not specified");
+        } else {
+            String weather = entry.getWeather().toString();
+            entryWeather.setText("Weather: " + weather.substring(0, 1) + weather.substring(1).toLowerCase());
+        }
     }
 
     public Entry getEntry() {

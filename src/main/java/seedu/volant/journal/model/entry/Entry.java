@@ -31,7 +31,7 @@ public class Entry {
         this.time = time;
         this.feeling = Feeling.NULL;
         this.weather = Weather.NULL;
-        this.location = new Location("Location");
+        this.location = new Location("null");
     }
 
     /**
