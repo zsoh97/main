@@ -6,30 +6,45 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="entryPane" fx:id="entryPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<HBox id="entryPane" fx:id="entryPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="130" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="15" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" minHeight="40.0" prefWidth="86.0" spacing="5" styleClass="hBox-journal">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="entryTitle" text="\$entryTitle" styleClass="cell_big_label" />
-                <Label fx:id="entryDate" text="\$entryDate" styleClass="cell_big_label" />
-                <Label fx:id="entryTime" text="\$entryTime" styleClass="cell_big_label" />
-                <Label fx:id="entryLocation" text="\$entryLocation" styleClass="cell_big_label" />
-                <Label fx:id="entryFeeling" text="\$entryLocation" styleClass="cell_big_label" />
-                <Label fx:id="entryWeather" text="\$entryLocation" styleClass="cell_big_label" />
+                <Label fx:id="entryDate" styleClass="label-entry-metadata" text="\$entryDate" />
+            <Label styleClass="label-entry-metadata" text="\@" />
+                <Label fx:id="entryTime" styleClass="label-entry-metadata" text="\$entryTime" />
+                <Label fx:id="entryLocation" styleClass="label-entry-metadata" text="\$entryLocation" />
+                <Label fx:id="entryWeather" styleClass="label-entry-metadata" text="\$entryLocation" />
+            <Region prefHeight="40.0" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0" styleClass="hBox-feeling"
+                      HBox.hgrow="ALWAYS">
+                    <Label fx:id="entryFeeling" styleClass="label-feeling" text="\$entryLocation" />
+                </HBox>
+            </HBox>
+            <HBox prefHeight="55.0" styleClass="hBox-journal-entry">
+                <StackPane>
+                    <Label fx:id="entryTitle" styleClass="label-entry" text="\$entryTitle" />
+                </StackPane>
             </HBox>
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>

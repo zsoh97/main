@@ -25,4 +25,16 @@ it is primarily based off of the Address Book 3 application developed by the CS2
 * Section 2
 * Section 3
 
-_{To be updated in the future}_
+_Week 8_
+
+Designed logic and model for Journal with Grant.
+
+_Week 9_
+
+Worked on logic and model of Journal with Grant.
+
+Implemented add command and parser for Journal.
+
+_Week 10_
+
+Worked on edit command for Journal with Grant.

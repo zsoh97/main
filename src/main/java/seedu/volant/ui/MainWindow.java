@@ -288,7 +288,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new HomeLogicManager(homeModelManager, logic.getStorage());
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
-        mainPanel = new HomePage(tripList.getTripList());
+        mainPanel = new HomePage(homeModelManager.getFilteredTripList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
         setCurrentPage(HOME);
     }
