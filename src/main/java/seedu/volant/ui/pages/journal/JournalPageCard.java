@@ -1,9 +1,14 @@
 package seedu.volant.ui.pages.journal;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.volant.journal.model.entry.Entry;
 import seedu.volant.ui.UiPart;
 import seedu.volant.ui.pages.home.HomePageTripCard;
@@ -52,17 +57,34 @@ public class JournalPageCard extends UiPart<Region> {
         } else {
             entryLocation.setText("\nLocation: " + entry.getLocationAsString());
         }
-        if (entry.getFeeling().toString().equals("NULL")) {
-            entryFeeling.setText("Feeling: Not specified");
-        } else {
-            String feeling = entry.getFeeling().toString();
-            entryFeeling.setText("Feeling: " + feeling.substring(0, 1) + feeling.substring(1).toLowerCase());
-        }
         if (entry.getWeather().toString().equals("NULL")) {
             entryWeather.setText("Weather: Not specified");
         } else {
             String weather = entry.getWeather().toString();
             entryWeather.setText("Weather: " + weather.substring(0, 1) + weather.substring(1).toLowerCase());
+            String feeling = entry.getFeeling().toString();
+            setFeeling(feeling);
+        }
+    }
+
+    private void setFeeling(String feeling) {
+        entryFeeling.setText(feeling);
+        switch(feeling) {
+        case "CONFUSED":
+            entryFeeling.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(204, 195, 234), CornerRadii.EMPTY, Insets.EMPTY)));
+            break;
+        case "TIRED":
+            entryFeeling.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(47, 233, 167), CornerRadii.EMPTY, Insets.EMPTY)));
+            break;
+        case "HAPPY":
+            entryFeeling.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(240, 128, 128), CornerRadii.EMPTY, Insets.EMPTY)));
+            break;
+        default:
+            entryFeeling.setText("Feeling: Not specified");
+            break;
         }
     }
 

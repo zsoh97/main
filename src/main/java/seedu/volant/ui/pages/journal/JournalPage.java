@@ -35,7 +35,7 @@ public class JournalPage extends UiPart<Region> {
         // Get entry list from journal
         //UniqueEntryList entryList = journal.getEntryList().getUniqueEntryList();
 
-        journalTitle.setText("Here's your journal!");
+        journalTitle.setText("JOURNAL");
 
         entryListView.setItems(entries);
         entryListView.setCellFactory(listView -> new EntryListViewCell());

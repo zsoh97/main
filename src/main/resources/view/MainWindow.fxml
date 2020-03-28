@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Volant" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Volant" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/title_icon.png"/>
   </icons>
   <scene>
     <Scene>
@@ -34,25 +33,21 @@
         </MenuBar>
 
         <!--  MAIN PANEL: THIS SWITCHES WITH EVERY NAVIGATION COMMAND -->
-        <VBox fx:id="mainPanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <VBox fx:id="mainPanel" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <!--  COMMAND BOX: USER INPUT TEXT BOX -->
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <!--  RESULT DISPLAY: APP FEEDBACK MESSAGES APPEAR HERE -->
+        <StackPane fx:id="resultDisplayPlaceholder" styleClass="stackPane-ResultBox" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <!--  RESULT DISPLAY: APP FEEDBACK MESSAGES APPEAR HERE -->
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <!--  COMMAND BOX: USER INPUT TEXT BOX -->
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="stackPane-CommandBox " VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 

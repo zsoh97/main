@@ -1,7 +1,8 @@
 = Volant - User Guide
 :site-section: UserGuide
 :toc:
-:toc-title:
+:toc-title: Table of Contents
+:toclevels: 5
 :toc-placement: preamble
 :sectnums:
 :imagesDir: images
