@@ -84,11 +84,12 @@ public class EntryList implements ReadOnlyEntryList {
         entries.add(p);
     }
 
-    /*
-    public void setEntry(Entry target, Entry editedEntry) {
-
+    /**
+     * Edits a entry to the journal.
+     */
+    public void setEntry(Entry p, Entry editedEntry) {
+        entries.setEntry(p, editedEntry);
     }
-    */
 
     /**
      * Removes {@code key} from this {@code EntryList}.

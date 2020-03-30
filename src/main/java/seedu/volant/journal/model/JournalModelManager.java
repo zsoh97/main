@@ -113,6 +113,16 @@ public class JournalModelManager implements Model {
         updateFilteredEntryList(predicateShowAllEntries);
     }
 
+    /**
+     * Edits specified target {@code Entry} from entry list to the specified values.
+     * If the field is set to NULL, it will be ignored.
+     * Only specified fields are edited.
+     */
+    public void editEntry(Entry entry, Entry editedEntry) {
+        this.entryList.setEntry(entry, editedEntry);
+        updateFilteredEntryList(predicateShowAllEntries);
+    }
+
     public Predicate<Entry> getPredicateShowAllEntries() {
         return predicateShowAllEntries;
     }

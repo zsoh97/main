@@ -37,7 +37,7 @@ public class HomePageTripCard extends UiPart<Region> {
     public HomePageTripCard(Trip trip, int displayedIndex) {
         super(FXML);
         this.trip = trip;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + " ");
         name.setText(trip.getName().tripName);
         place.setText(trip.getLocation().toString());
         dateRange.setText(trip.getDateRange().toString());
