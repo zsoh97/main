@@ -35,7 +35,7 @@ public class ItineraryPage extends UiPart<Region> {
         // Get activity list from itinerary
         //UniqueActivityList activityList = itinerary.getActivityList().getUniqueActivityList();
 
-        itineraryTitle.setText("Itinerary");
+        itineraryTitle.setText("ITINERARY");
 
         activityListView.setItems(activities);
         activityListView.setCellFactory(listView -> new ActivityListViewCell());
