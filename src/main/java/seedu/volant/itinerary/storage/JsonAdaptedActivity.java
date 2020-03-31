@@ -1,5 +1,8 @@
 package seedu.volant.itinerary.storage;
 
+import static seedu.volant.commons.util.StringUtil.formatDate;
+import static seedu.volant.commons.util.StringUtil.formatTime;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -40,10 +43,10 @@ public class JsonAdaptedActivity {
      * Converts a given {@code Activity} into this class for Jackson use.
      */
     public JsonAdaptedActivity(Activity source) {
-        title = source.getTitle();
-        location = source.getLocation();
-        date = source.getDate();
-        time = source.getTime();
+        title = source.getTitle().toString();
+        location = source.getLocation().toString();
+        date = formatDate(source.getDate());
+        time = formatTime(source.getTime());
     }
 
     /**
@@ -91,7 +94,7 @@ public class JsonAdaptedActivity {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalTime.class.getSimpleName()));
         }
-        DateTimeFormatter timeParser = DateTimeFormatter.ofPattern("h:mm a");
+        DateTimeFormatter timeParser = DateTimeFormatter.ofPattern("HH:mm a");
         final LocalTime modelTime = LocalTime.parse(time, timeParser);
         /*
         TODO resolve this if necessary

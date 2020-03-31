@@ -30,7 +30,7 @@ import seedu.volant.trip.model.TripFeature;
  */
 public class ItineraryModelManager implements Model {
 
-    private final Predicate<Activity> predicateShowAllActivites = unused -> true;
+    private final Predicate<Activity> predicateShowAllActivities = unused -> true;
     private final TripList tripList;
     private final Trip trip;
     private final Itinerary itinerary;
@@ -68,10 +68,6 @@ public class ItineraryModelManager implements Model {
 
     }
 
-    public void deleteActivity(Activity target) {
-        activityList.removeActivity(target);
-    }
-
     //==========ActivityList============================================================================
 
     /**
@@ -90,7 +86,28 @@ public class ItineraryModelManager implements Model {
      */
     public void addActivity(Activity target) {
         activityList.addActivity(target);
-        updateFilteredActivityList(predicateShowAllActivites);
+        updateFilteredActivityList(predicateShowAllActivities);
+    }
+
+    /**
+     * Deletes target activity in the activity list
+     * @param target Activity to be deleted
+     */
+    public void deleteActivity(Activity target) {
+        activityList.removeActivity(target);
+        updateFilteredActivityList(predicateShowAllActivities);
+    }
+
+    /**
+     * Replaces target trip with editedTrip in the trip list within model.
+     */
+    public void setActivity(Activity target, Activity editedTrip) {
+        requireAllNonNull(target, editedTrip);
+        activityList.setActivities(target, editedTrip);
+    }
+
+    public Predicate<Activity> getPredicateShowAllTrips() {
+        return predicateShowAllActivities;
     }
 
     @Override

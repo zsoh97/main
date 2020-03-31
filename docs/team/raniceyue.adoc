@@ -3,8 +3,63 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
+== Introduction
+Hello, my name is Ranice. At the time of this project (AY19/20 Semester 2) I was a Year 2 Computer Science undergraduate.
+
+I am the team leader of `PROJECT: Volant` (not by choice).
+
+You can find out more about who I am at these links:
+
+* https://linkedin.com/in/raniceyue[LinkedIn]
+* https://ranice.net[My Website]
+
 == PROJECT: Volant
 
----
+Volant is a travel assistant desktop application aimed at assisting solo travellers with the logistics of planning
+their travels. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java and
+it is primarily based off of the Address Book 3 application developed by the CS2103T teaching team.
+
+=== Summary of Contributions
+You can view my code contributions to this project
+https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=raniceyue&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[on RepoSense].
+
+* *Major Enhancement:* Implemented mechanism for view switching
+** What it does: Allows users to navigate between different pages in the application and execute commands in different contexts.
+More information about this enhancement can be found https://www.ranice.net/main/DeveloperGuide.html#view-switching[here].
+** Justification: Rather than placing all features in one messy singular view, users are able to focus on one single view.
+** Highlights: The implementation of the view switching mechanism was a bottleneck for our team project as in order to
+implement and test the other features of the application, developers must be able to switch between views.
+
+* *Major Enhancement:* Implemented Home Page of application
+** What it does: Allows users to view and manipulate the trip list in the application.
+
+* *Major Enhancement:* Designed the GUI for the application
+** Credits: Main design was inspired by https://en.wikipedia.org/wiki/Windows_1.0[Windows 1.0]
+
+
+* *Other Contributions*
+** Project management
+*** Managed overall team workflow as a team leader
+*** Managed and reviewed team PRs before merging
+*** Managed other miscellaneous logistics on Github such as the issue tracker
+** Documentation
+*** Customised the `asciidoctor.css` file to create a more aesthetically pleasing application.
+** Project Branding
+*** Designed the Volant's logo
+*** Credits: Logo design was inspired
+by https://www.google.com/search?q=patagonia+logo&tbm=isch&ved=2ahUKEwjrrpjwlrroAhUaj0sFHeZuDbkQ2-cCegQIABAA&oq=patagonia+logo&gs_lcp=CgNpbWcQAzIECCMQJzIECCMQJzIECAAQQzIECAAQQzICCAAyAggAMgIIADICCAAyAggAMgIIAFCTJFijJWDPJmgAcAB4AIABMogBXpIBATKYAQCgAQGqAQtnd3Mtd2l6LWltZw&sclient=img&ei=hbF9XqvYKZqertoP5t21yAs&bih=629&biw=1340#imgrc=3QLx2EoUdugRJM[Patagonia].
+
+
+=== Contributions to User Guide
+==== Sections Written
+* Section 1
+* Section 2
+* Section 3
+
+=== Contributions to Developer Guide
+==== Sections Written
+* Section 1
+* Section 2
+* Section 3
 
 _{To be updated in the future}_
