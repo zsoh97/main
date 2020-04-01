@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.HelpCommand;
+import seedu.volant.commons.logic.commands.HomeCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.itinerary.logic.commands.AddCommand;
 import seedu.volant.itinerary.logic.commands.DeleteCommand;
@@ -47,9 +48,6 @@ public class ItineraryInputParser {
 
         switch(commandWord) {
 
-        case BackCommand.COMMAND_WORD:
-            return new BackCommand();
-
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -58,6 +56,12 @@ public class ItineraryInputParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case BackCommand.COMMAND_WORD:
+            return new BackCommand();
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

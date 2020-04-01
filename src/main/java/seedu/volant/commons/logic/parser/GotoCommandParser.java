@@ -9,7 +9,7 @@ import static seedu.volant.commons.logic.Page.TRIP;
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.Page;
 import seedu.volant.commons.logic.commands.GotoCommand;
-import seedu.volant.commons.logic.commands.GotoHomeCommand;
+import seedu.volant.commons.logic.commands.HomeCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.logic.commands.GotoTripCommand;
 import seedu.volant.home.model.trip.Trip;
@@ -68,7 +68,7 @@ public class GotoCommandParser implements Parser<GotoCommand> {
 
             if (page == ITINERARY || page == JOURNAL) {
                 if (argumentTrimmed.equals("home")) {
-                    return new GotoHomeCommand();
+                    return new HomeCommand();
                 }
             }
 
