@@ -82,7 +82,7 @@ public class HomeModelManager implements Model {
         File[] entries = toDelete.listFiles();
         if (entries != null) {
             for (File f : entries) {
-                if (! Files.isSymbolicLink(f.toPath())) {
+                if (!Files.isSymbolicLink(f.toPath())) {
                     deleteFile(f);
                 }
             }
