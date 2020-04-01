@@ -10,7 +10,6 @@ import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ConcurrentModificationException;
 
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.parser.ArgumentMultimap;

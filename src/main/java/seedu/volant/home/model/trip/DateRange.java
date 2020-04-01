@@ -10,9 +10,9 @@ public class DateRange {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
     public static final String MESSAGE_CONSTRAINTS = "Please enter date range in \"DD-MM-YYYY to DD-MM-YYYY\" format!!";
-    public static final String VALIDATION_REGEX = "^([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]" +
-            "([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})( to )([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]" +
-            "([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$";
+    public static final String VALIDATION_REGEX = "^([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]"
+            + "([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})( to )([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]"
+            + "([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$";
 
     public final String value;
 
