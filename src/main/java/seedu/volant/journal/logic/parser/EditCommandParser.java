@@ -10,6 +10,7 @@ import static seedu.volant.commons.logic.parser.CliSyntax.PREFIX_WEATHER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ConcurrentModificationException;
 
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.parser.ArgumentMultimap;
@@ -18,6 +19,7 @@ import seedu.volant.commons.logic.parser.Parser;
 import seedu.volant.commons.logic.parser.ParserUtil;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Location;
+import seedu.volant.journal.exceptions.ContentTooLongException;
 import seedu.volant.journal.logic.commands.EditCommand;
 import seedu.volant.journal.model.entry.Feeling;
 import seedu.volant.journal.model.entry.Weather;
@@ -67,8 +69,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editEntryDescriptor.setWeather(weather);
         }
         if (argMultimap.getValue(PREFIX_TEXT).isPresent()) {
-            String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
-            editEntryDescriptor.setText(text);
+            try {
+                String text = ParserUtil.parseText(argMultimap.getValue(PREFIX_TEXT).get());
+                editEntryDescriptor.setText(text);
+            } catch (ContentTooLongException e) {
+                e.getMessage();
+            }
         }
         return new EditCommand(index, editEntryDescriptor);
     }

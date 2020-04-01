@@ -16,6 +16,7 @@ import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
 import seedu.volant.itinerary.model.activity.Title;
+import seedu.volant.journal.exceptions.ContentTooLongException;
 import seedu.volant.journal.model.entry.Feeling;
 import seedu.volant.journal.model.entry.Weather;
 
@@ -183,7 +184,7 @@ public class ParserUtil {
         try {
             parsedWeather = Weather.valueOf(trimmedCappedWeather);
         } catch (Exception e) {
-            throw new ParseException("Global warming hasn't gotten THAT bad yet. Please try again.");
+            throw new ParseException(Weather.MESSAGE_CONSTRAINTS);
         }
         return parsedWeather;
     }
@@ -191,8 +192,13 @@ public class ParserUtil {
     /**
      * Parses {@code String text} into a formatted {@code String}.
      */
-    public static String parseText(String text) throws ParseException {
+    public static String parseText(String text) throws ContentTooLongException {
         requireNonNull(text);
+        int contentLength = text.trim().length();
+        if (contentLength > 280) {
+            int charactersOverLimit = contentLength - 280;
+            throw new ContentTooLongException(charactersOverLimit);
+        }
         return text.trim();
     }
 }
