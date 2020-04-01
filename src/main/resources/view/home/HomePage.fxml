@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <StackPane prefHeight="30.0" prefWidth="200.0" styleClass="stack-welcome" VBox.vgrow="NEVER">
       <children>
          <Label styleClass="label-welcome" text="Welcome-Message-Here" />
@@ -15,5 +15,5 @@
         <Label styleClass="label-header" text="TripList" />
       </children>
    </StackPane>
-  <ListView fx:id="tripListView" prefWidth="247.0" VBox.vgrow="ALWAYS" />
+   <ListView fx:id="tripListView" prefWidth="247.0" VBox.vgrow="ALWAYS" />
 </VBox>

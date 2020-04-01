@@ -214,6 +214,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             t = ((HomeLogicManager) logic).getTripList();
         }
+
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new TripLogicManager(new TripModelManager(t, trip, new UserPrefs()), logic.getStorage());
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
