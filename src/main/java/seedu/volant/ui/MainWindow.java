@@ -270,7 +270,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /** METHODS TO HANDLE CONTEXT SWITCHING **/
 
-
     public void setCurrentPage(Page page) {
         this.currentPage = page;
     }
@@ -293,6 +292,7 @@ public class MainWindow extends UiPart<Stage> {
 
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new TripLogicManager(new TripModelManager(t, trip, new UserPrefs()), logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new TripPage(trip);
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -323,11 +323,15 @@ public class MainWindow extends UiPart<Stage> {
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
                 + "/itinerary.json"));
+
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
-                + "/itinerary.json"));
+            + "/itinerary.json"));
+
         ItineraryModelManager itineraryModelManager = new ItineraryModelManager((TripList) t.getTripList(),
                 t.getTrip(), (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
+
         logic = new ItineraryLogicManager(itineraryModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         ObservableList<Activity> activityObservableList = itineraryModelManager.getFilteredActivityList();
         mainPanel = new ItineraryPage(activityObservableList);
@@ -341,14 +345,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleGoToJournal(TripFeature tripFeature) {
         TripLogicManager t = ((TripLogicManager) logic);
+
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
                 + "/journal.json"));
+
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
-                + "/journal.json"));
+            + "/journal.json"));
+
         JournalModelManager journalModelManager = new JournalModelManager((TripList) t.getTripList(),
                 t.getTrip(), (Journal) tripFeature, newUserPrefs, logic.getStorage());
+
         logic = new JournalLogicManager(journalModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new JournalPage(journalModelManager.getFilteredEntryList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -362,12 +371,89 @@ public class MainWindow extends UiPart<Stage> {
     public void handleGoToHome(ReadOnlyTripList tripList) {
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", "volant.json"));
+
         HomeModelManager homeModelManager = new HomeModelManager(tripList, newUserPrefs);
+
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new HomeLogicManager(homeModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new HomePage(homeModelManager.getFilteredTripList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
         setCurrentPage(HOME);
+    }
+
+    /**
+     * Executes the command and returns the result.
+     * @see Logic#execute(String)
+     */
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = logic.execute(commandText);
+
+            /* WHEN COMMAND IS BEING EXECUTED ON HOMEPAGE, REFRESH HOME PAGE AFTER EVERY COMMAND */
+            if (currentPage == HOME) {
+                HomeModelManager currentModel = ((HomeLogicManager) logic).getModel();
+                mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot());
+                mainPanel = new HomePage(currentModel.getFilteredTripList());
+                mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+            }
+
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            /*  UNIVERSAL COMMANDS  */
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
+
+            if (commandResult.isBack()) {
+                if (currentPage == TRIP) {
+                    handleGoToHome(commandResult.getTripList());
+                }
+
+                if (currentPage == ITINERARY || currentPage == JOURNAL) {
+                    handleGotoTrip(commandResult.getTrip());
+                }
+            }
+
+            if (commandResult.isHome()) {
+                handleGoToHome(commandResult.getModel().getTripList());
+            }
+
+            /* OTHER NAVIGATION COMMANDS */
+
+            if (commandResult.isGoto()) {
+                // Going from HOME page to TRIP page
+                if (currentPage == HOME) {
+                    handleGotoTrip(commandResult.getTrip());
+                }
+
+                // Going from TRIP page to TRIP_FEATURE page
+                if (currentPage == TRIP) {
+                    handleGoToTripFeature(commandResult.getTripFeature());
+                }
+
+                if (currentPage == JOURNAL) {
+                    handleGoToTripFeature(commandResult.getTripFeature());
+                }
+
+                if (currentPage == ITINERARY) {
+                    handleGoToTripFeature(commandResult.getTripFeature());
+                }
+            }
+
+            return commandResult;
+
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
     }
 }

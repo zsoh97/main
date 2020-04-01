@@ -13,7 +13,7 @@
 
           <Button fx:id="enterBtn" alignment="CENTER" mnemonicParsing="false" styleClass="button-enter" prefHeight="40.0" prefWidth="80.0" text="ENTER" onAction="#handleCommandButtonPressed">
             <HBox.margin>
-                <Insets left="20.0" />
+                <Insets left="10.0" />
             </HBox.margin>
           </Button>
       </children>
