@@ -296,7 +296,7 @@
     -fx-background-radius: 0;
     -fx-background-color: #8bd4b1;
     -fx-font-family: "Roboto Mono Bold", monospace;
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: black;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
@@ -460,9 +460,17 @@
     -fx-background-color: #FEFBF7;
 }
 
+/* At the top of the journal card*/
 .hBox-journal {
     -fx-background-color: #FBFCDD;
     -fx-border-width: 2px 2px 0px 2px;
+    -fx-border-color: black;
+    -fx-padding: 5px 0px 0px 0px;
+}
+
+.hBox-journal-metadata {
+    -fx-background-color: #FBFCDD;
+    -fx-border-width: 0px 2px 0px 2px;
     -fx-border-color: black;
 }
 
@@ -476,20 +484,22 @@
     -fx-background-color: #FBFCDD;
     -fx-border-width: 0px 2px 2px 2px;
     -fx-border-color: black;
+    -fx-text-fill: #f0585f;
+    -fx-padding: 0 10 10 10;
 }
 
 .label-entry-metadata {
-    -fx-font-family: "Roboto Mono";
+    -fx-font-family: "Roboto Mono Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
-    -fx-padding:10 0 0 10
+    -fx-padding: 5 0 5 15;
 }
 
 .label-entry {
     -fx-font-family: "Roboto Mono";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
-    -fx-padding:0 0 0 15;
+    -fx-padding: 10 0 0 15;
 }
 
 .label-feeling {
@@ -503,7 +513,12 @@
     -fx-padding:8 25 0 0;
 }
 
-
+.label-journal-id {
+    -fx-text-fill: #f0585f;
+    -fx-font-size: 20px;
+    -fx-background-color: #FBFCDD;
+    -fx-padding: 0px 10px 5px 0px;
+}
 
 #entryListView .list-cell{
     -fx-border-width: 1px 0px 1px 0px;
