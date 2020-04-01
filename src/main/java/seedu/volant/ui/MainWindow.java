@@ -65,7 +65,9 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     // mainPanel is where the context switching happens
     private UiPart<Region> mainPanel;
+
     private ResultDisplay resultDisplay;
+
     private HelpWindow helpWindow;
 
     @FXML
