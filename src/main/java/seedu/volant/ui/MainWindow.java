@@ -196,7 +196,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /** METHODS TO HANDLE CONTEXT SWITCHING **/
 
-
     public void setCurrentPage(Page page) {
         this.currentPage = page;
     }
@@ -219,6 +218,7 @@ public class MainWindow extends UiPart<Stage> {
 
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new TripLogicManager(new TripModelManager(t, trip, new UserPrefs()), logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new TripPage(trip);
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -249,11 +249,15 @@ public class MainWindow extends UiPart<Stage> {
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
                 + "/itinerary.json"));
+
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
-                + "/itinerary.json"));
+            + "/itinerary.json"));
+
         ItineraryModelManager itineraryModelManager = new ItineraryModelManager((TripList) t.getTripList(),
                 t.getTrip(), (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
+
         logic = new ItineraryLogicManager(itineraryModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new ItineraryPage((itineraryModelManager.getFilteredActivityList()));
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -266,14 +270,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleGoToJournal(TripFeature tripFeature) {
         TripLogicManager t = ((TripLogicManager) logic);
+
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", t.getTrip().getName()
                 + "/journal.json"));
+
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
-                + "/journal.json"));
+            + "/journal.json"));
+
         JournalModelManager journalModelManager = new JournalModelManager((TripList) t.getTripList(),
                 t.getTrip(), (Journal) tripFeature, newUserPrefs, logic.getStorage());
+
         logic = new JournalLogicManager(journalModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new JournalPage(journalModelManager.getFilteredEntryList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -287,9 +296,12 @@ public class MainWindow extends UiPart<Stage> {
     public void handleGoToHome(ReadOnlyTripList tripList) {
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", "volant.json"));
+
         HomeModelManager homeModelManager = new HomeModelManager(tripList, newUserPrefs);
+
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
         logic = new HomeLogicManager(homeModelManager, logic.getStorage());
+
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new HomePage(homeModelManager.getFilteredTripList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
@@ -315,6 +327,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            /*  UNIVERSAL COMMANDS  */
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -322,6 +336,22 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isBack()) {
+                if (currentPage == TRIP) {
+                    handleGoToHome(commandResult.getTripList());
+                }
+
+                if (currentPage == ITINERARY || currentPage == JOURNAL) {
+                    handleGotoTrip(commandResult.getTrip());
+                }
+            }
+
+            if (commandResult.isHome()) {
+                handleGoToHome(commandResult.getModel().getTripList());
+            }
+
+            /* OTHER NAVIGATION COMMANDS */
 
             if (commandResult.isGoto()) {
                 // Going from HOME page to TRIP page
@@ -333,15 +363,13 @@ public class MainWindow extends UiPart<Stage> {
                 if (currentPage == TRIP) {
                     handleGoToTripFeature(commandResult.getTripFeature());
                 }
-            }
 
-            if (commandResult.isBack()) {
-                if (currentPage == TRIP) {
-                    handleGoToHome(commandResult.getTripList());
+                if (currentPage == JOURNAL) {
+                    handleGoToTripFeature(commandResult.getTripFeature());
                 }
 
-                if (currentPage == ITINERARY || currentPage == JOURNAL) {
-                    handleGotoTrip(commandResult.getTrip());
+                if (currentPage == ITINERARY) {
+                    handleGoToTripFeature(commandResult.getTripFeature());
                 }
             }
 
