@@ -2,18 +2,17 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Volant" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Volant" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/title_icon.png"/>
   </icons>
   <scene>
     <Scene>
@@ -38,15 +37,15 @@
           <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <!--  COMMAND BOX: USER INPUT TEXT BOX -->
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <!--  RESULT DISPLAY: APP FEEDBACK MESSAGES APPEAR HERE -->
+        <StackPane fx:id="resultDisplayPlaceholder" styleClass="stackPane-ResultBox" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <!--  RESULT DISPLAY: APP FEEDBACK MESSAGES APPEAR HERE -->
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <!--  COMMAND BOX: USER INPUT TEXT BOX -->
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="stackPane-CommandBox " VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
