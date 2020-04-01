@@ -34,6 +34,14 @@ public class DateRange {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    public LocalDate getTo() {
+        return to;
+    }
+
     @Override
     public String toString() {
         return from.format(DATE_TIME_FORMATTER) + " - " + to.format(DATE_TIME_FORMATTER);
