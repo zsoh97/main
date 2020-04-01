@@ -166,6 +166,82 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    void show() {
+        primaryStage.show();
+    }
+
+
+    /**
+     * Executes the command and returns the result.
+     * @see Logic#execute(String)
+     */
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            handleResult(commandResult);
+            return commandResult;
+
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
+     * Handles the result of the command to manage the stage.
+     * @param commandResult Contains the result to be handled.
+     */
+    private void handleResult(CommandResult commandResult) {
+        if (commandResult.isShowHelp()) {
+            handleHelp();
+        }
+
+        if (commandResult.isExit()) {
+            handleExit();
+        }
+
+        if (commandResult.isGoto()) {
+            handleGoto(commandResult);
+        }
+
+        if (commandResult.isBack()) {
+            handleBack(commandResult);
+        }
+    }
+
+    /**
+     * Handles the result of the command 'back'.
+     * @param commandResult Contains list needed to populate the stage.
+     */
+    private void handleBack(CommandResult commandResult) {
+        if (currentPage == TRIP) {
+            handleGoToHome(commandResult.getTripList());
+        }
+
+        if (currentPage == ITINERARY || currentPage == JOURNAL) {
+            handleGotoTrip(commandResult.getTrip());
+        }
+    }
+
+    /**
+     * Handles the result of the 'goto' command.
+     * @param commandResult Contains list needed to populate the stage.
+     */
+    private void handleGoto(CommandResult commandResult) {
+        // Going from HOME page to TRIP page
+        if (currentPage == HOME) {
+            handleGotoTrip(commandResult.getTrip());
+        }
+
+        // Going from TRIP page to TRIP_FEATURE page
+        if (currentPage == TRIP) {
+            handleGoToTripFeature(commandResult.getTripFeature());
+        }
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -176,10 +252,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-    }
-
-    void show() {
-        primaryStage.show();
     }
 
     /**
@@ -295,55 +367,5 @@ public class MainWindow extends UiPart<Stage> {
         mainPanel = new HomePage(homeModelManager.getFilteredTripList());
         mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
         setCurrentPage(HOME);
-    }
-
-    /**
-     * Executes the command and returns the result.
-     * @see Logic#execute(String)
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            if (commandResult.isGoto()) {
-                // Going from HOME page to TRIP page
-                if (currentPage == HOME) {
-                    handleGotoTrip(commandResult.getTrip());
-                }
-
-                // Going from TRIP page to TRIP_FEATURE page
-                if (currentPage == TRIP) {
-                    handleGoToTripFeature(commandResult.getTripFeature());
-                }
-
-            }
-
-            if (commandResult.isBack()) {
-                if (currentPage == TRIP) {
-                    handleGoToHome(commandResult.getTripList());
-                }
-
-                if (currentPage == ITINERARY || currentPage == JOURNAL) {
-                    handleGotoTrip(commandResult.getTrip());
-                }
-            }
-
-            return commandResult;
-
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
-        }
     }
 }
