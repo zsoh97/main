@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.HelpCommand;
+import seedu.volant.commons.logic.commands.HomeCommand;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.journal.logic.commands.AddCommand;
 import seedu.volant.journal.logic.commands.DeleteCommand;
@@ -47,16 +48,25 @@ public class JournalInputParser {
         final String arguments = matcher.group("arguments");
 
         switch(commandWord) {
-        case BackCommand.COMMAND_WORD:
-            return new BackCommand();
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case BackCommand.COMMAND_WORD:
+            return new BackCommand();
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

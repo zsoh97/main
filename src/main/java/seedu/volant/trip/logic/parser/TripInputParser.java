@@ -10,6 +10,7 @@ import seedu.volant.commons.logic.commands.BackCommand;
 import seedu.volant.commons.logic.commands.Command;
 import seedu.volant.commons.logic.commands.GotoCommand;
 import seedu.volant.commons.logic.commands.HelpCommand;
+import seedu.volant.commons.logic.commands.HomeCommand;
 import seedu.volant.commons.logic.parser.GotoCommandParser;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.home.model.trip.Trip;
@@ -50,6 +51,9 @@ public class TripInputParser {
 
         case BackCommand.COMMAND_WORD:
             return new BackCommand();
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

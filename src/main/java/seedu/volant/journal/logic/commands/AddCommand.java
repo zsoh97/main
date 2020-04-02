@@ -34,12 +34,12 @@ public class AddCommand extends Command {
 
             + "Example: \n"
             + COMMAND_WORD + " "
-            + PREFIX_DATE + "23-09-2018 "
-            + PREFIX_TIME + "09:35 "
-            + PREFIX_TEXT + "I just went skydiving!! "
-            + PREFIX_LOCATION + "Brisbane "
-            + PREFIX_FEELING + "SCARED "
-            + PREFIX_WEATHER + "SUNNY";
+            + PREFIX_DATE + "05-03-2020 "
+            + PREFIX_TIME + "14:20 "
+            + PREFIX_TEXT + "It's a really good day today! Excited to explore Germany... "
+            + PREFIX_LOCATION + "Brandenburg Gate "
+            + PREFIX_FEELING + "EXCITED "
+            + PREFIX_WEATHER + "COOL ";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the journal.";
