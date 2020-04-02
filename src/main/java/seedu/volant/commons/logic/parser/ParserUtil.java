@@ -112,17 +112,21 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
     /**
      * Parses {@code String s} into title
      * @param title String to be parsed
      * @return title of activity.
      */
-    public static Title parseTitle(String title) {
+    public static Title parseTitle(String title) throws ParseException {
+        if (title.isEmpty()) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
         return new Title(title);
     }
     /**
      * Parses a {@code String feeling} into a {@code Feeling}.
-     * @param feeling
+     * @param feeling String containing feeling described by user.
      * @return corresponding Feeling after parsing
      * @throws ParseException if given string does not correspond to an existing feeling
      */
@@ -146,9 +150,9 @@ public class ParserUtil {
         String[] dateFields = date.strip().split("-", 3);
         LocalDate parsedDate;
         try {
-            int day = Integer.valueOf(dateFields[0]);
-            int month = Integer.valueOf(dateFields[1]);
-            int year = Integer.valueOf(dateFields[2]);
+            int day = Integer.parseInt(dateFields[0]);
+            int month = Integer.parseInt(dateFields[1]);
+            int year = Integer.parseInt(dateFields[2]);
             parsedDate = LocalDate.of(year, month, day);
         } catch (Exception e) {
             throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
@@ -164,8 +168,8 @@ public class ParserUtil {
         String[] timeFields = time.strip().split(":", 2);
         LocalTime parsedTime;
         try {
-            int hour = Integer.valueOf(timeFields[0]);
-            int minute = Integer.valueOf(timeFields[1]);
+            int hour = Integer.parseInt(timeFields[0]);
+            int minute = Integer.parseInt(timeFields[1]);
             parsedTime = LocalTime.of(hour, minute);
         } catch (Exception e) {
             throw new ParseException("Please input a valid time in HH:MM format!");
@@ -191,7 +195,7 @@ public class ParserUtil {
     /**
      * Parses {@code String text} into a formatted {@code String}.
      */
-    public static String parseText(String text) throws ParseException {
+    public static String parseText(String text) {
         requireNonNull(text);
         return text.trim();
     }
