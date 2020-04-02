@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.logic.Page;
@@ -22,7 +21,6 @@ import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
-import seedu.volant.itinerary.exceptions.TimeClashException;
 import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.itinerary.model.activity.DateTimeComparator;
 import seedu.volant.trip.model.Itinerary;
@@ -99,7 +97,7 @@ public class ItineraryModelManager implements Model {
      * Adds target activity to activity list
      * @param target Activity to be added
      */
-    public void addActivity(Activity target) throws TimeClashException {
+    public void addActivity(Activity target) {
         activityList.addActivity(target);
         updateFilteredActivityList(predicateShowAllActivities);
     }
