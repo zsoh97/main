@@ -434,6 +434,15 @@ If you would like to record a new journal entry, this command adds a new entry t
 ** `SCARED`
 ** `SURPRISED`
 ** `CONFUSED`
+* Available `WEATHER` types (can be typed in any case):
+** `SUNNY`
+** `RAINY`
+** `SNOWY`
+** `CLOUDY`
+** `COLD`
+** `DARK`
+** `HOT`
+** `COOL`
 ====
 
 *Expected Outcome*
