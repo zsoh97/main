@@ -5,10 +5,7 @@ import static seedu.volant.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -155,7 +152,7 @@ public class UniqueEntryList implements Iterable<Entry> {
             FXCollections.sort(internalList, new FeelingComparator());
             break;
         default:
-            throw new RuntimeException();
+            throw new InputMismatchException(SortType.MESSAGE_CONSTRAINTS);
         }
     }
 
