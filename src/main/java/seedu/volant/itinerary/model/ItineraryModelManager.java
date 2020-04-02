@@ -22,6 +22,7 @@ import seedu.volant.commons.model.UserPrefs;
 import seedu.volant.commons.storage.Storage;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
+import seedu.volant.itinerary.exceptions.TimeClashException;
 import seedu.volant.itinerary.model.activity.Activity;
 import seedu.volant.itinerary.model.activity.DateTimeComparator;
 import seedu.volant.trip.model.Itinerary;
@@ -83,10 +84,22 @@ public class ItineraryModelManager implements Model {
     }
 
     /**
+     * Checks if activity list has any activity who's time and date clashes with the activity
+     * to be added.
+     * @param activity Activity to be checked.
+     * @return True if the activity to be added has a time and date clash with the current
+     * activities in the itinerary.
+     */
+    public boolean hasTimeClash(Activity activity) {
+        requireNonNull(activity);
+        return activityList.hasTimeClash(activity);
+    }
+
+    /**
      * Adds target activity to activity list
      * @param target Activity to be added
      */
-    public void addActivity(Activity target) {
+    public void addActivity(Activity target) throws TimeClashException {
         activityList.addActivity(target);
         updateFilteredActivityList(predicateShowAllActivities);
     }
@@ -139,8 +152,7 @@ public class ItineraryModelManager implements Model {
      */
 
     public ObservableList<Activity> getFilteredActivityList() {
-        SortedList<Activity> sortedList = filteredActivities.sorted(new DateTimeComparator());
-        return sortedList;
+        return filteredActivities.sorted(new DateTimeComparator());
     }
 
     /**
