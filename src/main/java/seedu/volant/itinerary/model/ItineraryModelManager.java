@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.logic.Page;
