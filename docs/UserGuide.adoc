@@ -426,6 +426,15 @@ Adds a journal entry to the entry list.
 ** `SCARED`
 ** `SURPRISED`
 ** `CONFUSED`
+* Available `WEATHER` types (can be typed in any case):
+** `SUNNY`
+** `RAINY`
+** `SNOWY`
+** `CLOUDY`
+** `COLD`
+** `DARK`
+** `HOT`
+** `COOL`
 ====
 
 *Expected Outcome*
