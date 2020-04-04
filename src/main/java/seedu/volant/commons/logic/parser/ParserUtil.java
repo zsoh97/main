@@ -106,7 +106,7 @@ public class ParserUtil {
                         parsedFromDate, parsedToDate));
             }
         } catch (StartAfterEndException e) {
-            throw new StartAfterEndException(e.getMessage);
+            throw new StartAfterEndException(e.getMessage());
         } catch (Exception e) {
             throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
         }
