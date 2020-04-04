@@ -68,7 +68,7 @@ public class Trip {
     }
 
     /**
-     * Returns true if both trips have same date range and location.
+     * Returns true if both trips have same name, date range and location.
      * TODO: Confirm this
      */
     public boolean isSameTrip(Trip otherTrip) {
@@ -77,8 +77,20 @@ public class Trip {
         }
 
         return otherTrip != null
-                && otherTrip.getLocation().equals(getLocation())
-                && (otherTrip.getDateRange().equals(getDateRange()));
+                && otherTrip.getName().equals(name)
+                && otherTrip.getLocation().equals(location)
+                && otherTrip.getDateRange().equals(dateRange);
+    }
+
+    /**
+     * Returns true if the date range of this conflicts with date range of {@code other}.
+     */
+    public boolean isWithinSameDateRange(Trip other) {
+        if (other.getDateRange().getFrom().compareTo(dateRange.from) > 0) {
+            return other.getDateRange().getTo().compareTo(dateRange.to) <= 0;
+        } else {
+            return other.getDateRange().getTo().compareTo(dateRange.to) <= 0;
+        }
     }
 
     /**
