@@ -27,15 +27,15 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an activity to the itinerary.\n"
             + "Parameters: \n"
-            + PREFIX_TITLE + "TITLE "
+            + PREFIX_TITLE + "ACTIVITY_TITLE "
             + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME \n"
 
-            + "Example: " + COMMAND_WORD + " "
+            + "Example:\n" + COMMAND_WORD + " "
             + PREFIX_TITLE + "Visit World Trade Centre "
             + PREFIX_LOCATION + "New York "
-            + PREFIX_DATE + "11-09-2001 "
+            + PREFIX_DATE + "05-03-2020 "
             + PREFIX_TIME + "09:00";
 
     public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
@@ -79,6 +79,7 @@ public class AddCommand extends Command {
             throw new DatePassedException("Date of activity has passed. "
                     + "Please entire a current or future date.");
         }
+
         if (itineraryModel.hasTimeClash(toAdd)) {
             throw new TimeClashException("There is already another activity scheduled for "
                     + toAdd.getDate() + " " + toAdd.getTime() + ". Try another timing.");

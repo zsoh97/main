@@ -122,7 +122,8 @@ public class Trip {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\nName: ")
+                .append(getName())
                 .append("\nLocation: ")
                 .append(getLocation())
                 .append("\nDate Range: ")
