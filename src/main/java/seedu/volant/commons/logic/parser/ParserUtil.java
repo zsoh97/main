@@ -105,12 +105,10 @@ public class ParserUtil {
                                 + " after your trip end date: %s.\nRevise the dates and try again!",
                         parsedFromDate, parsedToDate));
             }
+        } catch (StartAfterEndException e) {
+            throw new StartAfterEndException(e.getMessage());
         } catch (Exception e) {
-            if (e instanceof StartAfterEndException) {
-                throw new StartAfterEndException(e.getMessage());
-            } else {
-                throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
-            }
+            throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
         }
         return new DateRange(parsedFromDate, parsedToDate);
     }
