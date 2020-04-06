@@ -5,7 +5,9 @@ import static seedu.volant.commons.logic.Page.ITINERARY;
 import static seedu.volant.commons.logic.Page.JOURNAL;
 import static seedu.volant.commons.logic.Page.TRIP;
 
+import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -21,6 +23,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.core.LogsCenter;
+import seedu.volant.commons.exceptions.DataConversionException;
 import seedu.volant.commons.logic.Logic;
 import seedu.volant.commons.logic.Page;
 import seedu.volant.commons.logic.commands.CommandResult;
@@ -28,8 +31,10 @@ import seedu.volant.commons.logic.commands.RefreshCommandResult;
 import seedu.volant.commons.logic.commands.exceptions.CommandException;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.model.UserPrefs;
+import seedu.volant.commons.util.SampleDataUtil;
 import seedu.volant.home.logic.HomeLogicManager;
 import seedu.volant.home.model.HomeModelManager;
+import seedu.volant.home.model.ReadOnlyTripList;
 import seedu.volant.home.model.TripList;
 import seedu.volant.home.model.trip.Trip;
 import seedu.volant.itinerary.logic.ItineraryLogicManager;
@@ -199,7 +204,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleBack(CommandResult commandResult) {
         if (currentPage == TRIP) {
-            handleGoToHome(commandResult.getTripList());
+            handleGoToHome(commandResult);
         }
 
         if (currentPage == ITINERARY || currentPage == JOURNAL) {
@@ -254,17 +259,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleGotoTrip(Trip trip) {
         TripList t;
-        if (currentPage == ITINERARY) {
-            t = ((ItineraryLogicManager) logic).getTripList();
-        } else if (currentPage == JOURNAL) {
-            t = ((JournalLogicManager) logic).getTripList();
-        } else {
-            t = ((HomeLogicManager) logic).getTripList();
-        }
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", trip.getName().toString()));
         logic.getStorage().setVolantFilePath(Paths.get("data", trip.getName().toString()));
-        logic = new TripLogicManager(new TripModelManager(t, trip, newUserPrefs), logic.getStorage());
+        logic = new TripLogicManager(new TripModelManager(trip, newUserPrefs), logic.getStorage());
 
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
         mainPanel = new TripPage(trip);
@@ -302,8 +300,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
             + "/itinerary.json"));
 
-        ItineraryModelManager itineraryModelManager = new ItineraryModelManager((TripList) t.getTripList(),
-            t.getTrip(), (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
+        ItineraryModelManager itineraryModelManager = new ItineraryModelManager(t.getTrip(),
+                (Itinerary) tripFeature, newUserPrefs, logic.getStorage());
 
         logic = new ItineraryLogicManager(itineraryModelManager, logic.getStorage());
 
@@ -330,8 +328,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.getStorage().setVolantFilePath(Paths.get("data", t.getTrip().getName()
             + "/journal.json"));
 
-        JournalModelManager journalModelManager = new JournalModelManager((TripList) t.getTripList(),
-            t.getTrip(), (Journal) tripFeature, newUserPrefs, logic.getStorage());
+        JournalModelManager journalModelManager = new JournalModelManager(t.getTrip(),
+                (Journal) tripFeature, newUserPrefs, logic.getStorage());
 
         logic = new JournalLogicManager(journalModelManager, logic.getStorage());
 
@@ -343,17 +341,35 @@ public class MainWindow extends UiPart<Stage> {
         setCurrentPage(JOURNAL);
     }
 
+    private ReadOnlyTripList getTripList() {
+        Optional<ReadOnlyTripList> tripListOptional;
+        ReadOnlyTripList tripList;
+        try {
+            tripListOptional = logic.getStorage().readTripList();
+            if (!tripListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample trip list.");
+            }
+
+            tripList = tripListOptional.orElseGet(SampleDataUtil::getSampleTripList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty trip list.");
+            tripList = new TripList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty trip list.");
+            tripList = new TripList();
+        }
+        return tripList;
+    }
+
     /**
      * Handles command to go to HOME page from any page.
      */
     @FXML
-    public void handleGoToHome(TripList tripList) {
+    public void handleGoToHome(CommandResult commandResult) {
         UserPrefs newUserPrefs = new UserPrefs();
         newUserPrefs.setVolantFilePath(Paths.get("data", "volant.json"));
-
-        HomeModelManager homeModelManager = new HomeModelManager(tripList, newUserPrefs);
-
         logic.getStorage().setVolantFilePath(Paths.get("data", "volant.json"));
+        HomeModelManager homeModelManager = new HomeModelManager(getTripList(), newUserPrefs);
         logic = new HomeLogicManager(homeModelManager, logic.getStorage());
 
         mainPanelPlaceholder.getChildren().removeAll(mainPanel.getRoot()); // Remove GUI nodes from prev. display
@@ -412,7 +428,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         if (commandResult.isHome()) {
-            handleGoToHome(commandResult.getModel().getTripList());
+            handleGoToHome(commandResult);
         }
 
         if (commandResult instanceof RefreshCommandResult) {
