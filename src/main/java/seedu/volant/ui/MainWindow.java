@@ -53,8 +53,11 @@ import seedu.volant.trip.model.TripFeatureList;
 import seedu.volant.trip.model.TripModelManager;
 import seedu.volant.ui.pages.home.HomeHelpWindow;
 import seedu.volant.ui.pages.home.HomePage;
+import seedu.volant.ui.pages.itinerary.ItineraryHelpWindow;
 import seedu.volant.ui.pages.itinerary.ItineraryPage;
+import seedu.volant.ui.pages.journal.JournalHelpWindow;
 import seedu.volant.ui.pages.journal.JournalPage;
+import seedu.volant.ui.pages.trip.TripHelpWindow;
 import seedu.volant.ui.pages.trip.TripPage;
 
 /**
@@ -69,7 +72,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    // Initialize current page = HOME
+
+    // Initialize current page = HOME when program starts
     private Page currentPage = HOME;
 
 
@@ -79,7 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private ResultDisplay resultDisplay;
 
-    private HomeHelpWindow homeHelpWindow;
+    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -115,7 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
-        homeHelpWindow = new HomeHelpWindow();
+        // Initialize with home help window
+        helpWindow = new HomeHelpWindow();
         scrollPane.setFitToWidth(true);
     }
 
@@ -178,6 +183,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        helpWindow = new HomeHelpWindow();
     }
 
     /**
@@ -200,6 +207,21 @@ public class MainWindow extends UiPart<Stage> {
 
     public void setCurrentPage(Page page) {
         this.currentPage = page;
+        if (currentPage == HOME) {
+            helpWindow = new HomeHelpWindow();
+        }
+
+        if (currentPage == TRIP) {
+            helpWindow = new TripHelpWindow();
+        }
+
+        if (currentPage == ITINERARY) {
+            helpWindow = new ItineraryHelpWindow();
+        }
+
+        if (currentPage == JOURNAL) {
+            helpWindow = new JournalHelpWindow();
+        }
     }
 
     /**
@@ -208,11 +230,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleBack(CommandResult commandResult) {
         if (currentPage == TRIP) {
-            handleGoToHome();
+            handleGoToHome(commandResult);
+            setCurrentPage(HOME);
         }
 
         if (currentPage == ITINERARY || currentPage == JOURNAL) {
             handleGotoTrip(commandResult.getTrip());
+            setCurrentPage(TRIP);
         }
     }
 
@@ -224,11 +248,18 @@ public class MainWindow extends UiPart<Stage> {
         // Going from HOME page to TRIP page
         if (currentPage == HOME) {
             handleGotoTrip(commandResult.getTrip());
+            setCurrentPage(TRIP);
         }
 
         // Going from TRIP page to TRIP_FEATURE page
         if (currentPage == TRIP) {
             handleGoToTripFeature(commandResult.getTripFeature());
+            if (commandResult.getTripFeature() instanceof Itinerary) {
+                setCurrentPage(ITINERARY);
+            }
+            if (commandResult.getTripFeature() instanceof Journal) {
+                setCurrentPage(JOURNAL);
+            }
         }
     }
 
@@ -237,10 +268,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!homeHelpWindow.isShowing()) {
-            homeHelpWindow.show();
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
         } else {
-            homeHelpWindow.focus();
+            helpWindow.focus();
         }
     }
 
@@ -252,7 +283,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
             (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        homeHelpWindow.hide();
+        helpWindow.hide();
         primaryStage.hide();
     }
 
@@ -291,6 +322,7 @@ public class MainWindow extends UiPart<Stage> {
             logic.getStorage().setVolantFilePath(Paths.get("data", trip.getName() + "/itinerary.json"));
             Optional<ReadOnlyActivityList> activityListOptional = logic.getStorage().readActivityList();
             activityList = new ActivityList(activityListOptional.get());
+
             logic.getStorage().setVolantFilePath(Paths.get("data", trip.getName() + "/journal.json"));
             Optional<ReadOnlyEntryList> entryListOptional = logic.getStorage().readEntryList();
             entryList = new EntryList(entryListOptional.get());
@@ -307,8 +339,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleGoToTripFeature(TripFeature tripFeature) {
         if (tripFeature instanceof Itinerary) {
-            // TODO: Assign logic once logic for itinerary page has been created
-            handleGoToItinerary();
+            handleGoToItinerary(tripFeature);
         }
 
         if (tripFeature instanceof Journal) {
