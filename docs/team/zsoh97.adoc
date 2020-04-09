@@ -27,8 +27,8 @@ https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=zsoh97&sort=totalComm
 ** Highlights: The implementation of the storage was a bottleneck for our team project as in order to
 implement and test the functionalities of our features, developers had to have data to work with.
 
-* *Major Enhancement:* Implemented Add command for Activity in Itinerary feature of application
-** What it does: Allows users to add an activity to their itinerary.
+* *Major Enhancement:* Implemented the Itinerary page (with Nguyen).
+** What it does: Allows users to view and manipulate the itinerary activities in the application.
 
 * *Major Enhancement:* Implemented exceptions for catching logic bugs for Trip and Itinerary feature.
 ** Justification: In placing these exceptions, the functionality of the project is not compromised.
