@@ -230,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleBack(CommandResult commandResult) {
         if (currentPage == TRIP) {
-            handleGoToHome(commandResult);
+            handleGoToHome();
             setCurrentPage(HOME);
         }
 
@@ -339,7 +339,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleGoToTripFeature(TripFeature tripFeature) {
         if (tripFeature instanceof Itinerary) {
-            handleGoToItinerary(tripFeature);
+            handleGoToItinerary();
         }
 
         if (tripFeature instanceof Journal) {
