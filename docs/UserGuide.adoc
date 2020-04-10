@@ -80,7 +80,7 @@ e.g. Typing *`help`* and pressing kbd:[Enter] will open a help window.
 
 [[Features]]
 == Features
-This section describes the various features available in Volant. 
+This section describes the various features available in Volant.
 These include front-end features that you can interact with, such as the Trip Page, as well as back-end features such as the auto-saving of data.
 
 === Trips
