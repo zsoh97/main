@@ -100,7 +100,7 @@ View switching is executed by the `Ui` component.
 
 .Component interactions for `goto 1` command in the `HomePage` view.
 
-image::gotoCommand.png[]
+image::gotoCommandSequenceDiagram.png[]
 
 The sections below give more details about each component.
 
@@ -187,7 +187,7 @@ The `Model`,
 === Storage component
 
 .Structure of the Storage Component
-image::StorageDiagram.png[]
+image::StorageClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/location/storage/Storage.java[`Storage.java`]
 
