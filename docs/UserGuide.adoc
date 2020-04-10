@@ -213,7 +213,7 @@ TIP: You can also execute this command by using the kbd:[F1] key on your keyboar
 
 A separate help window will appear with details on the available commands for the current page you are on, and their usage.
 
-.Help window 
+.Help window
 image::user-guide/helpwindow.png[width="600"]
 
 
@@ -242,7 +242,7 @@ image::user-guide/refresh-command-before.png[width="300"]
 
 .Result of `refresh` command
 image::user-guide/refresh-command-after.png[width="300"]
-2) After using the `rf` command, the `HOME` page returns to its original state and lists all trips.
+2) After using the `rf` command, the `HOME` page will return to its original state and will lists all trips.
 
 
 
@@ -273,6 +273,7 @@ After using the `back` command, you will be moved to the `TRIP` page of the spec
 
 [TIP]
 ====
+
 .Outcomes when using the `back` command on certain pages
 [cols="1, 2", options="header,footer"]
 |=======================
@@ -305,12 +306,12 @@ command will conveniently move you directly to the `HOME` page.
 
 .`home` command on `ITINERARY` page
 image::user-guide/back-command-before.png[width="300"]
-You are on the `ITINERARY` page of a specific `TRIP`
+1)You are on the `ITINERARY` page of a specific `TRIP`
 
 
 .Result of `home` command
 image::user-guide/home-command-after.png[width="300"]
-After using the `home` command, you will be moved to the `HOME` page
+2)After using the `home` command, you will be moved to the `HOME` page
 
 === Commands for the Home Page
 
@@ -342,12 +343,11 @@ For example, you are on the `HOME` page and would like to navigate to the `TRIP`
 
 .`goto` command on `HOME` page
 image::user-guide/home-goto-before.png[width="300"]
-1)You are on the `HOME` page and you want to navigate to the `TRIP` page of the 3rd `TRIP`, _Winter Break_.
+1) You are on the `HOME` page and you want to navigate to the `TRIP` page of the 3rd `TRIP`, _Winter Break_.
 
 .Result of `goto` command
 image::user-guide/home-goto-after.png[width="300"]
-2)After using the `goto` command, you will be navigated to the 3rd `TRIP`, _Winter Break_.
-
+2) After using the `goto` command, you will be navigated to the 3rd `TRIP`, _Winter Break_.
 
 ==== Adding a trip to your trip list: `add`
 
@@ -380,11 +380,11 @@ Entering the command `add n/Graduation Trip l/Bangkok d/01-06-2020 to 05-06-2020
 
 .`add` command on `HOME` page
 image::user-guide/home-add-before.png[width="300"]
-.1) You would like to add a `TRIP` to your trip list and enter the `add` command including the specific metadata of the `TRIP`
+1) You would like to add a `TRIP` to your trip list and enter the `add` command including the specific metadata of the `TRIP`
 
 .Result of `add` command
 image::user-guide/home-add-after.png[width="600"]
-.2) After using the `add` command, the new `TRIP` will be added to your trip list and displayed under _UPCOMING TRIPS_
+2) After using the `add` command, the new `TRIP` will be added to your trip list and displayed under _UPCOMING TRIPS_
 
 
 ==== Deleting a trip: `delete`
@@ -413,11 +413,11 @@ Entering the command `delete 2`, will delete the second `TRIP` from your trip li
 
 .`delete` command on `HOME` page
 image::user-guide/home-delete-before.png[width="600"]
-.1) You want to delete the second trip on your trip list, "Graduation Trip"
+1) You want to delete the second trip on your trip list, "Graduation Trip"
 
 .Result of `delete` command
 image::user-guide/home-delete-after.png[width="300"]
-.2) After using the `delete` command, the trip will be removed from your trip list
+2) After using the `delete` command, the trip will be removed from your trip list
 
 [IMPORTANT]
 ====
@@ -459,11 +459,11 @@ and these changes will be reflected on Volant's GUI.
 
 .`edit` command on `HOME` page
 image::user-guide/home-edit-before.png[width="600"]
-.1) You want to edit the `TRIP_NAME` and `LOCATION` of the first trip in your trip list.
+1) You want to edit the `TRIP_NAME` and `LOCATION` of the first trip in your trip list.
 
 .Result of `edit` command
 image::user-guide/home-edit-after.png[width="600"]
-.2) After you use the `edit` command, the `TRIP_NAME` and `LOCATION` of your trip will be changed accordingly.
+2) After you use the `edit` command, the `TRIP_NAME` and `LOCATION` of your trip will be changed accordingly.
 
 [[home-find]]
 ==== Finding a trip in the list: `find`
@@ -493,11 +493,11 @@ Volant will locate all `TRIP` s with the `KEYWORD`, "fuji", and display all matc
 
 .`find` command on `HOME` page
 image::user-guide/home-find-before.png[width="300"]
-.1) You want to search for all `TRIP` s with names containing the `KEYWORD`, "fuji"
+1) You want to search for all `TRIP` s with names containing the `KEYWORD`, "fuji"
 
 .Result of `find` command
 image::user-guide/home-find-after.png[width="300"]
-.2) After using the `find` command, Volant will display all trips with the specified `KEYWORD`
+2) After using the `find` command, Volant will display all trips with the specified `KEYWORD`
 
 [TIP]
 ====
@@ -540,11 +540,11 @@ For example, you are on the `TRIP` page and would like to view your itinerary fo
 
 .`goto` command on `TRIP` page
 image::user-guide/trip-page.png[width="300"]
-.1) You are on the `TRIP` page of the trip "Family Trip"
+1) You are on the `TRIP` page of the trip "Family Trip"
 
 .Result of `goto` command
 image::user-guide/trip-goto-after.png[width="300"]
-.2) After using the `goto` command, you will be navigated to the `TRIP` 's `ITINERARY` page
+2) After using the `goto` command, you will be navigated to the `TRIP` 's `ITINERARY` page
 
 === Itinerary Page
 The `ITINERARY` page of a specific trip consists of a list of all the planned activities for a specific trip.
@@ -584,11 +584,11 @@ a new `ACTIVITY` will be added to the `TRIP` 's `ITINERARY`.
 [caption=]
 .`add` command on `ITINERARY` page
 image::user-guide/itinerary-add-before.png[width="300"]
-.1) You would like to add a new `ACTIVITY` into your itinerary
+1) You would like to add a new `ACTIVITY` into your itinerary
 
 .Result of `add` command
 image::user-guide/itinerary-add-after.png[width="600"]
-.2) After using the `add` command, a new `ACTIVITY` will be added to the itinerary
+2) After using the `add` command, a new `ACTIVITY` will be added to the itinerary
 
 
 
@@ -645,11 +645,11 @@ The second activity in the itinerary will be edited to reflect the new location 
 
 .`edit` command on `ITINERARY` page
 image::user-guide/itinerary-edit-before.png[width="600"]
-.1) You want to edit the `LOCATION` and `TIME` of the second activity in your activity list.
+1) You want to edit the `LOCATION` and `TIME` of the second activity in your activity list.
 
 .Result of `edit` command
 image::user-guide/itinerary-edit-after.png[width="600"]
-.2) After using the `edit` command, the `LOCATION` and `TIME` of the activity will be changed accordingly.
+2) After using the `edit` command, the `LOCATION` and `TIME` of the activity will be changed accordingly.
 
 
 ==== Locating an activity: `find`
