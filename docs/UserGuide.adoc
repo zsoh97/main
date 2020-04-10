@@ -566,7 +566,7 @@ image::user-guide/trip-goto-after.png[width="300"]
 2) After using the `goto` command, you will be navigated to the `TRIP` 's `ITINERARY` page.
 
 === Itinerary Page
-The `ITINERARY` page of a specific trip consists of a list of all the planned activities for a specific trip. 
+The `ITINERARY` page of a specific trip consists of a list of all the planned activities for a specific trip.
 Here, you can manipulate the list of `JOURNAL` entries, as well as navigate to other pages.
 
 .`ITINERARY` page
@@ -893,24 +893,24 @@ This section summarises the syntax of all the commands available in the Volant a
 Use this list as a quick and convenient reference.
 [%autowidth]
 |====================================================
-| *Section* | *Command* |*Format* 
+| *Section* | *Command* |*Format*
 .5+|Home page
 |*Help* | `help`
-|*Navigate to trip* | `goto INDEX` 
-|*Add trip* | `add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE` 
-|*Delete trip* | `delete INDEX` 
-|*Edit trip* | `edit INDEX [n/TRIP_NAME]  [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]` 
+|*Navigate to trip* | `goto INDEX`
+|*Add trip* | `add n/TRIP_NAME l/LOCATION d/TRIP_START_DATE to TRIP_END_DATE`
+|*Delete trip* | `delete INDEX`
+|*Edit trip* | `edit INDEX [n/TRIP_NAME]  [l/LOCATION] [d/TRIP_START_DATE to TRIP_END_DATE]`
 .1+|Trip page
-|*Navigate to feature* | `goto FEATURE` 
+|*Navigate to feature* | `goto FEATURE`
 .4+|Itinerary
-|*Add activity* | `add a/ACTIVITY_TITLE l/LOCATION d/DATE t/TIME` 
-|*Delete activity* | `delete INDEX` 
-|*Edit activity* | `edit INDEX [a/ACTIVITY_TITLE] [l/LOCATION] [d/DATE] [t/TIME]` 
-|*Find activity* | `find FIELD [a/ACTIVITY_TITLE] [l/LOCATION] [d/DATE] [t/TIME]` 
+|*Add activity* | `add a/ACTIVITY_TITLE l/LOCATION d/DATE t/TIME`
+|*Delete activity* | `delete INDEX`
+|*Edit activity* | `edit INDEX [a/ACTIVITY_TITLE] [l/LOCATION] [d/DATE] [t/TIME]`
+|*Find activity* | `find FIELD [a/ACTIVITY_TITLE] [l/LOCATION] [d/DATE] [t/TIME]`
 .4+|Journal
-|*Add entry* | `add d/DATE t/TIME c/CONTENT [l/LOCATION] [f/FEELING] [w/WEATHER]` 
-|*Delete entry* | `delete INDEX` 
-|*Edit entry* | `edit INDEX [d/NEW_DATE] [t/NEW_TIME] [c/NEW_CONTENT] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]` 
+|*Add entry* | `add d/DATE t/TIME c/CONTENT [l/LOCATION] [f/FEELING] [w/WEATHER]`
+|*Delete entry* | `delete INDEX`
+|*Edit entry* | `edit INDEX [d/NEW_DATE] [t/NEW_TIME] [c/NEW_CONTENT] [l/NEW_LOCATION] [f/NEW_FEELING] [w/NEW_WEATHER]`
 |*Sort entries* | `sort [SORT_TYPE]` |
 
 |====================================================
