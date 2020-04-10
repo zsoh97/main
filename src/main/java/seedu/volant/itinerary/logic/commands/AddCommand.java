@@ -46,8 +46,8 @@ public class AddCommand extends Command {
             + "Please enter a date within the duration of the trip: %s";
     public static final String MESSAGE_DATE_PASSED = "Date of activity has passed. "
             + "Please entire a current or future date.";
-    public static final String MESSAGE_TIME_CLASH = "There is already another activity scheduled on %s at %s. Try " +
-            "another timing.";
+    public static final String MESSAGE_TIME_CLASH = "There is already another activity scheduled on %s at %s. "
+            + "Try another timing.";
 
     private final Activity toAdd;
 
