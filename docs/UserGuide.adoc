@@ -13,6 +13,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:important-caption: :warning:
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-F09-4/main
 
@@ -68,7 +69,7 @@ There will also be certain markdown notations to distinguish between normal text
 Follow this installation guide to get Volant up and running on your computer.
 
 .  Ensure you have *Java 11* or above installed on your computer.
-.  Download the latest `volant.jar` file here:{https://github.com/AY1920S2-CS2103T-F09-4/main}/releases [releases page].
+.  Download the latest `volant.jar` file here: https://github.com/AY1920S2-CS2103T-F09-4/main/releases [releases page].
 .  Copy the file to the folder you want to use as the home folder for the application.
 .  Double-click the JAR file to start the app.
 .  The GUI should appear in a few seconds.
