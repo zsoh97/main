@@ -4,14 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
+import seedu.volant.commons.core.Messages;
 import seedu.volant.commons.core.index.Index;
 import seedu.volant.commons.logic.parser.exceptions.ParseException;
 import seedu.volant.commons.util.StringUtil;
-import seedu.volant.home.model.tag.Tag;
 import seedu.volant.home.model.trip.DateRange;
 import seedu.volant.home.model.trip.Location;
 import seedu.volant.home.model.trip.Name;
@@ -29,6 +26,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "You seem to have input an invalid index.\n"
             + "Indexes can be found on the bottom right of a trip/activity/entry :)";
+    private static final String MESSAGE_START_AFTER_END = "Hey, your trip start date: %s, occurs"
+            + " after your trip end date: %s.\nRevise the dates and try again!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -93,14 +92,13 @@ public class ParserUtil {
             parsedFromDate = LocalDate.of(dateFields[2], dateFields[1], dateFields[0]);
             parsedToDate = LocalDate.of(dateFields[5], dateFields[4], dateFields[3]);
             if (parsedFromDate.compareTo(parsedToDate) > 0) {
-                throw new StartAfterEndException(String.format("Hey, your trip start date: %s, occurs"
-                                + " after your trip end date: %s.\nRevise the dates and try again!",
+                throw new StartAfterEndException(String.format(MESSAGE_START_AFTER_END,
                         parsedFromDate, parsedToDate));
             }
         } catch (StartAfterEndException e) {
             throw new StartAfterEndException(e.getMessage());
         } catch (Exception e) {
-            throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE);
         }
         return new DateRange(parsedFromDate, parsedToDate);
     }
@@ -112,34 +110,6 @@ public class ParserUtil {
             dateFields[i] = Integer.valueOf(strFields[i]);
         }
         return dateFields;
-    }
-
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
@@ -184,7 +154,7 @@ public class ParserUtil {
             int year = Integer.parseInt(dateFields[2]);
             parsedDate = LocalDate.of(year, month, day);
         } catch (Exception e) {
-            throw new ParseException("Please input a valid date in DD-MM-YYYY format!");
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE);
         }
         return parsedDate;
     }
@@ -201,7 +171,7 @@ public class ParserUtil {
             int minute = Integer.parseInt(timeFields[1]);
             parsedTime = LocalTime.of(hour, minute);
         } catch (Exception e) {
-            throw new ParseException("Please input a valid time in HH:MM format!");
+            throw new ParseException(Messages.MESSAGE_INVALID_TIME);
         }
         return parsedTime;
     }
