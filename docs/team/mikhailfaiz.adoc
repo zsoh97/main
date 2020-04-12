@@ -42,26 +42,14 @@ can easily locate a specific entry.
 
 === Contributions to User Guide
 ==== Sections Written
-* Section 1
-* Section 2
-* Section 3
+* GUI
+** Introduced the major components of Volant's GUI and the purpose of each of these components.
+* Pages
+** Introduced the four pages that Volant offers and a brief overview of what each page is for.
+* Trip Commands
+** Explained what commands are available on the trip page and examples of usage of the commands.
 
 === Contributions to Developer Guide
 ==== Sections Written
-* Section 1
-* Section 2
-* Section 3
+* Activity Diagrams
 
-_Week 8_
-
-Designed logic and model for Journal with Grant.
-
-_Week 9_
-
-Worked on logic and model of Journal with Grant.
-
-Implemented add command and parser for Journal.
-
-_Week 10_
-
-Worked on edit command for Journal with Grant.
