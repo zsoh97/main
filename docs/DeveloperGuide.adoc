@@ -239,7 +239,7 @@ displayed.
 ==== Implementation
 Adding a trip
 
-The add trip feature allows user to add a trip to Volant. This feature is facilitated by `HomeInputParser`, `AddCommandParser` and `AddCommand`. 
+The add trip feature allows user to add a trip to Volant. This feature is facilitated by `HomeInputParser`, `AddCommandParser` and `AddCommand`.
 
 Given below is an example usage scenario and how the trip add mechanism behaves at each step:
 
@@ -274,7 +274,7 @@ image::AddTripActivityDiagram.png[]
 ==== Implementation
 Sorting journal entries
 
-The sort feature allows user to sort the entries in the `JOURNAL` of a trip. This feature is facilitated by `JournalInputParser`, `SortCommandParser` and `SortCommand`. 
+The sort feature allows user to sort the entries in the `JOURNAL` of a trip. This feature is facilitated by `JournalInputParser`, `SortCommandParser` and `SortCommand`.
 
 Given below is an example usage scenario and how the trip add mechanism behaves at each step:
 
