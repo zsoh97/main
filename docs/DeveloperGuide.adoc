@@ -25,9 +25,17 @@ application work together.
 ====
 *Reading this Developer Guide*
 
-TIP: This icon denotes useful tips to note of during development.
+* *Important Notations* +
+[TIP]
+This icon denotes useful tips to note of during development.
+[NOTE]
+This icon denotes important details to take note of during development.
 
-NOTE: This icon denotes important details to take note of during development.
+* *Understanding Diagrams* +
+The diagrams in this Developer Guide are colour coded according to the different components.
++
+image::/{imagesDir}/dg-diagram-legend.png[]
+
 ====
 
 == Setting up
@@ -91,14 +99,16 @@ image::JournalLogic.png[align="center"]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues
 the command `back` when in a `TRIP` view. View switching is executed by the `Ui` component.
 
-.Component interactions for `back` command in the `TRIP` view.
-image::ArchitectureSequenceDiagram.png[align="center"]
+[[view-switch-sequence]]
+.Component interactions for `home` command in the `JOURNAL` page.
+image::home-command-sequence.png[align="center"]
 
 
-The _Sequence Diagram_ below illustrates how the components interact with each other for the scenario where the user issues the command `goto 1` when in a `HomePage` view.
+The _Sequence Diagram_ below illustrates how the components interact with each other for the scenario where the user
+issues the command `goto 1` when in a `HOME` page view.
 View switching is executed by the `Ui` component.
 
-.Component interactions for `goto 1` command in the `HomePage` view.
+.Component interactions for `goto 1` command in the `HOME` page view.
 
 image::gotoCommandSequenceDiagram.png[align="center"]
 
@@ -135,8 +145,7 @@ For example, if a user is switching from a `TRIP` view to the `HOME` view throug
 . Reassign the `Model` component from `TripPageModelManager` to a new `HomePageModelManager`.
 . Reassign the value of `StackPane` `mainPanel` from `TripPage` to `HomePage`.
 
-.Component interactions for `back` command in the `TRIP` view.
-image::ArchitectureSequenceDiagram.png[align="center"]
+<<view-switch-sequence, You can view the sequence diagram for this process here.>>
 ====
 
 _More details on the implementation of view switching can be found in <<implementation-view-switching>>._
@@ -149,7 +158,7 @@ _More details on the implementation of view switching can be found in <<implemen
 image::JournalLogic.png[align="center"]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/location/logic/Logic.java[`Logic.java`]
+link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `JournalInputParser` class of the current feature to parse the user command.
 .  This results in a `Command` object which is executed by the `JournalLogicManager` of the current feature.
@@ -164,6 +173,9 @@ image::DeleteItinerary.png[align="center"]
 
 [[Design-Model]]
 === Model component
+
+.Class Diagram for the Model component on the `HOME` page
+image::HomeClassDiagram.png[align="center"]
 
 .Structure of the Model Component in Journal
 image::JournalModelDiagram.png[align="center"]
@@ -181,6 +193,7 @@ The `Model` for `JOURNAL`,
 image::ItineraryModelDiagram.png[align="center"]
 
 The `Model` for `ITINERARY`,
+*API* : link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/model/Model.java[`Model.java`]
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores an `Activity` 's data.
@@ -194,7 +207,7 @@ The `Model` for `ITINERARY`,
 .Structure of the Storage Component
 image::StorageClassDiagram.png[align="center"]
 
-*API* : link:{repoURL}/src/main/java/seedu/location/storage/Storage.java[`Storage.java`]
+*API* : link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -212,7 +225,7 @@ This section describes some noteworthy details on how certain features are imple
 
 [[implementation-view-switching]]
 === View Switching for Navigation Commands
-The entire process of view switching is done in the `MainWindow` class.
+The entire process of view switching is executed in the `MainWindow.java` class.
 
 [TIP]
 ====
@@ -226,12 +239,60 @@ The entire process of view switching is done in the `MainWindow` class.
 
 ==== Implementation
 Each `CommandResult` from an execution in the `MainWindow` class stores data on
-*if a command is a navigation command or not.* If the command is a navigation command, the `MainWindow` will execute the
+*if a command is a navigation command or not, and which navigation command it is.* If the command is a navigation command, the `MainWindow` will execute the
 appropriate functions to facilitate view switching.
 
+In the view switching process, the `MainWindow` will do the following: +
+
+. Switch the logic component of the program to the logic component of the next page
+. Switch the model component of the program to the model component of the next page
+. Switch the current storage of the program to the storage component of the next page
+. Load the GUI components for the next page
+
+For example, for the `back` command, the `MainWindow`:
+
+.Activity diagram for view switching process in `MainWindow` for `back` command
+image::back-activity-diagram.png[]
+
+==== Design Considerations
+Pros: +
+
+* As each page has its own components, the back end of the program is neater and better abstracted.
+* Specialised logic components for each page allow for the same keywords to be used (e.g `add`, `delete`) on certain
+pages.
+
+Cons: +
+
+* There are many steps to switching views
+* If there are more pages, there will be many logic and model components to keep track of.
+
 ==== Special Cases
-When `back` command is used in the <<root-page>>, this would not have any effect on the current GUI being
+* When `back` command is used in the <<root-page>>, this would not have any effect on the current GUI being
 displayed.
+* When the `home` command is used in the <<root-page>>, this would not have any effect on the current GUI being
+displayed as the user is already on the HOME page.
+
+
+=== Specific Help Windows for different pages
+==== Implementation
+Each page in Volant has its own `{Page}HelpWindow` class.
+<<implementation-view-switching, Upon switching views>>, the `MainWindow` will create a new `{Page}HelpWindow` containing
+details of the commands that can be used on that page.
+
+==== Design Considerations
+===== Aspect: Syntax of the find command
+* **Alternative 1 (current choice):**
+Help Window specifically details the commands that can be used on the page that the user is currently on.
+** Pros: Very specific and allows added convenience for users when they want to use commands with many fields that they
+cannot remember without having to refer to the User Guide.
+** Cons: Every single page has to have its own class file for the Help Window, if there are many pages, there will be many files to keep track of.
+* **Alternative 2:** Use a general Help Window that lists every single command for every page in Volant
+** Pros: Only one Help Window class file needed and it is easy to implement.
+** Cons: If all the commands are detailed on a single long Help Window, the user will have to inconveniently scroll through
+the window to reach the section that details commands for the page that they are on.
+
+
+
 
 === Adding a trip in Home Page
 ==== Implementation
@@ -618,7 +679,7 @@ _{All user stories can be viewed in our issue tracker.}_
 *<<mss, MSS>>*
 
 1. User enters details of trip to be added
-2. V adds trip to trip list
+2. V adds new trip to trip list
 +
 Use case ends
 
@@ -626,7 +687,7 @@ Use case ends
 
 [none]
 * 1a. V detects invalid characters in trip details
-* 1a1. V outputs error informing user of invalid characters
+* 1a1. V outputs error informing user of invalid command
 +
 Use case ends
 
@@ -637,8 +698,20 @@ Use case ends
 Use case ends
 
 [none]
-* 1c. V is unable to detect a valid keyword
-* 1c1. V outputs error informing user of invalid keyword
+* 1c. V detects that trip has a clashing date range with another trip on the trip list
+* 1c1. V outputs error informing user of clashing date range between trip and another trip on the list
++
+Use case ends
+
+[none]
+* 1d. V detects that trip has the same name as another trip on the trip list
+* 1d1. V outputs error informing user that the trip already exists on the trip list
++
+Use case ends
+
+[none]
+* 1e. V is unable to detect a valid keyword
+* 1e1. V outputs error informing user of invalid command
 +
 Use case ends
 
@@ -661,25 +734,31 @@ Use case ends
 *Extensions*
 
 [none]
+* 3c. V is unable to detect any specified fields to edit
+* 3c1. V outputs error informing user that a field to edit must be specified
++
+Use case ends
+
+[none]
 * 3a. V detects an invalid index i.e. index out of range or negative index
 * 3a1. V outputs error informing user of invalid index specified
 +
 Use case ends
 
 [none]
-* 3b. V detects invalid characters for the details
-* 3b1. V outputs error informing user of invalid characters
+* 3b. V detects invalid characters for the fields
+* 3b1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [none]
-* 3b. V is unable to detect a valid keyword
-* 3b1. V outputs error informing user of invalid keyword
+* 3c. V is unable to detect a valid keyword
+* 3c1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [discrete]
-=== UC03 - Navigating to Trip Folder
+=== UC03 - Navigating to Trip Page
 
 *Precondition:* User has added a trip
 
@@ -702,12 +781,12 @@ Use case ends
 
 [none]
 * 1b. V is unable to detect a valid keyword
-* 1b1. V outputs error informing user of invalid keyword
+* 1b1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [discrete]
-=== UC04 - Accessing Pages (Contact List/ Itinerary / Journal)
+=== UC04 - Accessing Trip Feature Pages (Itinerary / Journal)
 
 *Precondition:* User is in the home page
 
@@ -724,53 +803,19 @@ Use case ends
 *Extensions*
 
 [none]
-* 2a. V detects incorrect command to navigate to the page
-* 2a1. V outputs error informing user of incorrect command
+* 2a. V detects invalid field to navigate to the page
+* 2a1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [none]
 * 2b. V is unable to detect a valid keyword
-* 2b1. V outputs error informing user of invalid keyword
+* 2b1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [discrete]
-=== UC05 - Adding Contact to Contact List in a Trip
-
-**Precondition: **User is in the Contact List page of a trip
-
-**Guarantee: **A new contact will be added to the Contact List
-
-*MSS*
-
-1. User enters details of the contact
-2. V confirms the addition of the contact to the contact list and displays new contact in the contact list
-+
-Use case ends
-
-*Extensions*
-
-[none]
-* 1a. V detects invalid characters in contact entry
-* 1a1. V outputs error informing user of invalid characters
-+
-Use case ends
-
-[none]
-* 1b. V detects missing fields in contact entry
-* 1b1. V outputs error informing user of missing contact entry
-+
-Use case ends
-
-[none]
-* 1c. V is unable to detect a valid keyword
-* 1c1. V outputs error informing user of invalid keyword
-+
-Use case ends
-
-[discrete]
-=== UC06 - Adding Travel Entry into Journal in a Trip
+=== UC05 - Adding a travel Entry into Journal of a Trip
 
 **Precondition: **User is already in the Journal page of Trip
 
@@ -787,7 +832,7 @@ Use case ends
 
 [none]
 * 1a. V detects invalid characters in travel entry
-* 1a1. V outputs error informing user of invalid characters
+* 1a1. V outputs error informing user of invalid command
 +
 Use case ends
 
@@ -799,12 +844,12 @@ Use case ends
 
 [none]
 * 1c. V is unable to detect a valid keyword
-* 1c1. V outputs error informing user of invalid keyword
+* 1c1. V outputs error informing user of invalid command
 +
 Use case ends
 
 [discrete]
-=== UC07 - Adding Activities into Itinerary
+=== UC06 - Adding Activities into Itinerary
 
 **Precondition: **User is already in the Itinerary page of the Trip
 **Guarantee: **A new activity will be added to the Itinerary
@@ -820,7 +865,7 @@ Use case ends
 
 [none]
 * 1a. V detects invalid characters into activity entry
-* 1a1. V outputs error informing user of invalid characters
+* 1a1. V outputs error informing user of invalid command
 +
 Use case ends
 
@@ -832,40 +877,10 @@ Use case ends
 
 [none]
 * 1c. V is unable to detect a valid keyword
-* 1c1. V outputs error informing user of invalid keyword
+* 1c1. V outputs error informing user of invalid command
 +
 Use case ends
 
-[discrete]
-=== UC08 - Deleting a Contact in the Contact List of a Trip
-
-*Precondition:* User is in Contact List page of the Trip
-
-*Guarantee:* The contact in the Contact List will be deleted
-
-*MSS*
-
-[none]
-1. User requests to delete a contact in the contact list at the specified index
-2. V deletes the contact at the specified index and updates the displayed list
-3. Use case ends
-
-*Extensions*
-
-[none]
-* 1a. V detects an invalid index i.e. index out of range or negative index
-* 1a1. V outputs error informing user of invalid index specified
-+
-Use case ends
-
-[none]
-* 1b. V is unable to detect a valid keyword
-* 1b1. V outputs error informing user of invalid keyword
-+
-Use case ends
-
-
-_{More use cases will be added and current use cases may be edited in the future.}_
 
 [appendix]
 == Non Functional Requirements
@@ -934,8 +949,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Initial launch
 
-.. Download the jar file and copy into an empty folder
-.. Double-click the jar file +
+.. Download the jar file and copy into an empty folder.
+.. Double-click the jar file. +
    Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 . Saving window preferences
@@ -945,6 +960,12 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The most recent window size and location is retained.
 
 _{ more test cases ... }_
+
+=== Adding a `TRIP`
+
+. Adding a `TRIP` to an empty trip list
+
+.. Prerequisites:
 
 === Deleting a `TRIP`
 
@@ -974,9 +995,11 @@ _{ more test cases ... }_
 
 .. Prerequisites: A `TRIP` has already been created.
 .. Test case: `delete 1` +
-   Expected: First `activity` is deleted from the `ITINERARY` of the current `TRIP`. Current `activity` list is updated.
+   Expected: First `activity` is deleted from the `activity` list of the `ITINERARY` of the current `TRIP`. Current `activity` list is updated.
 .. Test case: `delete 0` +
-   Expected: No `activity` is deleted. Error details shown in the status message
+   Expected: No `activity` is deleted. Error details shown in the status message.
+.. Test case: `delete a` +
+   Expected: No `activity` is deleted. Error details shown in the status message.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the itinerary size) +
    Expected: Similar to previous.
 
