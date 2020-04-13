@@ -68,8 +68,6 @@ public class JournalModelManager implements Model {
         return page;
     }
 
-    // TODO: Complete implementation of methods once implementation of Journal has been completed.
-
     public Trip getTrip() {
         return trip;
     }
@@ -86,9 +84,8 @@ public class JournalModelManager implements Model {
      * Returns true if entry is within the entry list within model.
      */
     public boolean hasEntry(Entry entry) {
-        // requireNonNull(entry);
-        // return entryList.hasEntry(entry);
-        return false;
+        requireNonNull(entry);
+        return entryList.hasEntry(entry);
     }
 
     /**

@@ -1,7 +1,16 @@
 package seedu.volant.journal.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.volant.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.volant.commons.core.GuiSettings;
 import seedu.volant.commons.logic.Page;
 import seedu.volant.commons.model.ReadOnlyUserPrefs;
@@ -10,23 +19,38 @@ import seedu.volant.journal.model.Entry;
 import seedu.volant.journal.model.EntryList;
 import seedu.volant.journal.model.JournalModelManager;
 import seedu.volant.journal.model.util.SortType;
+import seedu.volant.testutil.EntryBuilder;
 import seedu.volant.trip.model.Journal;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.volant.testutil.Assert.assertThrows;
-import static seedu.volant.testutil.TypicalTrips.getIndiaTrip;
-
 
 public class AddCommandTest {
     @Test
     public void constructor_nullEntry_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    }
+
+    @Test
+    public void equals() {
+        Entry austria = new EntryBuilder().withLocation("Austria").build();
+        Entry burma = new EntryBuilder().withLocation("Burma").build();
+
+        AddCommand austriaCommand = new AddCommand(austria);
+        AddCommand burmaCommand = new AddCommand(burma);
+
+        // same object -> returns true
+        assertTrue(austriaCommand.equals(austriaCommand));
+
+        // same values -> returns true
+        AddCommand austriaCommandCopy = new AddCommand(austria);
+        assertTrue(austriaCommand.equals(austriaCommandCopy));
+
+        // different types -> returns false
+        assertFalse(austriaCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(austriaCommand.equals(null));
+
+        // different trip -> returns false
+        assertFalse(austriaCommand.equals(burmaCommand));
     }
 
     private class ModelStub extends JournalModelManager {
@@ -89,7 +113,6 @@ public class AddCommandTest {
         public void updateFilteredEntryList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean equals(Object obj) {
             throw new AssertionError("This method should not be called.");
@@ -130,8 +153,15 @@ public class AddCommandTest {
         private final Trip trip;
 
         public ModelStubWithSingleEntry(Trip trip) {
+            requireNonNull(trip);
             this.trip = trip;
         }
+
+        @Override
+        public boolean hasEntry(Entry entry) {
+            return super.hasEntry(entry);
+        }
+
 
     }
 }

@@ -1,8 +1,15 @@
 package seedu.volant.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.volant.journal.model.Entry;
 import seedu.volant.journal.model.EntryList;
 
+/**
+ * A utility class containing a list of {@code Entry} objects to be used in tests.
+ */
 public class TypicalEntries {
     public static final Entry A = new EntryBuilder().withDate("2018-12-12")
             .withTime("09:11")
@@ -41,5 +48,9 @@ public class TypicalEntries {
         list.addEntry(C);
         list.addEntry(D);
         return list;
+    }
+
+    public static List<Entry> getTypicalEntries() {
+        return new ArrayList<>(Arrays.asList(A, B, C, D));
     }
 }

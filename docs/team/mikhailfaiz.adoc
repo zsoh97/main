@@ -38,6 +38,7 @@ make searching for a specific entry easier, the sort command arranges the entrie
 can easily locate a specific entry.
 
 * *Other Contributions*
+** JUnit testing for Journal commands and functionality.
 ** Discussed and reviewed Volant logo design with Ranice (who created the designs).
 
 === Contributions to User Guide
