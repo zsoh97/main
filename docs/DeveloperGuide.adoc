@@ -270,7 +270,6 @@ image::AddTripActivityDiagram.png[align="center"]
 === Sorting entries in Journal Page
 ==== Implementation
 Sorting journal entries
-
 The sort feature allows user to sort the entries in the `JOURNAL` of a trip. This feature is facilitated by `JournalInputParser`, `SortCommandParser`, and `SortCommand`.
 
 Given below is an example usage scenario and how the journal sort mechanism behaves at each step:
