@@ -149,7 +149,7 @@ _More details on the implementation of view switching can be found in <<implemen
 image::JournalLogic.png[align="center"]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/location/logic/Logic.java[`Logic.java`]
+link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `JournalInputParser` class of the current feature to parse the user command.
 .  This results in a `Command` object which is executed by the `JournalLogicManager` of the current feature.
@@ -181,6 +181,7 @@ The `Model` for `JOURNAL`,
 image::ItineraryModelDiagram.png[align="center"]
 
 The `Model` for `ITINERARY`,
+*API* : link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/model/Model.java[`Model.java`]
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores an `Activity` 's data.
@@ -194,7 +195,7 @@ The `Model` for `ITINERARY`,
 .Structure of the Storage Component
 image::StorageClassDiagram.png[align="center"]
 
-*API* : link:{repoURL}/src/main/java/seedu/location/storage/Storage.java[`Storage.java`]
+*API* : link:https://github.com/AY1920S2-CS2103T-F09-4/main/blob/master/src/main/java/seedu/volant/commons/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
