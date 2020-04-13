@@ -388,7 +388,7 @@ Given below is an example usage scenario and how the trip add mechanism behaves 
 The following activity diagram summarizes what happens when a user executes a add trip command:
 
 .Activity Diagram for `sort` Command
-image::sortActivityDiagram.png[]
+image::SortActivityDiagram.png[]
 
 ////
 === [Proposed] Undo/Redo feature
