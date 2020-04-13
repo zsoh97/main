@@ -312,7 +312,7 @@ Given below is an example usage scenario and how the delete mechanism behaves at
 
 The following activity diagram summarises what happens when a user executes an add activity command:
 
-.Activity Diagram for `add` Command
+.Activity Diagram for `delete` Command
 image::deleteTripActivityDiagram.png[align="center"]]
 
 ==== Design Considerations
